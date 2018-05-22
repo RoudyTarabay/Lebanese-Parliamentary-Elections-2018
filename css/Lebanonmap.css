@@ -1,7 +1,4 @@
-    .subunit-boundary {
-        stroke: black;
-        fill: #4ABDAC;
-    }
+
     #mapContainer{
         font-size: 0.7vw;
     }
@@ -11,26 +8,15 @@
         width:100%;
         height: auto;
     }
-    .smalldistrictContainer{
-        stroke: red;
-        fill: #4ABDAC;
 
-    }
-
-    .district {
-    stroke: red;
-    stroke-width: 1;
-    fill-opacity: 0.6;
-    fill:red;
-    color: red;
-  }
       .bigDistrict{
         fill:none;
         stroke: black;
         stroke-width:0; 
+        opacity: 0.6
       }
       .bigDistrict:hover{
-        opacity: 0.2;
+        opacity: 0.1;
         cursor: pointer;
       }
       .smallDistrict{
@@ -43,18 +29,7 @@
         stroke: black   
     }
 
-    #envelopLegend{
-        content: " Municipality, click to see election info";
-        font-weight: bold;
-
-    }
-    .subunit-boundary:hover {
-        stroke: black;
-        /*fill: #dcd;*/
-        opacity:0.6;
-        cursor: pointer;
-    }
-    
+   
     .districtName {
         fill: black;
         fill-opacity: .5;
@@ -62,15 +37,3 @@
         font-weight: bold;
         cursor: pointer
     }
-    
-    .env {
-        /*fill: #FC4A1A;*/
-        fill:#F7B733;
-        font-size: 0.7vw;
-    }
-    
-    .env:hover {
-        opacity:0.7;
-        cursor: pointer;
-    }
-    

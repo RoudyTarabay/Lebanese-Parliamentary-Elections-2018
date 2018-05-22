@@ -35,19 +35,28 @@ mapsvg.selectAll('.district')
       .attr('d', map_path)
     
 for (var i=0;i<bigDistricts.length;i++){
-    mapsvg.append("path").datum(topojson.merge(Lebanon, Lebanon.objects['2009_districts'].geometries.filter(function(d){
+    var save_d=null
+    var bigDistrictgroup=mapsvg.append("g")
+    .attr("name",bigDistricts[i])
+
+
+    var bigDistrict=bigDistrictgroup.append("path").datum(topojson.merge(Lebanon, Lebanon.objects['2009_districts'].geometries.filter(function(d,q){
+   // console.log(d) 
+
         if (d.properties.Combined==bigDistricts[i]){
+            save_d=Lebanon.objects['2009_districts']
+
             return true;
         }
         else
             return false
     })))
     .style('fill', function(d, j) { return color(i) })
-
     .attr('class', "bigDistrict")
     .attr("d", map_path)
+    //drawDistrictNames(bigDistrict,bigDistrictgroup,map_path,save_d)
 }
-  /*mapsvg.append("path").datum(topojson.merge(Lebanon, Lebanon.objects['2009_districts'].geometries))
+  /* mapsvg.append("path").datum(topojson.merge(Lebanon, Lebanon.objects['2009_districts'].geometries))
     .attr('class', "entireCountry")
     .attr("d", map_path)
     
@@ -100,13 +109,108 @@ districts = mapsvg.selectAll('.district')
 
 
 
-       // drawDistrictNames(map_g, map_path);
+       drawDistrictNames2(mapsvg,map_path);
         //drawMunicipalities(mapsvg,map_g,map_path,projection);
     });
 
 }
 
-function makeZoomable(mapsvg,map_g,map_path,projection){
+function drawDistrictNames2(mapsvg,map_path){
+    mapsvg.selectAll(".bigDistrict").each(function (a, b) {
+        var bigDistrictgroup=d3.select(this.parentNode);
+        var path=d3.select(this);
+        bigDistrictgroup        
+        .append("text")
+        .attr("font-size", "0.5vw")
+        .attr("class", "districtName")
+        .attr("transform", function(d) {/*
+            if (d.properties.DISTRICT == "Zgharta")
+                return "translate(" + map_path.centroid(d) + ") rotate(45)";
+            else if (d.properties.DISTRICT.indexOf("Marja") >= 0)
+                return "translate(" + map_path.centroid(d) + ") rotate(-25)";
+            else if (d.properties.DISTRICT.indexOf("Jezzine") >= 0)
+                return "translate(" + map_path.centroid(d) + ") rotate(25)";
+            else*/
+              return "translate(" + map_path.centroid(path.datum()) + ")";
+        })
+        .text(function(d) {
+            if (bigDistrictgroup.attr("name").indexOf("Beirut") < 0 && bigDistrictgroup.attr("name").indexOf("Saida") < 0){
+                return bigDistrictgroup.attr("name")
+            }
+
+        })
+
+    .attr("dx", function(d) {
+            var disName = bigDistrictgroup.attr("name");
+
+            if (disName.indexOf("South-1") >= 0)
+                return "1em"
+        })
+        .attr("dy", function(d) {
+            var disName = bigDistrictgroup.attr("name");
+            if (disName == "Mount-Lebanon-3" || disName == "Batroun")
+                return "0.5em";
+            else
+                return "0em"
+        })
+
+        bigDistrictgroup.append("line")
+        .attr("x1", function(d) {
+            if (bigDistrictgroup.attr("name").indexOf("Beirut") >= 0 || bigDistrictgroup.attr("name").indexOf("Saida") >= 0){
+                console.log('x1')
+                return map_path.centroid(path.datum())[0];
+            }
+
+        })
+        .attr("y1", function(d) {
+            if (bigDistrictgroup.attr("name").indexOf("Beirut") >= 0 || bigDistrictgroup.attr("name").indexOf("Saida") >= 0){
+                console.log('y1')
+
+                return map_path.centroid(path.datum())[1];
+            }
+        })
+        .attr("x2",
+            function(d, i) {
+                if (bigDistrictgroup.attr("name").indexOf("Beirut") >= 0 || bigDistrictgroup.attr("name").indexOf("Saida") >= 0){
+                    console.log('x2')
+                    return map_path.centroid(path.datum())[0] - 30;
+                }
+
+            })
+
+
+    .attr("y2", function(d, i) {
+            if (bigDistrictgroup.attr("name").indexOf("Beirut") >= 0 || bigDistrictgroup.attr("name").indexOf("Saida") >= 0) {
+                console.log('y2')
+                return map_path.centroid(path.datum())[1];
+
+            }
+
+        })
+        .attr("style", "stroke:black;stroke-width:1");
+
+        bigDistrictgroup.append("text")
+        .attr("font-size", "0.5vw")
+        .attr("class", "districtName")
+        .text(function(d) {
+            if (bigDistrictgroup.attr("name").indexOf("Beirut") >= 0 || bigDistrictgroup.attr("name").indexOf("Saida") >= 0) {
+                if (bigDistrictgroup.attr("name").indexOf("Beirut") >= 0)
+                    return "Beirut"
+                return bigDistrictgroup.attr("name");
+            }
+        }).attr("transform", function(d, i) {
+            if (bigDistrictgroup.attr("name").indexOf("Beirut") >= 0 ||bigDistrictgroup.attr("name").indexOf("Saida") >= 0) {
+                var xt = map_path.centroid(path.datum())[0] - 40;
+                var yt = map_path.centroid(path.datum())[1] ;
+               
+
+                return "translate(" + xt + "," + yt + ")";
+            }
+        })
+         });
+
+}
+function makeZoomable(mapsvg,map_g,map_path,projection,save_d){
 
         var zoom = d3.behavior.zoom().on("zoom", function() {
             mapsvg.selectAll('.fontawesomeContainer').attr("transform", "translate(" + d3.event.translate.join(",") + ")scale(" + d3.event.scale + ")");
@@ -127,91 +231,98 @@ function makeZoomable(mapsvg,map_g,map_path,projection){
 
         mapsvg.call(zoom);
 }
-function drawDistrictNames(map_g, map_path) {
-    map_g.append("text")
+function drawDistrictNames(map_g, group, map_path,save_d) {
+    group.append("text")
         .attr("font-size", "0.5vw")
         .attr("class", "districtName")
-        .attr("transform", function(d) {
+        .attr("transform", function(d) {/*
             if (d.properties.DISTRICT == "Zgharta")
                 return "translate(" + map_path.centroid(d) + ") rotate(45)";
             else if (d.properties.DISTRICT.indexOf("Marja") >= 0)
                 return "translate(" + map_path.centroid(d) + ") rotate(-25)";
             else if (d.properties.DISTRICT.indexOf("Jezzine") >= 0)
                 return "translate(" + map_path.centroid(d) + ") rotate(25)";
-            else
-                return "translate(" + map_path.centroid(d) + ")";
+            else*/
+              return "translate(" + map_path.centroid(map_g.datum()) + ")";
         })
         .text(function(d) {
+            if (group.attr("name").indexOf("Beirut") < 0 && group.attr("name").indexOf("Saida") < 0){
+                console.log(group.attr("name"))
+            console.log("assd")
+            console.log(group)
+                return group.attr("name")
+            }
 
-            if (d.properties.DISTRICT.indexOf("Beirut") < 0 && d.properties.DISTRICT.indexOf("Saida") < 0)
-                return d.properties.DISTRICT
         })
 
     .attr("dx", function(d) {
-            var disName = d.properties.DISTRICT;
+            var disName = group.attr("name");
 
             if (disName.indexOf("Miniyeh") >= 0)
                 return "0.5em"
         })
         .attr("dy", function(d) {
-            var disName = d.properties.DISTRICT;
+            var disName = group.attr("name");
             if (disName == "Zgharta" || disName == "Batroun")
                 return "0.5em";
             else
                 return "0em"
         })
 
-    map_g.append("line")
+    group.append("line")
         .attr("x1", function(d) {
-            if (d.properties.DISTRICT.indexOf("Beirut-one") >= 0 || d.properties.DISTRICT.indexOf("Saida") >= 0)
-                return map_path.centroid(d)[0];
+            if (group.attr("name").indexOf("Beirut-one") >= 0 || group.attr("name").indexOf("Saida") >= 0)
+                return map_path.centroid(save_d)[0];
 
         })
         .attr("y1", function(d) {
-            if (d.properties.DISTRICT.indexOf("Beirut-one") >= 0 || d.properties.DISTRICT.indexOf("Saida") >= 0)
-                return map_path.centroid(d)[1];
+            if (group.attr("name").indexOf("Beirut-one") >= 0 || group.attr("name").indexOf("Saida") >= 0)
+                return map_path.centroid(save_d)[1];
 
         })
         .attr("x2",
             function(d, i) {
-                if (d.properties.DISTRICT.indexOf("Beirut-one") >= 0 || d.properties.DISTRICT.indexOf("Saida") >= 0)
-                    return map_path.centroid(d)[0] - 30;
+                if (group.attr("name").indexOf("Beirut-one") >= 0 || group.attr("name").indexOf("Saida") >= 0)
+                    return map_path.centroid(save_d)[0] - 30;
 
             })
 
 
     .attr("y2", function(d, i) {
-            if (d.properties.DISTRICT.indexOf("Beirut-one") >= 0 || d.properties.DISTRICT.indexOf("Saida") >= 0) {
+            if (group.attr("name").indexOf("Beirut-one") >= 0 || group.attr("name").indexOf("Saida") >= 0) {
 
-                return map_path.centroid(d)[1];
+                return map_path.centroid(save_d)[1];
 
             }
 
         })
         .attr("style", "stroke:black;stroke-width:1");
 
-    map_g.append("text")
+    group.append("text")
         .attr("font-size", "0.5vw")
         .attr("class", "districtName")
         .text(function(d) {
-            if (d.properties.DISTRICT.indexOf("Beirut-three") >= 0 || d.properties.DISTRICT.indexOf("Saida") >= 0) {
-                if (d.properties.DISTRICT.indexOf("Beirut-three") >= 0)
+            if (group.attr("name").indexOf("Beirut-three") >= 0 || group.attr("name").indexOf("Saida") >= 0) {
+                if (group.attr("name").indexOf("Beirut-three") >= 0)
                     return "Beirut"
-                return d.properties.DISTRICT;
+                return group.attr("name");
             }
         })
-        .attr("transform", function(d, i) {
-            if (d.properties.DISTRICT.indexOf("Beirut") >= 0 || d.properties.DISTRICT.indexOf("Saida") >= 0) {
-                var xt = map_path.centroid(d)[0] - 60;
-                var yt = map_path.centroid(d)[1] + Math.pow(-1, i) * 20;
-                if (d.properties.DISTRICT.indexOf("three") < 0 && d.properties.DISTRICT.indexOf("Saida") < 0)
-                    yt = map_path.centroid(d)[1] + Math.pow(-1, i) * 20;
+       /* .attr("transform", function(d, i) {
+            d=map_g
+            console.log(map_g)
+            console.log(d)
+            if (group.attr("name").indexOf("Beirut") >= 0 ||group.attr("name").indexOf("Saida") >= 0) {
+                var xt = map_path.centroid(save_d)[0] - 60;
+                var yt = map_path.centroid(save_d)[1] + Math.pow(-1, i) * 20;
+                if (group.attr("name").indexOf("three") < 0 && group.attr("name").indexOf("Saida") < 0)
+                    yt = map_path.centroid(save_d)[1] + Math.pow(-1, i) * 20;
                 else {
-                    yt = map_path.centroid(d)[1];
+                    yt = map_path.centroid(save_d)[1];
                 }
 
 
                 return "translate(" + xt + "," + yt + ")";
             }
-        })
+        })*/
 }
