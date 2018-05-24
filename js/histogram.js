@@ -74,7 +74,7 @@
               .attr('class', 'd3-tip')
               .offset([-10, 0])
               .html(function(d) {
-                  return "<strong>Percentage Of Votes: </strong> <span style='color:red'>" + (d.values / totalVotes * 100).toFixed(2) + "</span>"
+                  return "<strong>Votes: </strong> <span style='color:red'>" + d.values + "</span>"
               });
 
             hist_svg.select(".x").call(xAxis);
@@ -122,12 +122,16 @@
               }).delay(function(d,i){
                 return i*500;
               });
-
-
-            //  hist_svg.call(tip);
+         /* var threshold=(districtResults["totalVotes"]+districtResults["blank"])/districtResults["seats"]["total"]
+          hist_svg.selectAll(".textInfo")
+                  .append("g")
+                  .attr("class","textInfo")
+                  .append("text")*/
+            hist_svg.call(tip);
 
 
   }
 d3.json("data/results.json",  function(error, data) {
+  console.log(error)
     drawHistogram(data['Mount-Lebanon-1'],  initializeHistogram())
 });
