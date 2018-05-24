@@ -20,7 +20,7 @@ body {
 .results {
     display: inline-block;;
     position: absolute;
-    visibility: hidden;
+   /* visibility: hidden;*/
     top: 0;
     right: 0;
     bottom: 0;
