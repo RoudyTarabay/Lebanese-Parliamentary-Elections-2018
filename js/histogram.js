@@ -103,11 +103,16 @@
               .enter().append("rect")
               .attr("class", "bar")
               .attr("x", function(d) {
-              
+                  
                   return x(d.key);
               })
               .attr("width", x.rangeBand())
+              .attr("id",function(d){
 
+               return  (d.key).replace(' ','');
+
+
+              })
               .on("mouseover", tip.show)
               .on("mouseout", tip.hide)
               .attr("y",y(0))
@@ -125,11 +130,13 @@
         hist_svg.call(tip);
 
          var threshold=(districtResults["totalVotes"]+districtResults["blank"])/districtResults["seats"]["total"]
-         console.log(districtResults["totalVotes"]+districtResults["blank"])
-         
+        var dq=findDQ(threshold,districtResults['lists'])         
          setTimeout(function(){
           drawInfo1(threshold,districtResults,function(){
-            drawThreshold(threshold)
+            drawThreshold(threshold,function(){
+              blinkDQ(dq);
+            })
+
           })
         }
           ,4000)
@@ -137,13 +144,31 @@
 
   }
 
-function drawThreshold(threshold){
+function blinkDQ(dq){
+  for(var i=0;i<dq.length;i++)
+    d3.select("#"+dq[i].replace(' ','')).attr("class","blink")
+}
+function findDQ(threshold,listVotes){
+  var dq=[]
+  for(var i=0;i<listVotes.length;i++){
+    if(listVotes[i].total<threshold)
+      dq.push(listVotes[i].name);
+  }
+  return dq
+}
+function drawThreshold(threshold,callback){
   hist_svg.append("g")
        .attr("transform", "translate(0, "+y(threshold)+")")
        .append("line")
-       .attr("x2", hist_width)
        .style("stroke", "red")
-       .style("stroke-width", "5px")
+       .style("stroke-width", "5px")       
+       .attr("x2", 0)
+
+       .transition().duration(1000)
+
+       .attr("x2", hist_width)
+    setTimeout(callback,2000)
+
 }
 
 function drawInfo1(threshold,districtResults,callback){
