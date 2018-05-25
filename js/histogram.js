@@ -4,7 +4,7 @@
         top: 30,
         right: 50,
         bottom: 30,
-        left: 100
+        left: 40
     };
     svgdim = {
       width: $('.results').width(),
@@ -15,7 +15,7 @@
         .append("svg")
         .attr("id", "hist")
         //.attr("class", "hide")
-        .attr("viewBox", "0 0 " +(svgdim.width)+" "+ ((svgdim.height/2)-12));
+        .attr("viewBox", "0 0 " +(((svgdim.width)/2)+40)+" "+ ((svgdim.height/2)-12));
 
     hist_width = (svgdim.width/2) ;
     hist_height = (svgdim.height/2) / 1.5;
@@ -122,15 +122,33 @@
               }).delay(function(d,i){
                 return i*500;
               });
-         /* var threshold=(districtResults["totalVotes"]+districtResults["blank"])/districtResults["seats"]["total"]
-          hist_svg.selectAll(".textInfo")
-                  .append("g")
-                  .attr("class","textInfo")
-                  .append("text")*/
-            hist_svg.call(tip);
+        hist_svg.call(tip);
 
+         var threshold=(districtResults["totalVotes"]+districtResults["blank"])/districtResults["seats"]["total"]
+         console.log(districtResults["totalVotes"]+districtResults["blank"])
+         
+         setTimeout(function(){
+          drawInfo1(threshold,districtResults)
+        }
+          ,4000)
+        
 
   }
+function drawInfo1(threshold,districtResults){
+ var csstyping=d3.select("#histdiv")
+        .append("div")
+        .attr("id", "histInfo")
+        .append("div")
+        .attr("class","css-typing")
+        csstyping.append("p")
+                  .html("Total valid votes(incl blank): "+(districtResults["totalVotes"]+districtResults["blank"]))
+        csstyping.append("p")
+                  .html("Number of seats: "+ districtResults["seats"]["total"])
+        csstyping.append("p")
+                  .html("Threshold: Total valid votes/Number of seats= <span style='color:red'>"+threshold+"</span>")
+
+
+}
 d3.json("data/results.json",  function(error, data) {
   console.log(error)
     drawHistogram(data['Mount-Lebanon-1'],  initializeHistogram())
