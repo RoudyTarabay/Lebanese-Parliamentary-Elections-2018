@@ -128,13 +128,25 @@
          console.log(districtResults["totalVotes"]+districtResults["blank"])
          
          setTimeout(function(){
-          drawInfo1(threshold,districtResults)
+          drawInfo1(threshold,districtResults,function(){
+            drawThreshold(threshold)
+          })
         }
           ,4000)
         
 
   }
-function drawInfo1(threshold,districtResults){
+
+function drawThreshold(threshold){
+  hist_svg.append("g")
+       .attr("transform", "translate(0, "+y(threshold)+")")
+       .append("line")
+       .attr("x2", hist_width)
+       .style("stroke", "red")
+       .style("stroke-width", "5px")
+}
+
+function drawInfo1(threshold,districtResults,callback){
  var csstyping=d3.select("#histdiv")
         .append("div")
         .attr("id", "histInfo")
@@ -147,7 +159,7 @@ function drawInfo1(threshold,districtResults){
         csstyping.append("p")
                   .html("Threshold: Total valid votes/Number of seats= <span style='color:red'>"+threshold+"</span>")
 
-
+      setTimeout(callback,7000)
 }
 d3.json("data/results.json",  function(error, data) {
   console.log(error)
