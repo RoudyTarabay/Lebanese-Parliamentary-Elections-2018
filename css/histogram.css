@@ -106,27 +106,48 @@ cursor: pointer;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 }
+.css-typing p:nth-child(4) {
+  width: 100%;
+  opacity: 0;
+  -webkit-animation: type3 2s steps(20, end), blink .5s step-end infinite alternate;
+  animation: type3 2s steps(20, end), blink .5s step-end infinite alternate;
+  -webkit-animation-delay: 6s;
+  animation-delay: 6s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+.erase{
+  -webkit-animation: type4 2s steps(20, end), blink .5s step-end infinite alternate!important;
+  animation: type4 2s steps(20, end), blink .5s step-end infinite alternate!important;
+  -webkit-animation-delay: 4s!important;
+  animation-delay: 4s!important;
+  -webkit-animation-fill-mode: forwards!important;
+  animation-fill-mode: forwards!important;
+}
 
+@keyframes type4 {
+  0% {
+    width: 100%;
+  }
+  100% {
+        width: 0;
+
+  }
+}
 @keyframes type {
   0% {
     width: 0;
   }
-  99.9% {
-  }
-  100% {
-    border: none;
-  }
+
+
 }
 
 @-webkit-keyframes type {
   0% {
     width: 0;
   }
-  99.9% {
-  }
-  100% {
-    border: none;
-  }
+
+  
 }
 
 @keyframes type2 {
@@ -136,11 +157,9 @@ cursor: pointer;
   1% {
     opacity: 1;
   }
-  99.9% {
-  }
+
   100% {
     opacity: 1;
-    border: none;
   }
 }
 
@@ -148,14 +167,10 @@ cursor: pointer;
   0% {
     width: 0;
   }
-  1% {
-    opacity: 1;
-  }
-  99.9% {
-  }
+
+
   100% {
     opacity: 1;
-    border: none;
   }
 }
 
@@ -163,9 +178,7 @@ cursor: pointer;
   0% {
     width: 0;
   }
-  1% {
-    opacity: 1;
-  }
+  
   100% {
     opacity: 1;
   }

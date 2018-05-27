@@ -45,29 +45,72 @@ function initializeHistogram(){
 
       }
 
-      function update(newData){
+      function update(newData,callback){
+        var data = d3.nest()
+        .key(function(d) {
+          return d.name;
+        })
+        .rollup(function(d) {
+          return d3.sum(d, function(g) {
+            return g.total;
+          });
+        }).entries(newData);
         var bar=hist_svg.selectAll(".bar")
-        .data(newData);
+        .data(data);
         bar.exit().remove()
 
-        x.domain(newData.map(function(d) {
+        x.domain(data.map(function(d) {
 
           return d.key;
         }));
 
-        hist_svg.select(".x")        .transition().duration( 1000)
+        hist_svg.select(".x")        
+        .transition().duration( 1000)
         .call(xAxis);
 
         bar.attr("class", "bar")
         .transition().duration(1000)
         .attr("x", function(d) {
 
-          
+
 
 
           return x(d.key);
         }).transition().duration(1000)
         .attr("width", x.rangeBand())
+        console.log('before')
+        setTimeout(callback,1000)
+        console.log('afters')
+
+      }
+
+      function drawInfo2(dq,totalVotes){
+        var totalDqVotes=0
+        for (var i=0;i<dq.length;i++){
+          totalDqVotes+=dq[i].total;
+        }
+        console.log(totalDqVotes);
+        d3.select('#threshold').attr('class','erase')
+        let p = document.querySelector("#threshold");
+        console.log('aaas')
+        console.log(p)
+        p.addEventListener("animationend", function(){
+         d3.select("#threshold").remove();
+        var csstyping=d3.select(".css-typing");
+         csstyping.append('p')
+         .html('Votes of disqualified lists: '+totalDqVotes)
+         csstyping.append('p')
+         .html('Adjusted Total: Total Votes - Votes of disqualified list=<span style="color:blue">'+ (totalVotes-totalDqVotes) );
+
+
+
+        }, false);
+
+
+
+
+
+
 
       }
       function drawHistogram(districtResults) {
@@ -157,12 +200,21 @@ function initializeHistogram(){
             hist_svg.call(tip);
 
             var threshold=(districtResults["totalVotes"]+districtResults["blank"])/districtResults["seats"]["total"]
-            var dq=findDQ(threshold,districtResults['lists'])         
+            var qualification=findDQ(threshold,districtResults['lists']) 
+            var dq=qualification[0];
+            var q=qualification[1];
 
+            var dqVotes=0;
+            for (var i=0;i<dq.length;i++){
+              districtResults["lists"]
+            }
             setTimeout(function(){
               drawInfo1(threshold,districtResults,function(){
                 drawThreshold(threshold,function(){
-                  disqualify(dq);
+                  disqualify(dq,q,function(){
+                    drawInfo2(dq,totalVotes)
+                  });
+
                 })
 
               })
@@ -172,26 +224,24 @@ function initializeHistogram(){
 
           }
 
-          function disqualify(dq){
+          function disqualify(dq,q,callback){
             for(var i=0;i<dq.length;i++)
-              d3.select("#"+dq[i].replace(' ','')).attr("class","blink");
+              d3.select("#"+dq[i].name.replace(' ','')).attr("class","blink");
             setTimeout(function(){
               d3.selectAll(".blink").remove();
-              update([
-                {"key":"Altaghyeer AlAkid","values":26980},
-                {"key":"Loubnan Alkawiy","values":54544},
-                {"key":"3enna Alqarar","values":18553}
-
-                ])
+              update(q,callback)
             },2000)
           }
           function findDQ(threshold,listVotes){
             var dq=[]
+            var q=[]
             for(var i=0;i<listVotes.length;i++){
               if(listVotes[i].total<threshold)
-                dq.push(listVotes[i].name);
+                dq.push(listVotes[i]);
+              else 
+                q.push(listVotes[i]);
             }
-            return dq
+            return [dq,q];
           }
           function drawThreshold(threshold,callback){
             hist_svg.append("g")
@@ -219,6 +269,7 @@ function initializeHistogram(){
            csstyping.append("p")
            .html("Number of seats: "+ districtResults["seats"]["total"])
            csstyping.append("p")
+           .attr('id','threshold')
            .html("Threshold: Total valid votes/Number of seats= <span style='color:red'>"+threshold+"</span>")
 
            setTimeout(callback,7000)
