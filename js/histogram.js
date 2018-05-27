@@ -1,4 +1,11 @@
-
+  function endall(transition, callback) { //on d3 transition end
+    if (typeof callback !== "function") throw new Error("Wrong callback in endall");
+    if (transition.size() === 0) { callback() }
+    var n = 0; 
+    transition 
+        .each(function() { ++n; }) 
+        .each("end", function() { if (!--n) callback.apply(this, arguments); }); 
+  } 
 function initializeHistogram(){
   margin = {
     top: 30,
@@ -84,14 +91,10 @@ function initializeHistogram(){
 
       }
 
-      function drawInfo2(dq,totalVotes){
-        var totalDqVotes=0
-        for (var i=0;i<dq.length;i++){
-          totalDqVotes+=dq[i].total;
-        }
-        console.log(totalDqVotes);
+      function drawInfo2(totalDqVotes,totalVotes,seats,callback){
+        
         d3.select('#threshold').attr('class','erase')
-        let p = document.querySelector("#threshold");
+        var p = document.querySelector("#threshold");
         console.log('aaas')
         console.log(p)
         p.addEventListener("animationend", function(){
@@ -100,8 +103,13 @@ function initializeHistogram(){
          csstyping.append('p')
          .html('Votes of disqualified lists: '+totalDqVotes)
          csstyping.append('p')
-         .html('Adjusted Total: Total Votes - Votes of disqualified list=<span style="color:blue">'+ (totalVotes-totalDqVotes) );
-
+         .attr('id','adjustedTotal')
+         .html('Adjusted Total: Total Votes - Votes of disqualified list = '+ (totalVotes-totalDqVotes) );
+         csstyping.append('p')
+         .attr('id','threshold')
+         .html("New Threshold: Adjusted Total / seats = <span style='color:blue'>"+ (totalVotes-totalDqVotes)/seats+"</span>")
+        var adjustedTotal=document.querySelector("#threshold");
+        adjustedTotal.addEventListener("animationend",callback,false);
 
 
         }, false);
@@ -204,15 +212,25 @@ function initializeHistogram(){
             var dq=qualification[0];
             var q=qualification[1];
 
-            var dqVotes=0;
+            var totalDqVotes=0
             for (var i=0;i<dq.length;i++){
-              districtResults["lists"]
+              totalDqVotes+=dq[i].total;
             }
             setTimeout(function(){
               drawInfo1(threshold,districtResults,function(){
-                drawThreshold(threshold,function(){
+                drawThreshold(threshold,"red","threshold1",function(){
                   disqualify(dq,q,function(){
-                    drawInfo2(dq,totalVotes)
+                    drawInfo2(totalDqVotes,totalVotes,districtResults["seats"]["total"],function(){
+                      d3.select('#threshold1')
+                      .transition()
+                      .call(endall,function(){
+                      drawThreshold((totalVotes-totalDqVotes)/districtResults["seats"]["total"],"blue","threshold2");
+                        
+                      })
+                      .duration(1000)
+                      .style('stroke-width','1px').style('opacity',0.5);
+
+                    })
                   });
 
                 })
@@ -243,11 +261,13 @@ function initializeHistogram(){
             }
             return [dq,q];
           }
-          function drawThreshold(threshold,callback){
+          function drawThreshold(threshold,color,id,callback){
+            console.log('drawing threshold')
             hist_svg.append("g")
             .attr("transform", "translate(0, "+y(threshold)+")")
             .append("line")
-            .style("stroke", "red")
+            .attr("id",id)
+            .style("stroke", color)
             .style("stroke-width", "5px")       
             .attr("x2", 0)
 

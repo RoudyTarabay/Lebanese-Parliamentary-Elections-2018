@@ -6,6 +6,7 @@
     border: 3px solid grey;
 
 }
+
 #histInfo{
   float: right;
   display: inline-block;
@@ -113,6 +114,16 @@ cursor: pointer;
   animation: type3 2s steps(20, end), blink .5s step-end infinite alternate;
   -webkit-animation-delay: 6s;
   animation-delay: 6s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+.css-typing p:nth-child(5) {
+  width: 100%;
+  opacity: 0;
+  -webkit-animation: type3 2s steps(20, end), blink .5s step-end infinite alternate;
+  animation: type3 2s steps(20, end), blink .5s step-end infinite alternate;
+  -webkit-animation-delay: 6s;
+  animation-delay: 8s;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 }
