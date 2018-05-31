@@ -131,7 +131,7 @@ cursor: pointer;
   -webkit-animation: type4 2s steps(20, end), blink .5s step-end infinite alternate!important;
   animation: type4 2s steps(20, end), blink .5s step-end infinite alternate!important;
   -webkit-animation-delay: 4s!important;
-  animation-delay: 4s!important;
+  animation-delay: 1s!important;
   -webkit-animation-fill-mode: forwards!important;
   animation-fill-mode: forwards!important;
 }
