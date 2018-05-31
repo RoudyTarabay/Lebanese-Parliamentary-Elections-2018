@@ -6,7 +6,7 @@
       callback() 
 
     }
-      var n = 0; 
+    var n = 0; 
     transition 
     .each(function() { ++n; }) 
     .each("end", function() { 
@@ -103,9 +103,7 @@
         console.log('drawInfo2')
         d3.select('#threshold').attr('class','erase')
         var p = document.querySelector("#threshold");
-        console.log('aaas')
-        console.log(p)
-       p.addEventListener("animationend", function temp(){
+        p.addEventListener("animationend", function temp(){
          d3.select("#threshold").remove();
          var csstyping=d3.select(".css-typing");
          csstyping.append('p')
@@ -119,10 +117,10 @@
          var adjustedTotal=document.querySelector("#threshold");
          adjustedTotal.addEventListener("animationend",
           function temp2(){
-          callback();
-          this.removeEventListener("animationend",temp2);
-        },false);
-        this.removeEventListener("animationend",temp)
+            callback();
+            this.removeEventListener("animationend",temp2);
+          },false);
+         this.removeEventListener("animationend",temp)
 
 
        }, false);
@@ -220,7 +218,7 @@
             .attr("height",0)
             .transition()
             .call(endall,function(){
-              mainChain(threshold,districtResults,dq,q,totalDqVotes,totalVotes)
+              mainChain(threshold,districtResults,dq,q,totalDqVotes,totalVotes,max)
             })
 
             .duration(1000)
@@ -239,27 +237,30 @@
 
 
           }
-          function mainChain(threshold,districtResults,dq,q,totalDqVotes,totalVotes){
+          function mainChain(threshold,districtResults,dq,q,totalDqVotes,totalVotes,max ){
             console.log('mainChain')
             drawInfo1(threshold,districtResults,function(){
               console.log('1111')
-                drawThreshold(threshold,"red","threshold1",
+              drawThreshold(threshold,"red","threshold1","",0,
                 function dtCallback(){
-                disqualify(dq,q,function(){
-                  drawInfo2(totalDqVotes,totalVotes,districtResults["seats"]["total"],function(){
-                    d3.select('#threshold1')
-                    .transition()
-                    .call(endall,function(){
-                      drawThreshold((totalVotes-totalDqVotes)/districtResults["seats"]["total"],"blue","threshold2");
+                  disqualify(dq,q,function(){
+                    drawInfo2(totalDqVotes,totalVotes,districtResults["seats"]["total"],function(){
+                      d3.select('#threshold1')
+                      .transition()
+                      .call(endall,function(){
+                        let threshold2=(totalVotes-totalDqVotes)/districtResults["seats"]["total"]
 
+                        for (let i=1;i<=max/threshold2;i++){
+                          drawThreshold(i*threshold2,"blue","threshold"+i,"Seats secured: "+i,(i-1)*1000);
+                        }
+                      })
+                      .duration(1000)
+                      .style('stroke-width','1px').style('opacity',0.5);
+                      d3.select("#redLabel").remove();
                     })
-                    .duration(1000)
-                    .style('stroke-width','1px').style('opacity',0.5);
+                  });
 
-                  })
-                });
-
-             })
+                })
 
             })
           }
@@ -283,13 +284,14 @@
             }
             return [dq,q];
           }
-          function drawThreshold(threshold,color,id,callback){
+          function drawThreshold(threshold,color,id,text,delay,callback){
             console.log('drawing threshold')
             console.log(color);
+            let hist_g=hist_svg.append("g")
+            .attr("transform", "translate(0, "+y(threshold)+")");
             if (callback){
-              hist_svg.append("g")
-              .attr("transform", "translate(0, "+y(threshold)+")")
-              .append("line")
+
+              hist_g.append("line")
               .attr("id",id)
               .style("stroke", color)
               .style("stroke-width", "5px")       
@@ -299,19 +301,31 @@
               .call(endall,callback)
               .attr("x2", hist_width)
 
+
+
+
             }
             else 
-                hist_svg.append("g")
-              .attr("transform", "translate(0, "+y(threshold)+")")
-              .append("line")
-              .attr("id",id)
-              .style("stroke", color)
-              .style("stroke-width", "5px")       
-              .attr("x2", 0)
+              hist_svg.append("g")
+            .attr("transform", "translate(0, "+y(threshold)+")")
+            .append("line")
+            .attr("id",id)
+            .style("stroke", color)
+            .style("stroke-width", "5px")       
+            .attr("x2", 0)
 
-              .transition().duration(1000)
-              .attr("x2", hist_width)
-
+            .transition().delay(delay).duration(1000)
+            .attr("x2", hist_width)
+            hist_g.append("text")
+            .text(text)
+            .style("font-size","10px")
+            .style("font-weight","700")
+            .attr("x", hist_width/2)
+            .attr("dy", '1.2em')
+            .attr("id","redLabel")
+            .style("opacity","0")
+            .transition().delay(delay).duration(1000)
+            .style("opacity","1")
           }
 
           function drawInfo1(threshold,districtResults,callback){

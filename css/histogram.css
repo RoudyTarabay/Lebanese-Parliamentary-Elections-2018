@@ -61,7 +61,7 @@ cursor: pointer;
 }
 
 .x.axis path {
-  display: none*;
+  display: none;
 }
 
 .histogramLegendX{
