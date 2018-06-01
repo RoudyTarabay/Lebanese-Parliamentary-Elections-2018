@@ -1,5 +1,4 @@
   function endall(transition, callback) { //on d3 transition end
-    console.trace()
     if (typeof callback !== "function") throw new Error("Wrong callback in endall");
     if (transition.size() === 0) { 
 
@@ -237,6 +236,7 @@
 
 
           }
+
           function mainChain(threshold,districtResults,dq,q,totalDqVotes,totalVotes,max ){
             console.log('mainChain')
             drawInfo1(threshold,districtResults,function(){
@@ -250,8 +250,17 @@
                       .call(endall,function(){
                         let threshold2=(totalVotes-totalDqVotes)/districtResults["seats"]["total"]
 
-                        for (let i=1;i<=max/threshold2;i++){
-                          drawThreshold(i*threshold2,"blue","threshold"+i,"Seats secured: "+i,(i-1)*1000);
+                        for (let i=1;i<=Math.floor(max/threshold2);i++){
+                          console.log(i);
+                          console.log(max/threshold2)
+                          if(i==Math.floor(max/threshold2)){
+                            drawThreshold(i*threshold2,"blue","threshold"+i,"Seats secured: "+i,(i-1)*1000,function(){
+                              d3.select("#histHr").attr('class','histHr');
+                            });
+                          }
+                          else
+                            drawThreshold(i*threshold2,"blue","threshold"+i,"Seats secured: "+i,(i-1)*1000)
+                          
                         }
                       })
                       .duration(1000)
@@ -297,7 +306,7 @@
               .style("stroke-width", "5px")       
               .attr("x2", 0)
 
-              .transition().duration(1000)
+              .transition().delay(delay).duration(1000)
               .call(endall,callback)
               .attr("x2", hist_width)
 
@@ -349,7 +358,10 @@
           },false);
 
          }
-         d3.json("data/results.json",  function(error, data) {
-          console.log(error)
-          drawHistogram(data['Mount-Lebanon-1'],  initializeHistogram())
-        });
+         function histogram(bigDistrict){
+          console.log(bigDistrict)
+           d3.json("data/results.json",  function(error, data) {
+            console.log(error)
+            drawHistogram(data[bigDistrict],  initializeHistogram())
+          });
+          }

@@ -3,10 +3,17 @@
     z-index: 5;
     width: 100%;
     height: 50%;
-    border: 3px solid grey;
+    /*border: 3px solid grey;*/
 
 }
-
+.histHr{
+  display: block;
+  width: 100%;
+  -webkit-animation: type2 2s steps(40, end);
+  animation: type2 2s steps(40, end);
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
 #histInfo{
   float: right;
   display: inline-block;
@@ -70,6 +77,8 @@ cursor: pointer;
 }
 .css-typing{
   width: 100%;
+  padding-top: 5%;
+  padding-left: 5%;
 }
 .css-typing p {
   font-family: "Courier";
