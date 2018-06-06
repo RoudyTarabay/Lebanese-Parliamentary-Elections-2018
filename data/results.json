@@ -1,7 +1,21 @@
 {
 	"Mount-Lebanon-1":{"lists":[
 
-		{"name":"Altaghyeer AlAkid","total":26980},
+		{"name":"Altaghyeer AlAkid",
+		"candidates":[
+			{"name":"Ziad Hawat","sect":"Maronite","votes":14424},
+			{"name":"Shawki El Dakkash","sect":"Maronite","votes":10032},
+			{"name":"Mahomoud Awwad","sect":"Shia","votes":787},
+			{"name":"Fadi Sakr","sect":"Maronite","votes":481},
+			{"name":"Naaman Mrad","sect":"Maronite","votes":274},
+			{"name":"Rock Mhanna","sect":"Maronite","votes":259},
+			{"name":"Patricia Elias","sect":"Maronite","votes":183},
+			{"name":"Ziad Hashem","sect":"Maronite","votes":134}
+
+
+		],
+
+		"total":26980},
 		{"name":"Loubnan Alkawiy","total":54544},
 		{"name":"Altadamon Alwatani","total":12551},
 		{"name":"Koulouna Watani","total":2526},

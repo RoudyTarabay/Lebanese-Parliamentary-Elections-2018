@@ -1,0 +1,26 @@
+body {
+    font-family: "Arial", sans-serif;
+}
+
+
+
+.axis {
+    font-size: 13px;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    display: none;
+}
+
+.label {
+    font-size: 13px;
+}
+.Maronite{
+    fill: red;
+}
+
+.Shia{
+    fill: green;
+}
