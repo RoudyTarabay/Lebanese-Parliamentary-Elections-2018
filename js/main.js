@@ -1,22 +1,34 @@
-//initializePie();
 
 var count=0;
 
 function showOverlay(){
-    console.log("booooooooooool");
-    console.log(document.querySelector("#overlay"))
     document.querySelector("#overlay").classList.remove("invisible");
-        //d3.select("#overlay").classed("invisible",false);
 }
 function hideOverlay(){
-    console.log("hide")
     d3.select("#overlay").attr("class","invisible");
 }
+function clearInner(node) {
+  while (node.hasChildNodes()) {
+    clear(node.firstChild);
+  }
+}
+
+function clear(node) {
+    console.log(node)
+  while (node.hasChildNodes()) {
+    clear(node.firstChild);
+  }
+  node.parentNode.removeChild(node);
+  console.log(node, "cleared!");
+}
+
 function mapListener() {
     if (d3.event.target.className.baseVal != "bigDistrict" || d3.event.target.id.baseVal == "overlay") {
-        destroy('#histdiv');
-        hideOverlay();
 
+       // clearInner(document.getElementById("histdiv"));
+        
+        hideOverlay();
+        d3.select("#results").classed('invisible',true)
         /*d3.selectAll(".hide").each(function(d) {
             d3.select(this).attr("style", function(d) {
                 var tempstyle = d3.select(this).attr("style");
@@ -67,13 +79,8 @@ function municipalityListener(bigDistrict){
     //drawBubble(city);
 
     showOverlay();
-    var resultsSvg = d3.selectAll(".results").classed("hide",false);
-        d3.selectAll(".hide").each(function(d) {
-        d3.select(this).attr("style", function(d) {
-            var tempstyle = d3.select(this).attr("style");
-            tempstyle += ";visibility:visible";
-            return tempstyle;
-        })
-    });
+
+    var resultsSvg = d3.selectAll(".results").classed("invisible",false);
+        
 
 }
