@@ -1,13 +1,14 @@
-data=[]
 
 function barChart(bigDistrict){
 
   d3.json("data/results.json", function(error, datat) {
+    let data=[];
     console.log(datat["Mount-Lebanon-1"]["lists"]);
     console.log(datat["Mount-Lebanon-1"]["lists"][0])
     console.log(error)
     data=datat["Mount-Lebanon-1"]["lists"][0]['candidates'];
-    draw();
+    for (var i=0;i<4;i++)
+    draw(data,3);
     //let formatData=[]
 
     //drawBarchart(data["Mount-Lebanon-1"], initializeHistogram());
@@ -15,28 +16,30 @@ function barChart(bigDistrict){
 
 
 }
-barChart();
 
 //sort bars based on value
 
 //set up svg using margin conventions - we'll need plenty of room on the left for labels
-function draw(){
+function draw(data){
 console.log(data)
 data = data.sort(function(a, b) {
     return d3.ascending(a.votes, b.votes);
 });
 
-var margin = {
-    top: 0,
+  margin = {
+    top: 30,
     right: 50,
-    bottom: 0,
-    left: 150
-};
+    bottom: 30,
+    left: 90
+  };
+  svgdim = {
+    width: $(".results").width(),
+    height: $(".results").height()/2
+  };
+var width = svgdim.width/4 - margin.left - margin.right,
+    height = svgdim.height - margin.top - margin.bottom;
 
-var width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
-
-var svg = d3.select("#graphic")
+var svg = d3.select("#barchart")
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -75,7 +78,7 @@ var gy = svg
     .call(yAxis);
 
 var bars = svg
-    .selectAll(".bar")
+    .selectAll(".barChartBar")
     .data(data)
     .enter()
     .append("g");
@@ -93,7 +96,10 @@ bars.append("text")
     })
     .text(function(d) {
         return d.votes;
-    });
+    })
+    .style("opacity",0)
+    .transition().duration(1000)
+    .style("opacity",1);
 //append rects
 bars.append("rect")
     .attr("class", function(d){ 
@@ -105,6 +111,9 @@ bars.append("rect")
     })
     .attr("height", y.rangeBand())
     .attr("x", 0)
+        .attr("width", 0)
+        .transition().duration(1000)
+
     .attr("width", function(d) {
         return x(d.votes);
     });

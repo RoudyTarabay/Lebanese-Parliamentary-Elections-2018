@@ -16,8 +16,14 @@ body {
         color:rgb(0, 120, 73);
 
 }
+.label{
+    font-size: 0.7vw;
+}
 .invisible{
     display: none!important;
+}
+.hidden{
+    display: hidden!important;
 }
 .results {
     display: inline-block;;
