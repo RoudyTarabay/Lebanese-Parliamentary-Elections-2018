@@ -501,6 +501,8 @@ function histogram(bigDistrict) {
     function(e) {
       overlayClick = e.target.id;
       window.clearTimeout(blinkTimeout);
+      d3.select("#histHr").attr("class","invisible");
+
       d3.selectAll(".bar")
         .transition()
         .duration(0);
