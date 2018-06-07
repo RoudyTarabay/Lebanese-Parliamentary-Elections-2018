@@ -1,33 +1,182 @@
 {
-	"Mount-Lebanon-1":{"lists":[
+	"Mount-Lebanon-1": {
+		"lists": [
+			{
+				"name": "Altaghyeer AlAkid",
+				"candidates": [
+					{
+						"name": "Ziad Hawat",
+						"sect": "Maronite",
+						"district": "Jbeil",
+						"votes": 14424
+					},
+					{
+						"name": "Shawki El Dakkash",
+						"sect": "Maronite",
+						"district": "Keserwan",
+						"votes": 10032
+					},
+					{
+						"name": "Mahomoud Awwad",
+						"sect": "Shia",
+						"district": "Jbeil",
+						"votes": 787
+					},
+					{
+						"name": "Fadi Sakr",
+						"sect": "Maronite",
+						"district": "Jbeil",
+						"votes": 481
+					},
+					{
+						"name": "Naaman Mrad",
+						"sect": "Maronite",
+						"district": "Keserwan",
+						"votes": 274
+					},
+					{
+						"name": "Rock Mhanna",
+						"sect": "Maronite",
+						"district": "Keserwan",
+						"votes": 259
+					},
+					{
+						"name": "Patricia Elias",
+						"sect": "Maronite",
+						"district": "Keserwan",
+						"votes": 183
+					},
+					{
+						"name": "Ziad Hashem",
+						"sect": "Maronite",
+						"district": "Keserwan",
+						"votes": 134
+					}
+				],
 
-		{"name":"Altaghyeer AlAkid",
-		"candidates":[
-			{"name":"Ziad Hawat","sect":"Maronite","votes":14424},
-			{"name":"Shawki El Dakkash","sect":"Maronite","votes":10032},
-			{"name":"Mahomoud Awwad","sect":"Shia","votes":787},
-			{"name":"Fadi Sakr","sect":"Maronite","votes":481},
-			{"name":"Naaman Mrad","sect":"Maronite","votes":274},
-			{"name":"Rock Mhanna","sect":"Maronite","votes":259},
-			{"name":"Patricia Elias","sect":"Maronite","votes":183},
-			{"name":"Ziad Hashem","sect":"Maronite","votes":134}
-
-
+				"total": 26980
+			},
+			{
+				"name": "Loubnan Alkawiy",
+				"candidates": [
+					{
+						"name": "Simon Abi Ramia",
+						"sect": "Maronite",
+						"district": "Jbeil",
+						"votes": 9729
+					},
+					{
+						"name": "Walid El Khoury",
+						"sect": "Maronite",
+						"district": "Jbeil",
+						"votes": 7782
+					},
+					{
+						"name": "Nehmat Frem",
+						"sect": "Maronite",
+						"district": "Keserwan",
+						"votes": 10717
+					},
+					{
+						"name": "Shemel Roukoz",
+						"sect": "Maronite",
+						"district": "Keserwan",
+						"votes": 7300
+					},
+					{
+						"name": "Roger Azar",
+						"sect": "Maronite",
+						"district": "Keserwan",
+						"votes": 6793
+					},
+					{
+						"name": "Mansour El Bon",
+						"sect": "Maronite",
+						"district": "Keserwan",
+						"votes": 6589
+					},
+					{
+						"name": "Ziad Baroud",
+						"sect": "Maronite",
+						"district": "Keserwan",
+						"votes": 3893
+					},
+					{
+						"name": "Rabih Awwad",
+						"sect": "Shia",
+						"district": "Jbeil",
+						"votes": 891
+					}
+				],
+				"total": 54544
+			},
+			{ "name": "Altadamon Alwatani", "total": 12551 },
+			{ "name": "Koulouna Watani", "total": 2526 },
+			{
+				"name": "3enna Alqarar",
+				"candidates": [
+						{
+						"name": "Farid El Khazen",
+						"sect": "Maronite",
+						"district": "Keserwan",
+						"votes": 9081
+					},
+					{
+						"name": "Fares Souaid",
+						"sect": "Maronite",
+						"district": "Jbeil",
+						"votes": 5617
+					},
+					{
+						"name": "Shaker Salemeh",
+						"sect": "Maronite",
+						"district": "Keserwan",
+						"votes": 2239
+					},
+					{
+						"name": "Gilberte Zwein",
+						"sect": "Maronite",
+						"district": "Keserwan",
+						"votes": 521
+					},
+					{
+						"name": "Moustapha Husseini",
+						"sect": "Shia",
+						"district": "Jbeil",
+						"votes": 256
+					},
+					{
+						"name": "Jean Hawat",
+						"sect": "Maronite",
+						"district": "Jbeil",
+						"votes": 229
+					},
+					{
+						"name": "Youssef Khalil",
+						"sect": "Maronite",
+						"district": "Keserwan",
+						"votes": 171
+					},
+					{
+						"name": "Yoland Khoury",
+						"sect": "Maronite",
+						"district": "Jbeil",
+						"votes": 78
+					}
+				],
+				"total": 18553
+			}
 		],
-
-		"total":26980},
-		{"name":"Loubnan Alkawiy","total":54544},
-		{"name":"Altadamon Alwatani","total":12551},
-		{"name":"Koulouna Watani","total":2526},
-		{"name":"3enna Alqarar","total":18553}
-
-		],
-		"seats":{"total":8},
-		"blank":465,
-		"totalVotes":115619
-
-
-	
-	
-}
+		"seats": {
+			"Shia": 1,
+			"Maronite": 7,
+			"total": 8
+		},
+		"blank": 465,
+		"totalVotes": 115619,
+		"districtTotal": {
+			"Jbeil": 40196,
+			"Keserwan": 58264
+		}
+	}
 }

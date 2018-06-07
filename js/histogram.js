@@ -516,6 +516,7 @@ function histogram(bigDistrict) {
     false
   );
   d3.json("data/results.json", function(error, data) {
+    console.log(error);
     drawHistogram(data[bigDistrict], initializeHistogram());
   });
 }

@@ -1,17 +1,16 @@
 
-function barChart(bigDistrict){
+function barChart(bigDistrict,qualifiedNum){
 
   d3.json("data/results.json", function(error, datat) {
     let data=[];
-    console.log(datat["Mount-Lebanon-1"]["lists"]);
-    console.log(datat["Mount-Lebanon-1"]["lists"][0])
-    console.log(error)
-    data=datat["Mount-Lebanon-1"]["lists"][0]['candidates'];
-    for (var i=0;i<4;i++)
-    draw(data,3);
-    //let formatData=[]
+    smallDistrictsTotal=datat["Mount-Lebanon-1"]["districtTotal"]; 
 
-    //drawBarchart(data["Mount-Lebanon-1"], initializeHistogram());
+    for (let i=0;i<qualifiedNum;i++){
+        if ('candidates' in datat[bigDistrict]["lists"][i])
+            draw(datat[bigDistrict]["lists"][i]['candidates'],smallDistrictsTotal);
+        else
+            qualifiedNum++;
+    }
   });
 
 
@@ -20,10 +19,10 @@ function barChart(bigDistrict){
 //sort bars based on value
 
 //set up svg using margin conventions - we'll need plenty of room on the left for labels
-function draw(data){
+function draw(data,sT){
 console.log(data)
 data = data.sort(function(a, b) {
-    return d3.ascending(a.votes, b.votes);
+    return d3.ascending(((a.votes/sT[a.district])),((b.votes/sT[b.district])));
 });
 
   margin = {
@@ -32,12 +31,12 @@ data = data.sort(function(a, b) {
     bottom: 30,
     left: 90
   };
-  svgdim = {
+  svgdim2 = {
     width: $(".results").width(),
     height: $(".results").height()/2
   };
-var width = svgdim.width/4 - margin.left - margin.right,
-    height = svgdim.height - margin.top - margin.bottom;
+var width = svgdim2.width/3 - margin.left - margin.right,
+    height = svgdim2.height - margin.top - margin.bottom;
 
 var svg = d3.select("#barchart")
     .append("svg")
@@ -51,7 +50,7 @@ var x = d3.scale
     .domain([
         0,
         d3.max(data, function(d) {
-            return d.votes;
+            return ((d.votes/sT[d.district])).toFixed(2)*100;
         })
     ]);
 
@@ -92,13 +91,13 @@ bars.append("text")
 
     //x position is 3 pixels to the right of the bar
     .attr("x", function(d) {
-        return x(d.votes);
+        return x(((d.votes/sT[d.district])*100).toFixed(2));
     })
     .text(function(d) {
-        return d.votes;
+        return ((d.votes/sT[d.district])*100).toFixed(2) +"%";
     })
     .style("opacity",0)
-    .transition().duration(1000)
+   .transition().duration(1000)
     .style("opacity",1);
 //append rects
 bars.append("rect")
@@ -115,7 +114,7 @@ bars.append("rect")
         .transition().duration(1000)
 
     .attr("width", function(d) {
-        return x(d.votes);
+        return x(((d.votes/sT[d.district])).toFixed(2)*100);
     });
 
 //add a value label to the right of each bar

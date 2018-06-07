@@ -58,7 +58,7 @@ function destroyAll() {
 }
 function municipalityListener(bigDistrict){
     histogram(bigDistrict);
-    barChart(bigDistrict)
+    barChart(bigDistrict,3)
 
     /*if(count==0){
         initializePie();
