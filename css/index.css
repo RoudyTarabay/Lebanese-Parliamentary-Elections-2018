@@ -23,7 +23,7 @@ body {
     display: none!important;
 }
 .hidden{
-    display: hidden!important;
+    visibility: hidden!important;
 }
 .results {
     display: inline-block;;

@@ -180,7 +180,7 @@ function drawInfo2(totalDqVotes, totalVotes, seats, callback) {
   })
   p.addEventListener("animationend", temp, false);
 }
-function drawHistogram(districtResults) {
+function drawHistogram(districtResults,callback) {
   if (overlayClick != null) {
     console.log("not appending");
     return;
@@ -280,7 +280,8 @@ function drawHistogram(districtResults) {
         q,
         totalDqVotes,
         totalVotes,
-        max
+        max,
+        callback
       );
     })
 
@@ -316,7 +317,8 @@ function mainChain(
   q,
   totalDqVotes,
   totalVotes,
-  max
+  max,
+  callback2
 ) {
   drawInfo1(threshold, districtResults, function() {
     drawThreshold(threshold, "red", "threshold1", "", 0, function dtCallback() {
@@ -343,6 +345,13 @@ function mainChain(
                       (i - 1) * 1000,
                       function() {
                         d3.select("#histHr").attr("class", "histHr");
+                        document.querySelector("#histHr").addEventListener("animationend",function temp(){
+                          console.log(callback2)
+                          callback2();
+                          this.removeEventListener("animationend",temp )
+
+
+                        })
                       }
                     );
                   } else
@@ -494,7 +503,7 @@ function drawInfo1(threshold, districtResults, callback) {
     .querySelector("#threshold")
     .addEventListener("animationend", temp, false);
 }
-function histogram(bigDistrict) {
+function histogram(bigDistrict,callback) {
   overlayClick = null;
   document.querySelector("#overlay").addEventListener(
     "click",
@@ -517,6 +526,8 @@ function histogram(bigDistrict) {
   );
   d3.json("data/results.json", function(error, data) {
     console.log(error);
-    drawHistogram(data[bigDistrict], initializeHistogram());
+        console.log(callback);
+initializeHistogram()
+    drawHistogram(data[bigDistrict],callback);
   });
 }

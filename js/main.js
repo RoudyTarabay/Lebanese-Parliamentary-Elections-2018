@@ -57,27 +57,10 @@ function destroyAll() {
 
 }
 function municipalityListener(bigDistrict){
-    histogram(bigDistrict);
-    barChart(bigDistrict,3)
-
-    /*if(count==0){
-        initializePie();
+    histogram(bigDistrict,function(){
+        barChart(bigDistrict,3);
+    });
     
-        drawPie(city);
-        initializeHistogram();
-        drawHistogram(city);
-        initializeBubble();
-        drawBubble(city);
-    }
-
-    else{
-        changePie(city);
-        drawHistogram(city);
-        drawBubble(city);
-    }
-    count++;*/
-    //drawHistogram(city);
-    //drawBubble(city);
 
     showOverlay();
 
