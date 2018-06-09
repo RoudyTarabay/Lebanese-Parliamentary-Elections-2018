@@ -57,9 +57,8 @@ function destroyAll() {
 
 }
 function municipalityListener(bigDistrict){
-    histogram(bigDistrict,function(){
-        barChart(bigDistrict,3);
-    });
+    console.log(barChart)
+    histogram(bigDistrict,barChart)
     
 
     showOverlay();

@@ -347,7 +347,7 @@ function mainChain(
                         d3.select("#histHr").attr("class", "histHr");
                         document.querySelector("#histHr").addEventListener("animationend",function temp(){
                           console.log(callback2)
-                          callback2();
+                          callback2(districtResults,q.length,threshold2);
                           this.removeEventListener("animationend",temp )
 
 
@@ -525,9 +525,7 @@ function histogram(bigDistrict,callback) {
     false
   );
   d3.json("data/results.json", function(error, data) {
-    console.log(error);
-        console.log(callback);
-initializeHistogram()
+    initializeHistogram()
     drawHistogram(data[bigDistrict],callback);
   });
 }

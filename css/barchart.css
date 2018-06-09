@@ -20,3 +20,7 @@ body {
     /*border: 3px solid grey;*/
 
 }
+.barChartTitle{
+    font-size:1vw;
+    padding:1px; 
+}

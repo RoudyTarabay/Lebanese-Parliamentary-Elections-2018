@@ -1,17 +1,16 @@
 
-function barChart(bigDistrict,qualifiedNum){
+function barChart(results,qualifiedNum,threshold2){
 
-  d3.json("data/results.json", function(error, datat) {
     let data=[];
-    smallDistrictsTotal=datat["Mount-Lebanon-1"]["districtTotal"]; 
-
-    for (let i=0;i<qualifiedNum;i++){
-        if ('candidates' in datat[bigDistrict]["lists"][i])
-            draw(datat[bigDistrict]["lists"][i]['candidates'],smallDistrictsTotal);
+    smallDistrictsTotal=results["districtTotal"]; 
+    console.log(smallDistrictsTotal);
+    let count = qualifiedNum;
+    for (let i=0;i<count;i++){
+        if ('candidates' in results["lists"][i])
+            draw(results["lists"][i]["name"],results["lists"][i]['candidates'],smallDistrictsTotal,qualifiedNum,results["lists"][i]["total"]/threshold2);
         else
-            qualifiedNum++;
+            count++;
     }
-  });
 
 
 }
@@ -19,7 +18,7 @@ function barChart(bigDistrict,qualifiedNum){
 //sort bars based on value
 
 //set up svg using margin conventions - we'll need plenty of room on the left for labels
-function draw(data,sT){
+function draw(listName,data,sT,qualifiedNum,seatsSecured){
 console.log(data)
 data = data.sort(function(a, b) {
     return d3.ascending(((a.votes/sT[a.district])),((b.votes/sT[b.district])));
@@ -35,15 +34,20 @@ data = data.sort(function(a, b) {
     width: $(".results").width(),
     height: $(".results").height()/2
   };
-var width = svgdim2.width/3 - margin.left - margin.right,
+var width = svgdim2.width/qualifiedNum - margin.left - margin.right,
     height = svgdim2.height - margin.top - margin.bottom;
 
 var svg = d3.select("#barchart")
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
+   
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    svg.append("text")
+    .attr("class","barChartTitle")
+    .attr("dy","-0.5vw")
+    .text(listName+"- seats : "+Math.floor(seatsSecured))
 var x = d3.scale
     .linear()
     .range([0, width])
