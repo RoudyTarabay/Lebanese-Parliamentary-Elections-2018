@@ -29,13 +29,23 @@ function mapListener() {
         
         hideOverlay();
         d3.select("#results").classed('invisible',true)
-        /*d3.selectAll(".hide").each(function(d) {
-            d3.select(this).attr("style", function(d) {
-                var tempstyle = d3.select(this).attr("style");
-                tempstyle += ";visibility:hidden";
-                return tempstyle;
-            })
-        });*/
+        overlayClick = d3.event.target.id;
+      d3.select("#histHr").attr("class","invisible");
+
+      d3.selectAll(".bar")
+        .transition()
+        .duration(0);
+      d3.selectAll("line")
+        .transition()
+        .duration(0);
+      d3.select("#histdiv")
+        .selectAll("*")
+        .remove();
+      window.clearTimeout(blinkTimeout);
+      d3.select("#barchart")
+        .selectAll("*")
+        .remove();
+        
     }
     return;
 }

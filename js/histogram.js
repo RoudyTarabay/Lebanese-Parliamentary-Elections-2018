@@ -126,7 +126,7 @@ function drawInfo2(totalDqVotes, totalVotes, seats, callback) {
   var p = document.querySelector("#threshold");
   function temp() {
     d3.select("#threshold").remove();
-    var csstyping = d3.select(".css-typing");
+    let csstyping = d3.select(".css-typing");
     csstyping.append("p").html("Votes of disqualified lists: " + totalDqVotes);
     csstyping
       .append("p")
@@ -169,18 +169,17 @@ function drawInfo2(totalDqVotes, totalVotes, seats, callback) {
 
     this.removeEventListener("animationend", temp);
   }
-  p.addEventListener("animationstart",function(){
-        if (overlayClick != null)
-          this.removeEventListener("animationend",temp)
-  })
-   p.addEventListener("animationiteration",function(){
-        if (overlayClick != null){
-          this.removeEventListener("animationend",temp)
-        }
-  })
+  p.addEventListener("animationstart", function() {
+    if (overlayClick != null) this.removeEventListener("animationend", temp);
+  });
+  p.addEventListener("animationiteration", function() {
+    if (overlayClick != null) {
+      this.removeEventListener("animationend", temp);
+    }
+  });
   p.addEventListener("animationend", temp, false);
 }
-function drawHistogram(districtResults,callback) {
+function drawHistogram(districtResults, callback) {
   if (overlayClick != null) {
     console.log("not appending");
     return;
@@ -345,13 +344,13 @@ function mainChain(
                       (i - 1) * 1000,
                       function() {
                         d3.select("#histHr").attr("class", "histHr");
-                        document.querySelector("#histHr").addEventListener("animationend",function temp(){
-                          console.log(callback2)
-                          callback2(districtResults,q.length,threshold2);
-                          this.removeEventListener("animationend",temp )
-
-
-                        })
+                        document
+                          .querySelector("#histHr")
+                          .addEventListener("animationend", function temp() {
+                            console.log(callback2);
+                            callback2(districtResults, q.length, threshold2);
+                            this.removeEventListener("animationend", temp);
+                          });
                       }
                     );
                   } else
@@ -377,7 +376,7 @@ function mainChain(
 function disqualify(dq, q, callback) {
   for (var i = 0; i < dq.length; i++)
     d3.select("#" + dq[i].name.replace(" ", "")).attr("class", "blink");
-  blinkTimeout  =setTimeout(function() {
+  blinkTimeout = setTimeout(function() {
     d3.selectAll(".blink").remove();
     update(q, callback);
   }, 4000);
@@ -503,9 +502,9 @@ function drawInfo1(threshold, districtResults, callback) {
     .querySelector("#threshold")
     .addEventListener("animationend", temp, false);
 }
-function histogram(bigDistrict,callback) {
+function histogram(bigDistrict, callback) {
   overlayClick = null;
-  document.querySelector("#overlay").addEventListener(
+  /*document.querySelector("#overlay").addEventListener(
     "click",
     function(e) {
       overlayClick = e.target.id;
@@ -523,9 +522,9 @@ function histogram(bigDistrict,callback) {
         .remove();
     },
     false
-  );
+  );*/
   d3.json("data/results.json", function(error, data) {
-    initializeHistogram()
-    drawHistogram(data[bigDistrict],callback);
+    initializeHistogram();
+    drawHistogram(data[bigDistrict], callback);
   });
 }
