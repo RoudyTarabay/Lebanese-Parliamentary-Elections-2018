@@ -168,8 +168,15 @@
 			}
 		],
 		"seats": {
-			"Shia": 1,
-			"Maronite": 7,
+			"Shia": {
+			"Jbeil":1,
+			"total":1
+			},
+			"Maronite":{
+			"Jbeil":2,
+			"Keserwan":5,
+			"total":7
+			},
 			"total": 8
 		},
 		"blank": 465,

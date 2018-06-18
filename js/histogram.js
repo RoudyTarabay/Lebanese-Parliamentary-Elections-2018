@@ -343,14 +343,17 @@ function mainChain(
                       "Seats secured: " + i,
                       (i - 1) * 1000,
                       function() {
-                        d3.select("#histHr").attr("class", "histHr");
-                        document
-                          .querySelector("#histHr")
-                          .addEventListener("animationend", function temp() {
-                            console.log(callback2);
-                            callback2(districtResults, q.length, threshold2);
-                            this.removeEventListener("animationend", temp);
-                          });
+                        fractionsSeat(threshold2, (bla) => {
+                          console.log(bla);
+                          d3.select("#histHr").attr("class", "histHr");
+                          document
+                            .querySelector("#histHr")
+                            .addEventListener("animationend", function temp() {
+                              callback2(districtResults, q.length, threshold2,bla);
+
+                              this.removeEventListener("animationend", temp);
+                            });
+                        });
                       }
                     );
                   } else
@@ -372,6 +375,88 @@ function mainChain(
       });
     });
   });
+}
+
+function fractionsSeat(threshold, callback) {
+  let maxHeight = 0;
+  let maxFraction = null;
+  let maxIndex=-1;
+  d3.selectAll(".bar").each(function(d, i) {
+    let selff = this;
+    let findThreshold =
+      Math.floor(d3.select(this).data()[0].values / threshold) - 1;
+    console.log(findThreshold);
+    console.log(threshold);
+    console.log(d3.select(this).data()[0]);
+    console.log(d3.select(this).data().values);
+    let line = d3.selectAll(".blue_line")[0][findThreshold];
+
+    console.log(d3.selectAll(".blue_line")[0]);
+    hist_svg
+      .append("rect")
+      .attr("class", "fraction")
+      .attr("height", function() {
+        let height =
+          parseFloat(
+            d3
+              .select(line.parentNode)
+              .attr("transform")
+              .split(",")[1]
+          ) -
+          d3.select(selff).attr("y") -
+          2.5;
+        if (height > maxHeight) {
+          maxHeight = height;
+          maxFraction = this;
+          maxIndex=i;
+        }
+        return height;
+      })
+      .attr("x", () => {
+        console.log(i);
+        console.log(d3.select(this).attr("x"));
+        return d3.select(this).attr("x");
+      })
+      .attr("width", () => {
+        return d3.select(this).attr("width");
+      })
+      .attr("y", () => {
+        return d3.select(this).attr("y");
+      })
+
+      .attr("fill", "green");
+  });
+  d3.selectAll(".fraction").classed("blink", true);
+  d3.selectAll(".blue_line")
+    .transition()
+    .duration(500)
+    .style("stroke-width", "2px")
+    .style("opacity", 0.3);
+  setTimeout(function() {
+    d3.selectAll(".fraction").classed("blink", false);
+    d3.select(maxFraction).classed("blink", true);
+
+    setTimeout(function() {
+      d3.select(maxFraction).classed("blink", false);
+      hist_svg
+        .append("text")
+        .text("+1 seat")
+        .attr("class", "label")
+        .attr("y", d3.select(maxFraction).attr("y"))
+        .attr("dy", "-5px")
+        .attr("x", d3.select(maxFraction).attr("x"))
+        .attr("dx", d3.select(maxFraction).attr("width") / 2);
+
+      d3.selectAll(".fraction")
+        .transition()
+        .duration(3000)
+        .call(endall, function() {
+          d3.select(this).remove();
+          callback(maxIndex);
+        })
+        .style("opacity", 0);
+    }, 2000);
+  }, 2000);
 }
 function disqualify(dq, q, callback) {
   for (var i = 0; i < dq.length; i++)
@@ -403,6 +488,7 @@ function drawThreshold(threshold, color, id, text, delay, callback) {
       .append("line")
       .attr("id", id)
       .style("stroke", color)
+      .attr("class", color + "_line")
       .style("stroke-width", "5px")
       .attr("x2", 0)
 
@@ -420,6 +506,8 @@ function drawThreshold(threshold, color, id, text, delay, callback) {
       .append("g")
       .attr("transform", "translate(0, " + y(threshold) + ")")
       .append("line")
+      .attr("class", color + "_line")
+
       .attr("id", id)
       .style("stroke", color)
       .style("stroke-width", "5px")
@@ -429,6 +517,7 @@ function drawThreshold(threshold, color, id, text, delay, callback) {
       .delay(delay)
       .duration(1000)
       .attr("x2", hist_width);
+
   if (overlayClick != null) {
     console.log("not appending");
     return;
