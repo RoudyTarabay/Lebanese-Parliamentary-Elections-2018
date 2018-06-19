@@ -121,7 +121,7 @@ function drawInfo3(districtSeats, st) {
                 .html(
                     smallDistricts[j] +
                         " : <span  id='" +
-                        smallDistricts[j] +
+                        smallDistricts[j] +keys[i]+
                         "'>" +
                         0 +
                         "</span>/" +
@@ -227,14 +227,7 @@ function results(st) {
                 seatPerSect[sect + "_total"][smallDistrict]["counter"];
             let smallDistrictTotal =
                 seatPerSect[sect + "_total"][smallDistrict]["seatNum"];
-            console.log(maxCandidate);
-            console.log(smallDistrict);
-            console.log(seatPerSect);
-            console.log(smallDistrictCount);
-            console.log(smallDistrictTotal);
             if (smallDistrictCount == smallDistrictTotal) {
-                console.log("deleted district");
-                console.log(maxCandidate);
                 d3.selectAll("." + smallDistrict + "." + sect).classed(
                     "available",
                     false
@@ -245,18 +238,21 @@ function results(st) {
             d3.select(this).classed("available", false);
             //remove available from seat if no more seats secured
             if (remainingListSeats == 0) {
-                console.log("deleted list");
                 maxCandidateList.selectAll("rect").classed("available", false);
             }
             //remove available from candidates with sect thta has no more seats
             if (
                 seatPerSect[sect + "_counter"] == seatPerSect[sect + "_total"]
             ) {
-                console.log("deleted sect");
                 d3.selectAll("." + sect).classed("available", false);
             }
-            let html = parseInt(d3.select("#" + sect).html());
-            d3.select("#" + sect).html((html + 1).toString());
+            let sectCount = parseInt(d3.select("#" + sect).html());
+            console.log(sect+smallDistrict)
+
+            let sectDistrictCount = parseInt(d3.select("#" + smallDistrict+sect).html());
+
+            d3.select("#" + smallDistrict+sect).html((sectDistrictCount + 1).toString());
+            d3.select("#" + sect).html((sectCount + 1).toString());
 
             if (seatPerSect["counter"] < seatPerSect["total"]) results(st);
         });
