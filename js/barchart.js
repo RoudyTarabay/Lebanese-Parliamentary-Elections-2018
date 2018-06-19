@@ -81,14 +81,13 @@ function mainchain2(districtSeats, st) {
     d3.selectAll(".erase").each(function(d, i) {
         d3.select(this).on("animationend", function() {
             this.remove();
+            if (i + 1 == eraseNum) {
+                drawInfo3(districtSeats, st);
+            }
         });
-        if (i + 1 == eraseNum) {
-            drawInfo3(districtSeats, st);
-        }
     });
 }
 function drawInfo3(districtSeats, st) {
-
     let keys = Object.keys(districtSeats);
     let csstyping = d3.select(".css-typing");
     csstyping
@@ -118,7 +117,7 @@ function drawInfo3(districtSeats, st) {
         for (let j = 0; j < smallDistricts.length - 1; j++) {
             csstyping
                 .append("p")
-                .attr("class",'small-district-counter')
+                .attr("class", "small-district-counter")
                 .html(
                     smallDistricts[j] +
                         " : <span  id='" +
@@ -128,20 +127,32 @@ function drawInfo3(districtSeats, st) {
                         "</span>/" +
                         districtSeats[keys[i]][smallDistricts[j]]
                 );
-        }
-        if (i == keys.length - 2) {
-            d3.selectAll("#" + keys[i]).each(function(d, i) {
-                let parent = this.parentNode;
-                parent = d3.select(parent);
-
-                parent.on(
+            if (j == smallDistricts.length - 2) {
+                console.log('aaa')
+                csstyping.selectAll(".small-district-counter")[0][csstyping.selectAll(".small-district-counter")[0].length-1].addEventListener(
                     "animationend",
-                    () => {
-                        results(st);
+                    function() {
+                        if (i == keys.length - 2) {
+                           
+                            console.log('b')
+                            d3.selectAll("#" + keys[i]).each(function(d, i) {
+                                console.log('d')
+                                let parent = this.parentNode.parentNode;
+                                parent = d3.select(parent);
+                                console.log(parent)
+                                parent.on(
+                                    "animationend",
+                                    () => { 
+                                        results(st);
+                                    },
+                                    false
+                                );
+                            });
+                        }
                     },
                     false
                 );
-            });
+            }
         }
     }
 }
@@ -206,21 +217,28 @@ function results(st) {
             seatPerSect["counter"] = parseInt(seatPerSect["counter"]) + 1;
             seatPerSect[sect + "_counter"] =
                 parseInt(seatPerSect[sect + "_counter"]) + 1;
-            let smallDistrict=maxCandidate["district"];
+            let smallDistrict = maxCandidate["district"];
 
-            seatPerSect[sect+"_total"][smallDistrict]["counter"]=parseInt(seatPerSect[sect+"_total"][smallDistrict]["counter"]+1)
+            seatPerSect[sect + "_total"][smallDistrict]["counter"] = parseInt(
+                seatPerSect[sect + "_total"][smallDistrict]["counter"] + 1
+            );
 
-            let smallDistrictCount=seatPerSect[sect+"_total"][smallDistrict]["counter"]
-            let smallDistrictTotal=seatPerSect[sect+"_total"][smallDistrict]["seatNum"]
-            console.log(maxCandidate)
-            console.log(smallDistrict)
-            console.log(seatPerSect)
-            console.log(smallDistrictCount)
-            console.log(smallDistrictTotal)
-            if(smallDistrictCount==smallDistrictTotal){
-                console.log('deleted district')
-                console.log(maxCandidate)
-                d3.selectAll("."+smallDistrict+"."+sect).classed("available", false);
+            let smallDistrictCount =
+                seatPerSect[sect + "_total"][smallDistrict]["counter"];
+            let smallDistrictTotal =
+                seatPerSect[sect + "_total"][smallDistrict]["seatNum"];
+            console.log(maxCandidate);
+            console.log(smallDistrict);
+            console.log(seatPerSect);
+            console.log(smallDistrictCount);
+            console.log(smallDistrictTotal);
+            if (smallDistrictCount == smallDistrictTotal) {
+                console.log("deleted district");
+                console.log(maxCandidate);
+                d3.selectAll("." + smallDistrict + "." + sect).classed(
+                    "available",
+                    false
+                );
             }
 
             // remove available class from winning candidate to not pick it again
@@ -231,7 +249,7 @@ function results(st) {
                 maxCandidateList.selectAll("rect").classed("available", false);
             }
             //remove available from candidates with sect thta has no more seats
-            if ( 
+            if (
                 seatPerSect[sect + "_counter"] == seatPerSect[sect + "_total"]
             ) {
                 console.log("deleted sect");
@@ -357,7 +375,9 @@ function draw(
     if (callback)
         bars.append("rect")
             .attr("class", function(d) {
-                return  "available barChartBar " + d["sect"] + " " + d["district"]
+                return (
+                    "available barChartBar " + d["sect"] + " " + d["district"]
+                );
             })
             .attr("y", function(d) {
                 return y(d.name);
@@ -378,7 +398,6 @@ function draw(
     else
         bars.append("rect")
             .attr("class", function(d) {
-
                 return (
                     "available barChartBar " + d["sect"] + " " + d["district"]
                 );

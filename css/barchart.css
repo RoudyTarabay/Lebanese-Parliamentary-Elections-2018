@@ -26,4 +26,5 @@ body {
 }
 .small-district-counter{
     text-indent: 2em;
+    opacity: 0;
 }

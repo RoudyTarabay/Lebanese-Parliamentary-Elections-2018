@@ -131,8 +131,28 @@ cursor: pointer;
   opacity: 0;
   -webkit-animation: type3 2s steps(20, end), blink .5s step-end infinite alternate;
   animation: type3 2s steps(20, end), blink .5s step-end infinite alternate;
-  -webkit-animation-delay: 6s;
+  -webkit-animation-delay: 8s;
   animation-delay: 8s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+.css-typing p:nth-child(6) {
+  width: 100%;
+  opacity: 0;
+  -webkit-animation: type3 2s steps(20, end), blink .5s step-end infinite alternate;
+  animation: type3 2s steps(20, end), blink .5s step-end infinite alternate;
+  -webkit-animation-delay: 10s;
+  animation-delay: 10s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+.css-typing p:nth-child(7) {
+  width: 100%;
+  opacity: 0;
+  -webkit-animation: type3 2s steps(20, end), blink .5s step-end infinite alternate;
+  animation: type3 2s steps(20, end), blink .5s step-end infinite alternate;
+  -webkit-animation-delay: 12s;
+  animation-delay: 12s;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 }
