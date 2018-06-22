@@ -242,6 +242,10 @@ cursor: pointer;
    animation-iteration-count: infinite;
    animation-direction: alternate;
 }
+.blinkText{
+    animation: blinker 1s linear 5s;
+
+}
 @keyframes blink {
    from {
       opacity: 1;

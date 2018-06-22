@@ -93,13 +93,7 @@ function drawInfo3(districtSeats, st) {
     csstyping
         .append("p")
         .html("Total Number Of Seats: " + districtSeats["total"]);
-    csstyping
-        .append("p")
-        .html(
-            "Remaining seats : <span id='remaining'>" +
-                districtSeats["total"] +
-                "</span>"
-        );
+
     for (let i = 0; i < keys.length - 1; i++) {
         csstyping
             .append("p")
@@ -121,37 +115,45 @@ function drawInfo3(districtSeats, st) {
                 .html(
                     smallDistricts[j] +
                         " : <span  id='" +
-                        smallDistricts[j] +keys[i]+
+                        smallDistricts[j] +
+                        keys[i] +
                         "'>" +
                         0 +
                         "</span>/" +
                         districtSeats[keys[i]][smallDistricts[j]]
                 );
             if (j == smallDistricts.length - 2) {
-                console.log('aaa')
-                csstyping.selectAll(".small-district-counter")[0][csstyping.selectAll(".small-district-counter")[0].length-1].addEventListener(
-                    "animationend",
-                    function() {
-                        if (i == keys.length - 2) {
-                           
-                            console.log('b')
-                            d3.selectAll("#" + keys[i]).each(function(d, i) {
-                                console.log('d')
-                                let parent = this.parentNode.parentNode;
-                                parent = d3.select(parent);
-                                console.log(parent)
-                                parent.on(
-                                    "animationend",
-                                    () => { 
-                                        results(st);
-                                    },
-                                    false
-                                );
-                            });
-                        }
-                    },
-                    false
-                );
+                console.log("aaa");
+                csstyping
+                    .selectAll(".small-district-counter")[0]
+                    [
+                        csstyping.selectAll(".small-district-counter")[0]
+                            .length - 1
+                    ].addEventListener(
+                        "animationend",
+                        function() {
+                            if (i == keys.length - 2) {
+                                console.log("b");
+                                d3.selectAll("#" + keys[i]).each(function(
+                                    d,
+                                    i
+                                ) {
+                                    console.log("d");
+                                    let parent = this.parentNode.parentNode;
+                                    parent = d3.select(parent);
+                                    console.log(parent);
+                                    parent.on(
+                                        "animationend",
+                                        () => {
+                                            results(st);
+                                        },
+                                        false
+                                    );
+                                });
+                            }
+                        },
+                        false
+                    );
             }
         }
     }
@@ -187,9 +189,32 @@ function getHighestCandidate(st) {
     });
     return { max, maxCandidate, maxCandidateList };
 }
+
+function winnerAnimation(maxCandidateList,callback1) {
+    let remainingListSeats = 0;
+    let title = maxCandidateList.select(".barChartTitle").text();
+    let splitTitle = title.split(":");
+    let remainingSeats = parseInt(splitTitle[1]);
+    blinkText(maxCandidateList.select(".barChartTitle").select("tspan"));
+    setTimeout(() => {
+
+        maxCandidateList.select(".barChartTitle").select("tspan").text(remainingSeats-1);
+        stopBlinking(maxCandidateList.select(".barChartTitle").select("tspan"))
+        callback1();
+
+
+    }, 5000);
+}
+function blinkText(element) {
+    element.classed("blink", true);
+}
+function stopBlinking(element){
+        element.classed("blink", false);
+
+}
 function results(st) {
-    console.log("results");
     let { max, maxCandidate, maxCandidateList } = getHighestCandidate(st);
+    console.log(maxCandidate)
     let maxCandidateName = maxCandidate["name"].replace(/ /g, "");
     blinkWinner(maxCandidateName);
     setTimeout(function() {
@@ -200,17 +225,9 @@ function results(st) {
             let g = this.parentNode;
             let text = d3.select(g.childNodes[0]);
             text.text("W");
-            let remainingListSeats = 0;
+            let remainingListSeats = parseInt(maxCandidateList.select(".barChartTitle").select("tspan").text())-1;
             // -- number of seats of that list
-            let title = maxCandidateList
-                .select(".barChartTitle")
-                .text(function() {
-                    let title = d3.select(this).text();
-                    let splitTitle = title.split(":");
-                    let num = parseInt(splitTitle[1]);
-                    remainingListSeats = num - 1;
-                    return splitTitle[0] + ": " + (num - 1);
-                });
+
             //increment the sects seat
 
             let sect = maxCandidate["sect"];
@@ -236,6 +253,7 @@ function results(st) {
 
             // remove available class from winning candidate to not pick it again
             d3.select(this).classed("available", false);
+            
             //remove available from seat if no more seats secured
             if (remainingListSeats == 0) {
                 maxCandidateList.selectAll("rect").classed("available", false);
@@ -247,14 +265,32 @@ function results(st) {
                 d3.selectAll("." + sect).classed("available", false);
             }
             let sectCount = parseInt(d3.select("#" + sect).html());
-            console.log(sect+smallDistrict)
+            let sectDistrictCount = parseInt(
+                d3.select("#" + smallDistrict + sect).html()
+            );
 
-            let sectDistrictCount = parseInt(d3.select("#" + smallDistrict+sect).html());
 
-            d3.select("#" + smallDistrict+sect).html((sectDistrictCount + 1).toString());
-            d3.select("#" + sect).html((sectCount + 1).toString());
+            winnerAnimation(
+                maxCandidateList,
+                function() {
+                    blinkText(d3.select("#" + smallDistrict + sect))
+                    setTimeout(function(){
+                        d3.select("#" + smallDistrict + sect).html(
+                        (sectDistrictCount + 1).toString());
+                        stopBlinking(d3.select("#" + smallDistrict + sect));
 
-            if (seatPerSect["counter"] < seatPerSect["total"]) results(st);
+                        blinkText(d3.select("#" + sect));
+
+                        setTimeout(function(){
+                            d3.select("#" + sect).html((sectCount + 1).toString());
+                            stopBlinking(d3.select("#" + sect));
+                            if (seatPerSect["counter"] < seatPerSect["total"]) results(st);
+
+
+                        },5000)
+                    },5000)
+                 }
+            );
         });
     }, 2000);
 }
@@ -307,9 +343,9 @@ function draw(
     svg.append("text")
         .attr("class", "barChartTitle")
         .attr("dy", "-0.5vw")
-        .text(
-            listName + "- seats : " + (Math.floor(seatsSecured) + extraSeat())
-        );
+        .text(listName + "- seats : ")
+        .append("tspan")
+        .text(Math.floor(seatsSecured) + extraSeat());
     let x = d3.scale
         .linear()
         .range([0, width])
