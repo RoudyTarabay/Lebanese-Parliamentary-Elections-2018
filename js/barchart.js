@@ -224,7 +224,13 @@ function results(st) {
             //change percentage to winning sign
             let g = this.parentNode;
             let text = d3.select(g.childNodes[0]);
-            text.text("W");
+            text.attr('font-family', 'FontAwesome')
+            .attr('font-size', function(d) { return d.size+'em'} )
+            .attr("class","")
+            .attr("style","fill:green")
+            .text(function(){
+                return "\uf00c"
+            })
             let remainingListSeats = parseInt(maxCandidateList.select(".barChartTitle").select("tspan").text())-1;
             // -- number of seats of that list
 
