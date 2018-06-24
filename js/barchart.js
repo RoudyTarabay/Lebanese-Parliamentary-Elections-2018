@@ -190,31 +190,30 @@ function getHighestCandidate(st) {
     return { max, maxCandidate, maxCandidateList };
 }
 
-function winnerAnimation(maxCandidateList,callback1) {
+function winnerAnimation(maxCandidateList, callback1) {
     let remainingListSeats = 0;
     let title = maxCandidateList.select(".barChartTitle").text();
     let splitTitle = title.split(":");
     let remainingSeats = parseInt(splitTitle[1]);
     blinkText(maxCandidateList.select(".barChartTitle").select("tspan"));
     setTimeout(() => {
-
-        maxCandidateList.select(".barChartTitle").select("tspan").text(remainingSeats-1);
-        stopBlinking(maxCandidateList.select(".barChartTitle").select("tspan"))
+        maxCandidateList
+            .select(".barChartTitle")
+            .select("tspan")
+            .text(remainingSeats - 1);
+        stopBlinking(maxCandidateList.select(".barChartTitle").select("tspan"));
         callback1();
-
-
     }, 5000);
 }
 function blinkText(element) {
     element.classed("blink", true);
 }
-function stopBlinking(element){
-        element.classed("blink", false);
-
+function stopBlinking(element) {
+    element.classed("blink", false);
 }
 function results(st) {
     let { max, maxCandidate, maxCandidateList } = getHighestCandidate(st);
-    console.log(maxCandidate)
+    console.log(maxCandidate);
     let maxCandidateName = maxCandidate["name"].replace(/ /g, "");
     blinkWinner(maxCandidateName);
     setTimeout(function() {
@@ -224,14 +223,22 @@ function results(st) {
             //change percentage to winning sign
             let g = this.parentNode;
             let text = d3.select(g.childNodes[0]);
-            text.attr('font-family', 'FontAwesome')
-            .attr('font-size', function(d) { return d.size+'em'} )
-            .attr("class","")
-            .attr("style","fill:green")
-            .text(function(){
-                return "\uf00c"
-            })
-            let remainingListSeats = parseInt(maxCandidateList.select(".barChartTitle").select("tspan").text())-1;
+            text.attr("font-family", "FontAwesome")
+                .attr("font-size", function(d) {
+                    return d.size + "em";
+                })
+                .attr("class", "")
+                .attr("style", "fill:green")
+                .text(function() {
+                    return "\uf00c";
+                });
+            let remainingListSeats =
+                parseInt(
+                    maxCandidateList
+                        .select(".barChartTitle")
+                        .select("tspan")
+                        .text()
+                ) - 1;
             // -- number of seats of that list
 
             //increment the sects seat
@@ -250,7 +257,14 @@ function results(st) {
                 seatPerSect[sect + "_total"][smallDistrict]["counter"];
             let smallDistrictTotal =
                 seatPerSect[sect + "_total"][smallDistrict]["seatNum"];
+            d3.select(this).classed("available", false);
+
             if (smallDistrictCount == smallDistrictTotal) {
+                d3.selectAll(".available." + smallDistrict + "." + sect).each(function(d,u){
+                    let g = this.parentNode;
+                    let text = d3.select(g.childNodes[0]).attr("style","text-decoration:line-through"); 
+                })
+                 d3.selectAll(".available." + smallDistrict + "." + sect).classed("unavailable",true);
                 d3.selectAll("." + smallDistrict + "." + sect).classed(
                     "available",
                     false
@@ -258,16 +272,26 @@ function results(st) {
             }
 
             // remove available class from winning candidate to not pick it again
-            d3.select(this).classed("available", false);
-            
+
             //remove available from seat if no more seats secured
             if (remainingListSeats == 0) {
+                console.log(maxCandidateList.selectAll(".available"));
+                maxCandidateList.selectAll(".available").each(function(d, i) {
+                    let g = this.parentNode;
+                    let text = d3.select(g.childNodes[0]).attr("style","text-decoration:line-through");
+                });
+                maxCandidateList
+                    .selectAll(".available")
+                    .classed("unavailable", true);
+
                 maxCandidateList.selectAll("rect").classed("available", false);
             }
             //remove available from candidates with sect thta has no more seats
             if (
                 seatPerSect[sect + "_counter"] == seatPerSect[sect + "_total"]
             ) {
+                d3.selectAll(".available." + sect).classed("unavailable", true);
+
                 d3.selectAll("." + sect).classed("available", false);
             }
             let sectCount = parseInt(d3.select("#" + sect).html());
@@ -275,28 +299,24 @@ function results(st) {
                 d3.select("#" + smallDistrict + sect).html()
             );
 
+            winnerAnimation(maxCandidateList, function() {
+                blinkText(d3.select("#" + smallDistrict + sect));
+                setTimeout(function() {
+                    d3.select("#" + smallDistrict + sect).html(
+                        (sectDistrictCount + 1).toString()
+                    );
+                    stopBlinking(d3.select("#" + smallDistrict + sect));
 
-            winnerAnimation(
-                maxCandidateList,
-                function() {
-                    blinkText(d3.select("#" + smallDistrict + sect))
-                    setTimeout(function(){
-                        d3.select("#" + smallDistrict + sect).html(
-                        (sectDistrictCount + 1).toString());
-                        stopBlinking(d3.select("#" + smallDistrict + sect));
+                    blinkText(d3.select("#" + sect));
 
-                        blinkText(d3.select("#" + sect));
-
-                        setTimeout(function(){
-                            d3.select("#" + sect).html((sectCount + 1).toString());
-                            stopBlinking(d3.select("#" + sect));
-                            if (seatPerSect["counter"] < seatPerSect["total"]) results(st);
-
-
-                        },5000)
-                    },5000)
-                 }
-            );
+                    setTimeout(function() {
+                        d3.select("#" + sect).html((sectCount + 1).toString());
+                        stopBlinking(d3.select("#" + sect));
+                        if (seatPerSect["counter"] < seatPerSect["total"])
+                            results(st);
+                    }, 5000);
+                }, 5000);
+            });
         });
     }, 2000);
 }

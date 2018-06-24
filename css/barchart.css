@@ -28,3 +28,7 @@ body {
     text-indent: 2em;
     opacity: 0;
 }
+.unavailable{
+    opacity: 0.5!important;
+    fill:grey!important;
+}
