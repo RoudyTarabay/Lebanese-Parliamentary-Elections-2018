@@ -5,7 +5,6 @@ let seatPerSmallDistrict = {};
 function endall(transition, callback) {
     //on d3 transition end
     if (overlayClick != null) {
-        console.log("not appending");
         return;
     }
     if (typeof callback !== "function")
@@ -123,7 +122,6 @@ function drawInfo3(districtSeats, st) {
                         districtSeats[keys[i]][smallDistricts[j]]
                 );
             if (j == smallDistricts.length - 2) {
-                console.log("aaa");
                 csstyping
                     .selectAll(".small-district-counter")[0]
                     [
@@ -133,15 +131,12 @@ function drawInfo3(districtSeats, st) {
                         "animationend",
                         function() {
                             if (i == keys.length - 2) {
-                                console.log("b");
                                 d3.selectAll("#" + keys[i]).each(function(
                                     d,
                                     i
                                 ) {
-                                    console.log("d");
                                     let parent = this.parentNode.parentNode;
                                     parent = d3.select(parent);
-                                    console.log(parent);
                                     parent.on(
                                         "animationend",
                                         () => {
@@ -213,7 +208,6 @@ function stopBlinking(element) {
 }
 function results(st) {
     let { max, maxCandidate, maxCandidateList } = getHighestCandidate(st);
-    console.log(maxCandidate);
     let maxCandidateName = maxCandidate["name"].replace(/ /g, "");
     blinkWinner(maxCandidateName);
     setTimeout(function() {
@@ -259,7 +253,7 @@ function results(st) {
                 seatPerSect[sect + "_total"][smallDistrict]["seatNum"];
             d3.select(this).classed("available", false);
 
-            if (smallDistrictCount == smallDistrictTotal) {
+            /* if (smallDistrictCount == smallDistrictTotal) {
                 d3.selectAll(".available." + smallDistrict + "." + sect).each(function(d,u){
                     let g = this.parentNode;
                     let text = d3.select(g.childNodes[0]).attr("style","text-decoration:line-through"); 
@@ -269,16 +263,17 @@ function results(st) {
                     "available",
                     false
                 );
-            }
+            }*/
 
             // remove available class from winning candidate to not pick it again
 
             //remove available from seat if no more seats secured
             if (remainingListSeats == 0) {
-                console.log(maxCandidateList.selectAll(".available"));
                 maxCandidateList.selectAll(".available").each(function(d, i) {
                     let g = this.parentNode;
-                    let text = d3.select(g.childNodes[0]).attr("style","text-decoration:line-through");
+                    let text = d3
+                        .select(g.childNodes[0])
+                        .attr("style", "text-decoration:line-through");
                 });
                 maxCandidateList
                     .selectAll(".available")
@@ -300,25 +295,103 @@ function results(st) {
             );
 
             winnerAnimation(maxCandidateList, function() {
-                blinkText(d3.select("#" + smallDistrict + sect));
-                setTimeout(function() {
-                    d3.select("#" + smallDistrict + sect).html(
-                        (sectDistrictCount + 1).toString()
-                    );
-                    stopBlinking(d3.select("#" + smallDistrict + sect));
+                incrementSmallDistrictAnimation(smallDistrict,sect ,sectDistrictCount, function(){
+                    if (smallDistrictCount==smallDistrictTotal)
+                        smallDistrictFull(smallDistrict,sect,function(){
+                          
+                            incrementSectAnimation(sect,sectCount,function(){
+                                console.log(seatPerSect[sect + "_counter"]);
+                                console.log(seatPerSect[sect + "_total"]["total"]);
 
-                    blinkText(d3.select("#" + sect));
+                                if(seatPerSect[sect + "_counter"] == seatPerSect[sect + "_total"]["total"]){
+                                    console.log("byee")
+                                    d3.select(document.querySelector("#"+sect).parentNode).style("text-decoration","line-through")
+                                }
 
-                    setTimeout(function() {
-                        d3.select("#" + sect).html((sectCount + 1).toString());
-                        stopBlinking(d3.select("#" + sect));
-                        if (seatPerSect["counter"] < seatPerSect["total"])
-                            results(st);
-                    }, 5000);
-                }, 5000);
+                                if (seatPerSect["counter"] < seatPerSect["total"])
+                                    results(st);
+                            })
+                        })
+                    else
+                        incrementSectAnimation(sect,sectCount,function(){
+                            console.log(seatPerSect[sect + "_counter"]);
+                            console.log(seatPerSect[sect + "_total"]["total"]);
+
+                            if(seatPerSect[sect + "_counter"] == seatPerSect[sect + "_total"]["total"]){
+                                console.log("hiii ")
+                                    d3.select(document.querySelector("#"+sect).parentNode).style("text-decoration","line-through");
+                                }
+
+
+                                if (seatPerSect["counter"] < seatPerSect["total"])
+                                    results(st);
+                            })
+
+                })
+
+                
             });
         });
     }, 2000);
+}   
+    
+function incrementSmallDistrictAnimation(smallDistrict,sect,sectDistrictCount,callback){
+    blinkText(d3.select("#" + smallDistrict + sect));
+
+    setTimeout(function() {
+        d3.select("#" + smallDistrict + sect).html(
+            (sectDistrictCount + 1).toString()
+        );
+        stopBlinking(d3.select("#" + smallDistrict + sect));
+         
+        callback();
+    },5000);
+
+}
+function incrementSectAnimation(sect,sectCount,callback) {
+    blinkText(d3.select("#" + sect));
+
+    setTimeout(function() {
+        d3.select("#" + sect).html((sectCount + 1).toString());
+
+        stopBlinking(d3.select("#" + sect));
+        callback()
+   }, 5000);
+
+    console.log();
+}
+function smallDistrictFull(smallDistrict,sect,callback) {
+        let districtSectParagraph=document.querySelector("#"+smallDistrict+sect).parentNode;
+        console.log(districtSectParagraph);
+
+        d3.select(districtSectParagraph).style("text-decoration","line-through");
+        setTimeout(function(){
+
+             d3.selectAll(".available." + smallDistrict + "." + sect).classed("blink",true);
+             setTimeout(function(){
+                             d3.selectAll(".available." + smallDistrict + "." + sect).classed("blink",false);
+
+        d3.selectAll(".available." + smallDistrict + "." + sect).each(function(
+            d,
+            u
+        ) {
+            let g = this.parentNode;
+            let text = d3
+                .select(g.childNodes[0])
+                .attr("style", "text-decoration:line-through");
+        });
+        d3.selectAll(".available." + smallDistrict + "." + sect).classed(
+            "unavailable",
+            true
+        );
+        d3.selectAll("." + smallDistrict + "." + sect).classed(
+            "available",
+            false
+        );
+        callback()
+             },2000)
+        },2000)
+
 }
 function blinkWinner(name) {
     d3.selectAll("#" + name).classed("blink", true);
@@ -352,8 +425,6 @@ function draw(
     let width = svgdim2.width / qualifiedNum - margin.left - margin.right,
         height = svgdim2.height - margin.top - margin.bottom;
     let extraSeat = function() {
-        console.log(d3.selectAll(".barSvg")[0].length);
-        console.log(extraSeatIndex);
         if (d3.selectAll(".barSvg")[0].length == extraSeatIndex + 1) return 1;
         else return 0;
     };

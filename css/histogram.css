@@ -254,3 +254,20 @@ cursor: pointer;
       opacity: 0;
    }
  }
+ @keyframes blinkRed {
+   from {
+      color:  black;
+   }
+   to {
+      color: red;
+   }
+ }
+ .blinkRed {
+        color:  black;
+
+   animation-duration: 400ms;
+   animation-name: blinkRed;
+   animation-iteration-count: infinite;
+   animation-direction: alternate;
+}
+
