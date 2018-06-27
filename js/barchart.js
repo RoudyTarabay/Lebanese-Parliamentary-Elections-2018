@@ -185,7 +185,7 @@ function getHighestCandidate(st) {
     return { max, maxCandidate, maxCandidateList };
 }
 
-function winnerAnimation(maxCandidateList, callback1) {
+function winnerAnimation(maxCandidateList, callback) {
     let remainingListSeats = 0;
     let title = maxCandidateList.select(".barChartTitle").text();
     let splitTitle = title.split(":");
@@ -197,7 +197,10 @@ function winnerAnimation(maxCandidateList, callback1) {
             .select("tspan")
             .text(remainingSeats - 1);
         stopBlinking(maxCandidateList.select(".barChartTitle").select("tspan"));
-        callback1();
+        if (remainingSeats-1==0)
+            clearList(maxCandidateList,callback)
+        else
+            callback()
     }, 5000);
 }
 function blinkText(element) {
@@ -268,7 +271,7 @@ function results(st) {
             // remove available class from winning candidate to not pick it again
 
             //remove available from seat if no more seats secured
-            if (remainingListSeats == 0) {
+            /*if (remainingListSeats == 0) {
                 maxCandidateList.selectAll(".available").each(function(d, i) {
                     let g = this.parentNode;
                     let text = d3
@@ -280,7 +283,7 @@ function results(st) {
                     .classed("unavailable", true);
 
                 maxCandidateList.selectAll("rect").classed("available", false);
-            }
+            }*/
             //remove available from candidates with sect thta has no more seats
             if (
                 seatPerSect[sect + "_counter"] == seatPerSect[sect + "_total"]
@@ -295,16 +298,14 @@ function results(st) {
             );
 
             winnerAnimation(maxCandidateList, function() {
+
                 incrementSmallDistrictAnimation(smallDistrict,sect ,sectDistrictCount, function(){
                     if (smallDistrictCount==smallDistrictTotal)
                         smallDistrictFull(smallDistrict,sect,function(){
                           
                             incrementSectAnimation(sect,sectCount,function(){
-                                console.log(seatPerSect[sect + "_counter"]);
-                                console.log(seatPerSect[sect + "_total"]["total"]);
 
                                 if(seatPerSect[sect + "_counter"] == seatPerSect[sect + "_total"]["total"]){
-                                    console.log("byee")
                                     d3.select(document.querySelector("#"+sect).parentNode).style("text-decoration","line-through")
                                 }
 
@@ -314,11 +315,8 @@ function results(st) {
                         })
                     else
                         incrementSectAnimation(sect,sectCount,function(){
-                            console.log(seatPerSect[sect + "_counter"]);
-                            console.log(seatPerSect[sect + "_total"]["total"]);
 
                             if(seatPerSect[sect + "_counter"] == seatPerSect[sect + "_total"]["total"]){
-                                console.log("hiii ")
                                     d3.select(document.querySelector("#"+sect).parentNode).style("text-decoration","line-through");
                                 }
 
@@ -334,7 +332,31 @@ function results(st) {
         });
     }, 2000);
 }   
-    
+function clearList(maxCandidateList,callback){ //make the remaining list unavailable
+
+     maxCandidateList.selectAll(".available").classed("blink",true)
+     setTimeout(function(){
+
+             maxCandidateList.selectAll(".available").classed("blink",false)
+
+
+     maxCandidateList.selectAll(".available").each(function(d, i) {
+                    let g = this.parentNode;
+                    let text = d3
+                        .select(g.childNodes[0])
+                        .attr("style", "text-decoration:line-through");
+                });
+                maxCandidateList
+                    .selectAll(".available")
+                    .classed("unavailable", true);
+
+                maxCandidateList.selectAll("rect").classed("available", false);
+
+                callback();
+
+     },2000)
+
+}
 function incrementSmallDistrictAnimation(smallDistrict,sect,sectDistrictCount,callback){
     blinkText(d3.select("#" + smallDistrict + sect));
 
@@ -358,11 +380,9 @@ function incrementSectAnimation(sect,sectCount,callback) {
         callback()
    }, 5000);
 
-    console.log();
 }
 function smallDistrictFull(smallDistrict,sect,callback) {
         let districtSectParagraph=document.querySelector("#"+smallDistrict+sect).parentNode;
-        console.log(districtSectParagraph);
 
         d3.select(districtSectParagraph).style("text-decoration","line-through");
         setTimeout(function(){
