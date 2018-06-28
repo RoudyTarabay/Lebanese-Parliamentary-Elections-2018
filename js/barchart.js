@@ -214,7 +214,7 @@ function results(st) {
     let maxCandidateName = maxCandidate["name"].replace(/ /g, "");
     blinkWinner(maxCandidateName);
     setTimeout(function() {
-        d3.selectAll("#" + maxCandidateName).classed("blink", false); //stop blinking winner
+        d3.selectAll("." + maxCandidateName).classed("blink", false); //stop blinking winner
         let el = d3.selectAll("#" + maxCandidateName);
         el.each(function(d, i) {
             //change percentage to winning sign
@@ -254,7 +254,7 @@ function results(st) {
                 seatPerSect[sect + "_total"][smallDistrict]["counter"];
             let smallDistrictTotal =
                 seatPerSect[sect + "_total"][smallDistrict]["seatNum"];
-            d3.select(this).classed("available", false);
+            d3.selectAll("."+d3.select(this).attr("id")).classed("available", false);
 
             /* if (smallDistrictCount == smallDistrictTotal) {
                 d3.selectAll(".available." + smallDistrict + "." + sect).each(function(d,u){
@@ -414,7 +414,8 @@ function smallDistrictFull(smallDistrict,sect,callback) {
 
 }
 function blinkWinner(name) {
-    d3.selectAll("#" + name).classed("blink", true);
+    d3.selectAll("." + name).classed("blink", true);
+
 }
 //sort bars based on value
 
@@ -523,9 +524,13 @@ function draw(
     //append rects
     if (callback)
         bars.append("rect")
-            .attr("class", function(d) {
+            .attr("class", function(d,i ) {
+                
+                d3.select(svg.selectAll(".tick")[0][i]).classed(" candidateName available "+ d["sect"] + " " + d["district"]+" "+d.name.replace(/ /g, "")
+                ,true);
                 return (
-                    "available barChartBar " + d["sect"] + " " + d["district"]
+                    "available barChartBar " + d["sect"] + " " + d["district"]+" "+d.name.replace(/ /g, "")
+                
                 );
             })
             .attr("y", function(d) {
@@ -546,9 +551,12 @@ function draw(
             });
     else
         bars.append("rect")
-            .attr("class", function(d) {
+            .attr("class", function(d,i) {
+                d3.select(svg.selectAll(".tick")[0][i]).classed("candidateName available "+ d["sect"] + " " + d["district"]+" "+d.name.replace(/ /g, "")
+                ,true);
+
                 return (
-                    "available barChartBar " + d["sect"] + " " + d["district"]
+                    "available barChartBar " + d["sect"] + " " + d["district"]+" "+d.name.replace(/ /g, "")
                 );
             })
             .attr("y", function(d) {
