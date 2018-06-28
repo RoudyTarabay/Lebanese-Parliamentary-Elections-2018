@@ -7,10 +7,21 @@ body {
 
 .Maronite{
     fill: red;
+    background-color: red; 
+
+}
+.sectLegend{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    vertical-align: bottom;
+    border: black 1px
 }
 
 .Shia{
     fill: green;
+    background-color: green; 
 }
 #barchart {
     box-sizing: border-box;

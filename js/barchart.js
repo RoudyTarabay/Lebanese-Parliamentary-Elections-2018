@@ -87,6 +87,10 @@ function mainchain2(districtSeats, st) {
     });
 }
 function drawInfo3(districtSeats, st) {
+
+    
+
+    
     let keys = Object.keys(districtSeats);
     let csstyping = d3.select(".css-typing");
     csstyping
@@ -104,7 +108,9 @@ function drawInfo3(districtSeats, st) {
                     0 +
                     "</span>/" +
                     districtSeats[keys[i]]["total"]
-            );
+            ).append("svg")
+
+            .attr("class",keys[i]+" sectLegend");
         let smallDistricts = Object.keys(districtSeats[keys[i]]);
 
         for (let j = 0; j < smallDistricts.length - 1; j++) {
