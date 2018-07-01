@@ -2,6 +2,15 @@ let yFormulas = [];
 let xFormulas = [];
 let seatPerSect = {};
 let seatPerSmallDistrict = {};
+let districtColors = d3.scale
+    .ordinal()
+    .range([
+        "white",
+        "black",
+        "purple",
+
+    ]);
+
 function endall(transition, callback) {
     //on d3 transition end
     if (overlayClick != null) {
@@ -45,6 +54,8 @@ function barChart(results, qualifiedNum, threshold2, extraSeatIndex) {
     smallDistrictsTotal = results["districtTotal"];
     let count = qualifiedNum;
     fillSeatPerSect(results["seats"]);
+    generatePatterns(results["seats"]);
+
     for (let i = 0; i < count; i++) {
         if ("candidates" in results["lists"][i])
             if (i == count - 1)
@@ -86,13 +97,40 @@ function mainchain2(districtSeats, st) {
         });
     });
 }
+function generatePatterns(districtSeats) {
+    let sects = Object.keys(districtSeats);
+
+    for (let i = 0; i < sects.length - 1; i++) {
+        let districts = Object.keys(districtSeats[sects[i]]);
+        for (let j = 0; j < sects.length - 1; j++) {
+            d3.select("body")
+                .append("svg")
+                .attr("width", "120")
+                .attr("height", "120")
+                .attr("viewBox", "0 0 120 120")
+                .attr("xmlns", "http://www.w3.org/2000/svg")
+                .attr("version", "1.1")
+                .append("defs")
+                .append("pattern")
+                .attr("id", sects[i] + "_" + districts[j] + "_oblique")
+                .attr("patternUnits", "userSpaceOnUse")
+                .attr("width", "4")
+                .attr("height", "4")
+                .append("path")
+                .attr("d", "M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2")
+                .attr(
+                    "style",
+                    "stroke:" +
+                        districtColors(sects[i] + districts[j]) +
+                        ";   stroke-width:1"
+                );
+        }
+    }
+}
 function drawInfo3(districtSeats, st) {
-
-    
-
-    
     let keys = Object.keys(districtSeats);
     let csstyping = d3.select(".css-typing");
+
     csstyping
         .append("p")
         .html("Total Number Of Seats: " + districtSeats["total"]);
@@ -108,9 +146,12 @@ function drawInfo3(districtSeats, st) {
                     0 +
                     "</span>/" +
                     districtSeats[keys[i]]["total"]
-            ).append("svg")
+            )
+            .append("svg")
+            .attr("class", keys[i] + " sectLegend")
 
-            .attr("class",keys[i]+" sectLegend");
+            .append("rect")
+            .attr("class", keys[i] + " sectLegend");
         let smallDistricts = Object.keys(districtSeats[keys[i]]);
 
         for (let j = 0; j < smallDistricts.length - 1; j++) {
@@ -126,7 +167,22 @@ function drawInfo3(districtSeats, st) {
                         0 +
                         "</span>/" +
                         districtSeats[keys[i]][smallDistricts[j]]
-                );
+                )
+                .append("svg")
+                .attr("class", keys[i] + " sectLegend")
+
+                .append("rect")
+                .attr("class", keys[i] + " sectLegend")
+                .attr("style", function() {
+
+                    return (
+                        "fill:url(#" +
+                        keys[i] +
+                        "_" +
+                        smallDistricts[j] +
+                        "_oblique)!important"
+                    );
+                });
             if (j == smallDistricts.length - 2) {
                 csstyping
                     .selectAll(".small-district-counter")[0]
@@ -146,6 +202,7 @@ function drawInfo3(districtSeats, st) {
                                     parent.on(
                                         "animationend",
                                         () => {
+                                            console.log('c')
                                             results(st);
                                         },
                                         false
@@ -203,10 +260,8 @@ function winnerAnimation(maxCandidateList, callback) {
             .select("tspan")
             .text(remainingSeats - 1);
         stopBlinking(maxCandidateList.select(".barChartTitle").select("tspan"));
-        if (remainingSeats-1==0)
-            clearList(maxCandidateList,callback)
-        else
-            callback()
+        if (remainingSeats - 1 == 0) clearList(maxCandidateList, callback);
+        else callback();
     }, 5000);
 }
 function blinkText(element) {
@@ -216,6 +271,7 @@ function stopBlinking(element) {
     element.classed("blink", false);
 }
 function results(st) {
+    console.log('b')
     let { max, maxCandidate, maxCandidateList } = getHighestCandidate(st);
     let maxCandidateName = maxCandidate["name"].replace(/ /g, "");
     blinkWinner(maxCandidateName);
@@ -260,7 +316,10 @@ function results(st) {
                 seatPerSect[sect + "_total"][smallDistrict]["counter"];
             let smallDistrictTotal =
                 seatPerSect[sect + "_total"][smallDistrict]["seatNum"];
-            d3.selectAll("."+d3.select(this).attr("id")).classed("available", false);
+            d3.selectAll("." + d3.select(this).attr("id")).classed(
+                "available",
+                false
+            );
 
             /* if (smallDistrictCount == smallDistrictTotal) {
                 d3.selectAll(".available." + smallDistrict + "." + sect).each(function(d,u){
@@ -304,66 +363,95 @@ function results(st) {
             );
 
             winnerAnimation(maxCandidateList, function() {
+                console.log('a')
+                incrementSmallDistrictAnimation(
+                    smallDistrict,
+                    sect,
+                    sectDistrictCount,
+                    function() {
+                        console.log(smallDistrictCount);
+                        console.log(smallDistrictTotal);
+                        console.log(smallDistrictTotal==smallDistrictCount)
+                        if (smallDistrictCount == smallDistrictTotal)
+                            smallDistrictFull(smallDistrict, sect, function() {
+                                incrementSectAnimation(
+                                    sect,
+                                    sectCount,
+                                    function() {
+                                        if (
+                                            seatPerSect[sect + "_counter"] ==
+                                            seatPerSect[sect + "_total"][
+                                                "total"
+                                            ]
+                                        ) {
+                                            d3.select(
+                                                document.querySelector(
+                                                    "#" + sect
+                                                ).parentNode
+                                            ).style(
+                                                "text-decoration",
+                                                "line-through"
+                                            );
+                                        }
 
-                incrementSmallDistrictAnimation(smallDistrict,sect ,sectDistrictCount, function(){
-                    if (smallDistrictCount==smallDistrictTotal)
-                        smallDistrictFull(smallDistrict,sect,function(){
-                          
-                            incrementSectAnimation(sect,sectCount,function(){
-
-                                if(seatPerSect[sect + "_counter"] == seatPerSect[sect + "_total"]["total"]){
-                                    d3.select(document.querySelector("#"+sect).parentNode).style("text-decoration","line-through")
+                                        if (
+                                            seatPerSect["counter"] <
+                                            seatPerSect["total"]
+                                        )
+                                            results(st);
+                                    }
+                                );
+                            });
+                        else
+                            incrementSectAnimation(sect, sectCount, function() {
+                                if (
+                                    seatPerSect[sect + "_counter"] ==
+                                    seatPerSect[sect + "_total"]["total"]
+                                ) {
+                                    d3.select(
+                                        document.querySelector("#" + sect)
+                                            .parentNode
+                                    ).style("text-decoration", "line-through");
                                 }
 
-                                if (seatPerSect["counter"] < seatPerSect["total"])
+                                if (
+                                    seatPerSect["counter"] <
+                                    seatPerSect["total"]
+                                )
                                     results(st);
-                            })
-                        })
-                    else
-                        incrementSectAnimation(sect,sectCount,function(){
-
-                            if(seatPerSect[sect + "_counter"] == seatPerSect[sect + "_total"]["total"]){
-                                    d3.select(document.querySelector("#"+sect).parentNode).style("text-decoration","line-through");
-                                }
-
-
-                                if (seatPerSect["counter"] < seatPerSect["total"])
-                                    results(st);
-                            })
-
-                })
-
-                
+                            });
+                    }
+                );
             });
         });
     }, 2000);
-}   
-function clearList(maxCandidateList,callback){ //make the remaining list unavailable
-
-     maxCandidateList.selectAll(".available").classed("blink",true)
-     setTimeout(function(){
-
-             maxCandidateList.selectAll(".available").classed("blink",false)
-
-
-     maxCandidateList.selectAll(".available").each(function(d, i) {
-                    let g = this.parentNode;
-                    let text = d3
-                        .select(g.childNodes[0])
-                        .attr("style", "text-decoration:line-through");
-                });
-                maxCandidateList
-                    .selectAll(".available")
-                    .classed("unavailable", true);
-
-                maxCandidateList.selectAll("rect").classed("available", false);
-
-                callback();
-
-     },2000)
-
 }
-function incrementSmallDistrictAnimation(smallDistrict,sect,sectDistrictCount,callback){
+function clearList(maxCandidateList, callback) {
+    //make the remaining list unavailable
+
+    maxCandidateList.selectAll(".available").classed("blink", true);
+    setTimeout(function() {
+        maxCandidateList.selectAll(".available").classed("blink", false);
+
+        maxCandidateList.selectAll(".available").each(function(d, i) {
+            let g = this.parentNode;
+            let text = d3
+                .select(g.childNodes[0])
+                .attr("style", "text-decoration:line-through");
+        });
+        maxCandidateList.selectAll(".available").classed("unavailable", true);
+
+        maxCandidateList.selectAll("rect").classed("available", false);
+
+        callback();
+    }, 2000);
+}
+function incrementSmallDistrictAnimation(
+    smallDistrict,
+    sect,
+    sectDistrictCount,
+    callback
+) {
     blinkText(d3.select("#" + smallDistrict + sect));
 
     setTimeout(function() {
@@ -371,57 +459,59 @@ function incrementSmallDistrictAnimation(smallDistrict,sect,sectDistrictCount,ca
             (sectDistrictCount + 1).toString()
         );
         stopBlinking(d3.select("#" + smallDistrict + sect));
-         
-        callback();
-    },5000);
 
+        callback();
+    }, 5000);
 }
-function incrementSectAnimation(sect,sectCount,callback) {
+function incrementSectAnimation(sect, sectCount, callback) {
     blinkText(d3.select("#" + sect));
 
     setTimeout(function() {
         d3.select("#" + sect).html((sectCount + 1).toString());
 
         stopBlinking(d3.select("#" + sect));
-        callback()
-   }, 5000);
-
+        callback();
+    }, 5000);
 }
-function smallDistrictFull(smallDistrict,sect,callback) {
-        let districtSectParagraph=document.querySelector("#"+smallDistrict+sect).parentNode;
+function smallDistrictFull(smallDistrict, sect, callback) {
+    let districtSectParagraph = document.querySelector(
+        "#" + smallDistrict + sect
+    ).parentNode;
 
-        d3.select(districtSectParagraph).style("text-decoration","line-through");
-        setTimeout(function(){
-
-             d3.selectAll(".available." + smallDistrict + "." + sect).classed("blink",true);
-             setTimeout(function(){
-                             d3.selectAll(".available." + smallDistrict + "." + sect).classed("blink",false);
-
-        d3.selectAll(".available." + smallDistrict + "." + sect).each(function(
-            d,
-            u
-        ) {
-            let g = this.parentNode;
-            let text = d3
-                .select(g.childNodes[0])
-                .attr("style", "text-decoration:line-through");
-        });
+    d3.select(districtSectParagraph).style("text-decoration", "line-through");
+    setTimeout(function() {
         d3.selectAll(".available." + smallDistrict + "." + sect).classed(
-            "unavailable",
+            "blink",
             true
         );
-        d3.selectAll("." + smallDistrict + "." + sect).classed(
-            "available",
-            false
-        );
-        callback()
-             },2000)
-        },2000)
+        setTimeout(function() {
+            d3.selectAll(".available." + smallDistrict + "." + sect).classed(
+                "blink",
+                false
+            );
 
+            d3.selectAll(".available." + smallDistrict + "." + sect).each(
+                function(d, u) {
+                    let g = this.parentNode;
+                    let text = d3
+                        .select(g.childNodes[0])
+                        .attr("style", "text-decoration:line-through");
+                }
+            );
+            d3.selectAll(".available." + smallDistrict + "." + sect).classed(
+                "unavailable",
+                true
+            );
+            d3.selectAll("." + smallDistrict + "." + sect).classed(
+                "available",
+                false
+            );
+            callback();
+        }, 2000);
+    }, 2000);
 }
 function blinkWinner(name) {
     d3.selectAll("." + name).classed("blink", true);
-
 }
 //sort bars based on value
 
@@ -528,41 +618,26 @@ function draw(
         .style("opacity", 1);
 
     //append rects
-    if (callback)
+    if (callback){
+
         bars.append("rect")
-            .attr("class", function(d,i ) {
-                
-                d3.select(svg.selectAll(".tick")[0][i]).classed(" candidateName available "+ d["sect"] + " " + d["district"]+" "+d.name.replace(/ /g, "")
-                ,true);
-                return (
-                    "available barChartBar " + d["sect"] + " " + d["district"]+" "+d.name.replace(/ /g, "")
-                
+            .attr("class", function(d, i) {
+                d3.select(svg.selectAll(".tick")[0][i]).classed(
+                    " candidateName available " +
+                        d["sect"] +
+                        " " +
+                        d["district"] +
+                        " " +
+                        d.name.replace(/ /g, ""),
+                    true
                 );
-            })
-            .attr("y", function(d) {
-                return y(d.name);
-            })
-            .attr("id", function(d) {
-                return d.name.replace(/ /g, "");
-            })
-            .attr("height", y.rangeBand())
-            .attr("x", 0)
-            .attr("width", 0)
-            .transition()
-            .call(endall, callback)
-            .duration(1000)
-
-            .attr("width", function(d) {
-                return x((d.votes / sT[d.district]).toFixed(2) * 100);
-            });
-    else
-        bars.append("rect")
-            .attr("class", function(d,i) {
-                d3.select(svg.selectAll(".tick")[0][i]).classed("candidateName available "+ d["sect"] + " " + d["district"]+" "+d.name.replace(/ /g, "")
-                ,true);
-
                 return (
-                    "available barChartBar " + d["sect"] + " " + d["district"]+" "+d.name.replace(/ /g, "")
+                    "available barChartBar " +
+                    d["sect"] +
+                    " " +
+                    d["district"] +
+                    " " +
+                    d.name.replace(/ /g, "")
                 );
             })
             .attr("y", function(d) {
@@ -581,6 +656,126 @@ function draw(
             .attr("width", function(d) {
                 return x((d.votes / sT[d.district]).toFixed(2) * 100);
             });
+
+        bars.append("rect")
+            .attr("class", function(d, i) {
+                d3.select(svg.selectAll(".tick")[0][i]).classed(
+                    " candidateName available " +
+                        d["sect"] +
+                        " " +
+                        d["district"] +
+                        " " +
+                        d.name.replace(/ /g, ""),
+                    true
+                );
+                return (
+                    "available barChartBar " +
+                    d["sect"] +
+                    " " +
+                    d["district"] +
+                    " " +
+                    d.name.replace(/ /g, "")
+                );
+            })
+            .attr("y", function(d) {
+                return y(d.name);
+            })
+    
+            .attr("height", y.rangeBand())
+            .attr("x", 0)
+            .attr("width", 0)
+            .transition()
+            .style("fill",function(d){
+
+                return "url(#" +d["sect"] +"_" +d["district"] + "_oblique)";
+                    })            .call(endall, callback)
+            .duration(1000)
+
+            .attr("width", function(d) {
+                return x((d.votes / sT[d.district]).toFixed(2) * 100);
+            });
+    }
+    else{
+                bars.append("rect")
+            .attr("class", function(d, i) {
+                d3.select(svg.selectAll(".tick")[0][i]).classed(
+                    "candidateName available " +
+                        d["sect"] +
+                        " " +
+                        d["district"] +
+                        " " +
+                        d.name.replace(/ /g, ""),
+                    true
+                );
+
+                return (
+                    "available barChartBar " +
+                    d["sect"] +
+                    " " +
+                    d["district"] +
+                    " " +
+                    d.name.replace(/ /g, "")
+                );
+            })
+            .attr("y", function(d) {
+                return y(d.name);
+            })
+            .attr("id", function(d) {
+                return d.name.replace(/ /g, "");
+            })
+            .attr("height", y.rangeBand())
+            .attr("x", 0)
+            .attr("width", 0)
+      
+            .transition()
+
+            .duration(1000)
+
+            .attr("width", function(d) {
+                return x((d.votes / sT[d.district]).toFixed(2) * 100);
+            });
+        bars.append("rect")
+            .attr("class", function(d, i) {
+                d3.select(svg.selectAll(".tick")[0][i]).classed(
+                    "candidateName available " +
+                        d["sect"] +
+                        " " +
+                        d["district"] +
+                        " " +
+                        d.name.replace(/ /g, ""),
+                    true
+                );
+
+                return (
+                    "available barChartBar " +
+                    d["sect"] +
+                    " " +
+                    d["district"] +
+                    " " +
+                    d.name.replace(/ /g, "")
+                );
+            })
+            .attr("y", function(d) {
+                return y(d.name);
+            })
+
+            .attr("height", y.rangeBand())
+            .attr("x", 0)
+            .attr("width", 0)
+            .style("fill",function(d){
+
+                return "url(#" +d["sect"] +"_" +d["district"] + "_oblique)";
+                    })
+            .transition()
+
+            .duration(1000)
+
+            .attr("width", function(d) {
+                return x((d.votes / sT[d.district]).toFixed(2) * 100);
+            });
+
+
+    }
 
     //add a value label to the right of each bar
 }
