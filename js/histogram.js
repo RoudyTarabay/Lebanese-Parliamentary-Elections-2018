@@ -22,27 +22,27 @@ function endall(transition, callback) {
 }
 
 function initializeHistogram() {
-  margin = {
-    top: 30,
-    right: 50,
-    bottom: 30,
-    left: 40
-  };
+
   svgdim = {
     width: $(".results").width(),
     height: $(".results").height()
   };
-
+  margin = {
+    top: 30,
+    right: 50,
+    bottom: 30,
+    left:(svgdim.width*5)/100
+  };
   d3.select("#histdiv")
     .append("svg")
     .attr("id", "hist")
     //.attr("class", "hide")
     .attr(
       "viewBox",
-      "0 0 " + (svgdim.width / 2 + 40) + " " + (svgdim.height / 2 - 12)
+      "0 0 " + (svgdim.width / 2 + 100 ) + " " + (svgdim.height / 2 - 12)
     );
 
-  hist_width = svgdim.width / 2;
+  hist_width = svgdim.width/ 2 -margin.left;
   hist_height = svgdim.height / 2 / 1.5;
 
   x = d3.scale.ordinal().rangeRoundBands([0, hist_width], 0.1);
