@@ -492,10 +492,14 @@ function smallDistrictFull(smallDistrict, sect, callback) {
 
             d3.selectAll(".available." + smallDistrict + "." + sect).each(
                 function(d, u) {
+                    console.log(this);
+                    d3.select(this).attr("style", "text-decoration:line-through");
+
                     let g = this.parentNode;
                     let text = d3
                         .select(g.childNodes[0])
                         .attr("style", "text-decoration:line-through");
+                        console.log(text)
                 }
             );
             d3.selectAll(".available." + smallDistrict + "." + sect).classed(
