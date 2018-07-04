@@ -2,14 +2,7 @@ let yFormulas = [];
 let xFormulas = [];
 let seatPerSect = {};
 let seatPerSmallDistrict = {};
-let districtColors = d3.scale
-    .ordinal()
-    .range([
-        "white",
-        "black",
-        "purple",
-
-    ]);
+let districtColors = d3.scale.ordinal().range(["white", "black", "purple"]);
 
 function endall(transition, callback) {
     //on d3 transition end
@@ -174,7 +167,6 @@ function drawInfo3(districtSeats, st) {
                 .append("rect")
                 .attr("class", keys[i] + " sectLegend")
                 .attr("style", function() {
-
                     return (
                         "fill:url(#" +
                         keys[i] +
@@ -202,7 +194,7 @@ function drawInfo3(districtSeats, st) {
                                     parent.on(
                                         "animationend",
                                         () => {
-                                            console.log('c')
+                                            console.log("c");
                                             results(st);
                                         },
                                         false
@@ -271,7 +263,7 @@ function stopBlinking(element) {
     element.classed("blink", false);
 }
 function results(st) {
-    console.log('b')
+    console.log("b");
     let { max, maxCandidate, maxCandidateList } = getHighestCandidate(st);
     let maxCandidateName = maxCandidate["name"].replace(/ /g, "");
     blinkWinner(maxCandidateName);
@@ -363,7 +355,7 @@ function results(st) {
             );
 
             winnerAnimation(maxCandidateList, function() {
-                console.log('a')
+                console.log("a");
                 incrementSmallDistrictAnimation(
                     smallDistrict,
                     sect,
@@ -371,7 +363,7 @@ function results(st) {
                     function() {
                         console.log(smallDistrictCount);
                         console.log(smallDistrictTotal);
-                        console.log(smallDistrictTotal==smallDistrictCount)
+                        console.log(smallDistrictTotal == smallDistrictCount);
                         if (smallDistrictCount == smallDistrictTotal)
                             smallDistrictFull(smallDistrict, sect, function() {
                                 incrementSectAnimation(
@@ -493,13 +485,16 @@ function smallDistrictFull(smallDistrict, sect, callback) {
             d3.selectAll(".available." + smallDistrict + "." + sect).each(
                 function(d, u) {
                     console.log(this);
-                    d3.select(this).attr("style", "text-decoration:line-through");
+                    d3.select(this).attr(
+                        "style",
+                        "text-decoration:line-through"
+                    );
 
                     let g = this.parentNode;
                     let text = d3
                         .select(g.childNodes[0])
                         .attr("style", "text-decoration:line-through");
-                        console.log(text)
+                    console.log(text);
                 }
             );
             d3.selectAll(".available." + smallDistrict + "." + sect).classed(
@@ -543,9 +538,17 @@ function draw(
         width: $(".results").width(),
         height: $(".results").height() / 2
     };
-    let width = svgdim2.width / qualifiedNum - margin.left - margin.right,
-        height = svgdim2.height - margin.top - margin.bottom;
-    let extraSeat = function() {
+    margin = {
+        top: (svgdim2.height * 6) / 100,
+        right: (svgdim2.width * 4) / 100,
+        bottom: (svgdim2.height * 4) / 100,
+        left: (svgdim2.width * 7) / 100
+    };
+    console.log(qualifiedNum);
+    console.log($(".results").width())
+    let width = (svgdim2.width)/ qualifiedNum ;
+        height = svgdim2.height ;
+    let extraSeat = function() {    
         if (d3.selectAll(".barSvg")[0].length == extraSeatIndex + 1) return 1;
         else return 0;
     };
@@ -553,20 +556,20 @@ function draw(
         .select("#barchart")
         .append("svg")
         .attr("class", "barSvg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-
+        .attr("width", width )
+        .attr("height", height)
+        //.attr("viewBox","0 0 "+svgdim2.width/qualifiedNum+margin.right+margin.left +" "+svgdim2.height/2-margin.top-margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     svg.append("text")
         .attr("class", "barChartTitle")
-        .attr("dy", "-0.5vw")
+        //.attr("dy", "-0.5vw")
         .text(listName + "- seats : ")
         .append("tspan")
         .text(Math.floor(seatsSecured) + extraSeat());
     let x = d3.scale
         .linear()
-        .range([0, width])
+        .range([0, width-margin.left-margin.right])
         .domain([
             0,
             d3.max(data, function(d) {
@@ -576,7 +579,7 @@ function draw(
 
     let y = d3.scale
         .ordinal()
-        .rangeRoundBands([height, 0], 0.1)
+        .rangeRoundBands([height -margin.top -margin.bottom, 0], 0.1)
         .domain(
             data.map(function(d) {
                 return d.name;
@@ -622,8 +625,7 @@ function draw(
         .style("opacity", 1);
 
     //append rects
-    if (callback){
-
+    if (callback) {
         bars.append("rect")
             .attr("class", function(d, i) {
                 d3.select(svg.selectAll(".tick")[0][i]).classed(
@@ -684,23 +686,22 @@ function draw(
             .attr("y", function(d) {
                 return y(d.name);
             })
-    
+
             .attr("height", y.rangeBand())
             .attr("x", 0)
             .attr("width", 0)
             .transition()
-            .style("fill",function(d){
-
-                return "url(#" +d["sect"] +"_" +d["district"] + "_oblique)";
-                    })            .call(endall, callback)
+            .style("fill", function(d) {
+                return "url(#" + d["sect"] + "_" + d["district"] + "_oblique)";
+            })
+            .call(endall, callback)
             .duration(1000)
 
             .attr("width", function(d) {
                 return x((d.votes / sT[d.district]).toFixed(2) * 100);
             });
-    }
-    else{
-                bars.append("rect")
+    } else {
+        bars.append("rect")
             .attr("class", function(d, i) {
                 d3.select(svg.selectAll(".tick")[0][i]).classed(
                     "candidateName available " +
@@ -730,7 +731,7 @@ function draw(
             .attr("height", y.rangeBand())
             .attr("x", 0)
             .attr("width", 0)
-      
+
             .transition()
 
             .duration(1000)
@@ -766,10 +767,9 @@ function draw(
             .attr("height", y.rangeBand())
             .attr("x", 0)
             .attr("width", 0)
-            .style("fill",function(d){
-
-                return "url(#" +d["sect"] +"_" +d["district"] + "_oblique)";
-                    })
+            .style("fill", function(d) {
+                return "url(#" + d["sect"] + "_" + d["district"] + "_oblique)";
+            })
             .transition()
 
             .duration(1000)
@@ -777,8 +777,6 @@ function draw(
             .attr("width", function(d) {
                 return x((d.votes / sT[d.district]).toFixed(2) * 100);
             });
-
-
     }
 
     //add a value label to the right of each bar
