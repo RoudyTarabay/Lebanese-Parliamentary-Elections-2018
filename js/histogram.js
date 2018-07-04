@@ -239,7 +239,6 @@ function drawHistogram(districtResults, callback) {
     .select(".x")
     .selectAll("text")
     .attr("class", "histogramLegendX")
-    .attr("style", "text-anchor:start");
   /*.attr("dy",function(d){
               return this.getComputedTextLength()/20+"em";
             });*/
