@@ -649,7 +649,7 @@
 						"name": "Ghassan Atallah",
 						"sect": "RomanCatholic",
 						"district": "Shouf",
-						"votes": 11478
+						"votes": 4113
 					},
 					{
 						"name": "Ali El Hajj",
@@ -736,8 +736,9 @@
 				"total": 1
 			},
 			"Druze": {
-				"Shouf": 2,
 				"Aley": 2,
+				
+				"Shouf": 2,
 				"total": 4
 			},
 			"total": 13

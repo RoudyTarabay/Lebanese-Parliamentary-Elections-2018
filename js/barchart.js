@@ -559,12 +559,7 @@ function draw(
         return d3.ascending(a.votes / sT[a.district], b.votes / sT[b.district]);
     });
 
-    margin = {
-        top: 30,
-        right: 50,
-        bottom: 30,
-        left: 90
-    };
+
     svgdim2 = {
         width: $(".results").width(),
         height: $(".results").height() / 2
@@ -575,6 +570,14 @@ function draw(
         bottom: (svgdim2.height * 4) / 100,
         left: (svgdim2.width * 7.9) / 100
     };
+        if(qualifiedNum==2)
+        margin = {
+        top: (svgdim2.height * 6) / 100,
+        right: (svgdim2.width * 5) / 100,
+        bottom: (svgdim2.height * 4) / 100,
+        left: (svgdim2.width * 7.9) / 100
+    };
+
     console.log(qualifiedNum);
     console.log($(".results").width())
     let width = (svgdim2.width)/ qualifiedNum ;

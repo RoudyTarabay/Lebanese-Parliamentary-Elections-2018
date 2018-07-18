@@ -8,11 +8,18 @@ body {
     position: absolute;
 }
 .intro p{
-    font-style: italic;
-    text-indent: 10%;
+    color:#222;
     font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif
     font-size:12px;
 
+}
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
 }
 .github-link-container{
 
