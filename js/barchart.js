@@ -2,7 +2,7 @@ let yFormulas = [];
 let xFormulas = [];
 let seatPerSect = {};
 let seatPerSmallDistrict = {};
-let districtColors = d3.scale.ordinal().range(["white", "black", "purple"]);
+let districtColors = d3.scale.ordinal().range(["white", "black", "cyan","brown"]);
 
 function endall(transition, callback) {
     //on d3 transition end
@@ -42,7 +42,7 @@ function fillSeatPerSect(districtSeats) {
     seatPerSect["total"] = districtSeats["total"];
     seatPerSect["counter"] = 0;
 }
-function barChart(results, qualifiedNum, threshold2, extraSeatIndex) {
+function barChart(results, qualifiedNum, threshold2, extraSeatIndex,flag) {
     let data = [];
     smallDistrictsTotal = results["districtTotal"];
     let count = qualifiedNum;
@@ -59,7 +59,7 @@ function barChart(results, qualifiedNum, threshold2, extraSeatIndex) {
                     qualifiedNum,
                     results["lists"][i]["total"] / threshold2,
                     extraSeatIndex,
-
+                    flag,
                     () => {
                         mainchain2(results["seats"], smallDistrictsTotal);
                     }
@@ -71,7 +71,8 @@ function barChart(results, qualifiedNum, threshold2, extraSeatIndex) {
                     smallDistrictsTotal,
                     qualifiedNum,
                     results["lists"][i]["total"] / threshold2,
-                    extraSeatIndex
+                    extraSeatIndex,
+                    flag
                 );
         else count++;
     }
@@ -95,7 +96,11 @@ function generatePatterns(districtSeats) {
 
     for (let i = 0; i < sects.length - 1; i++) {
         let districts = Object.keys(districtSeats[sects[i]]);
-        for (let j = 0; j < sects.length - 1; j++) {
+        for (let j = 0; j < districts.length - 1; j++) {
+            console.log(sects[i]);
+            console.log(districts[j]); 
+            console.log( districtColors(sects[i] + districts[j]) );
+
             d3.select("body")
                 .append("svg")
                 .attr("width", "120")
@@ -122,15 +127,23 @@ function generatePatterns(districtSeats) {
 }
 function drawInfo3(districtSeats, st) {
     let keys = Object.keys(districtSeats);
-    let csstyping = d3.select(".css-typing");
+    let csstyping = d3.select(".css-typing").attr("class","css-typing-2");
 
     csstyping
         .append("p")
         .html("Total Number Of Seats: " + districtSeats["total"]);
+    let animatedPcounter=0;
 
     for (let i = 0; i < keys.length - 1; i++) {
-        csstyping
+        let div=csstyping.append("div")
+                  .attr("class","legend-div")
+        let p=div
+            .append("div")
+            .attr("class","animate-p")
+            .attr("style","animation-delay:"+(3.6*animatedPcounter)+"s")
+
             .append("p")
+
             .html(
                 keys[i] +
                     " : <span id='" +
@@ -140,17 +153,21 @@ function drawInfo3(districtSeats, st) {
                     "</span>/" +
                     districtSeats[keys[i]]["total"]
             )
-            .append("svg")
+            animatedPcounter++;
+            let psvg=p.append("svg")
             .attr("class", keys[i] + " sectLegend")
 
             .append("rect")
             .attr("class", keys[i] + " sectLegend");
         let smallDistricts = Object.keys(districtSeats[keys[i]]);
-
         for (let j = 0; j < smallDistricts.length - 1; j++) {
-            csstyping
+                div
+                .append("div")
+
+                .attr("class", "animate-p small-district-counter")
+            .attr("style","animation-delay:"+(3.6*animatedPcounter)+"s")
                 .append("p")
-                .attr("class", "small-district-counter")
+
                 .html(
                     smallDistricts[j] +
                         " : <span  id='" +
@@ -175,7 +192,13 @@ function drawInfo3(districtSeats, st) {
                         "_oblique)!important"
                     );
                 });
+                animatedPcounter++; 
+                console.log('d')
             if (j == smallDistricts.length - 2) {
+                console.log(j);
+                console.log(smallDistricts)
+                console.log('abc')
+                console.log()
                 csstyping
                     .selectAll(".small-district-counter")[0]
                     [
@@ -185,13 +208,16 @@ function drawInfo3(districtSeats, st) {
                         "animationend",
                         function() {
                             if (i == keys.length - 2) {
+                                console.log('ffff')
                                 d3.selectAll("#" + keys[i]).each(function(
                                     d,
                                     i
                                 ) {
-                                    let parent = this.parentNode.parentNode;
-                                    parent = d3.select(parent);
-                                    parent.on(
+                                    let lastLegends=this.parentNode.parentNode.parentNode.childNodes;
+                                    let lastLegend=lastLegends[lastLegends.length-1];
+
+                                    lastLegend = d3.select(parent);
+                                    lastLegend.on(
                                         "animationend",
                                         () => {
                                             console.log("c");
@@ -350,6 +376,7 @@ function results(st) {
                 d3.selectAll("." + sect).classed("available", false);
             }
             let sectCount = parseInt(d3.select("#" + sect).html());
+            console.log("#" + smallDistrict + sect)
             let sectDistrictCount = parseInt(
                 d3.select("#" + smallDistrict + sect).html()
             );
@@ -426,14 +453,16 @@ function clearList(maxCandidateList, callback) {
         maxCandidateList.selectAll(".available").classed("blink", false);
 
         maxCandidateList.selectAll(".available").each(function(d, i) {
+            d3.select(this).attr("style","text-decoration:line-through")
             let g = this.parentNode;
             let text = d3
                 .select(g.childNodes[0])
-                .attr("style", "text-decoration:line-through");
+                .attr("style", "text-decoration:line-through")
         });
         maxCandidateList.selectAll(".available").classed("unavailable", true);
 
-        maxCandidateList.selectAll("rect").classed("available", false);
+        maxCandidateList.selectAll(".available").classed("available", false);
+
 
         callback();
     }, 2000);
@@ -481,7 +510,8 @@ function smallDistrictFull(smallDistrict, sect, callback) {
                 "blink",
                 false
             );
-
+                console.log(".available." + smallDistrict + "." + sect);
+            console.log( d3.selectAll(".available." + smallDistrict + "." + sect))
             d3.selectAll(".available." + smallDistrict + "." + sect).each(
                 function(d, u) {
                     console.log(this);
@@ -494,8 +524,8 @@ function smallDistrictFull(smallDistrict, sect, callback) {
                     let text = d3
                         .select(g.childNodes[0])
                         .attr("style", "text-decoration:line-through");
-                    console.log(text);
-                }
+                        console.log(text);
+               }
             );
             d3.selectAll(".available." + smallDistrict + "." + sect).classed(
                 "unavailable",
@@ -522,6 +552,7 @@ function draw(
     qualifiedNum,
     seatsSecured,
     extraSeatIndex,
+    flag,
     callback
 ) {
     data = data.sort(function(a, b) {
@@ -542,14 +573,15 @@ function draw(
         top: (svgdim2.height * 6) / 100,
         right: (svgdim2.width * 4) / 100,
         bottom: (svgdim2.height * 4) / 100,
-        left: (svgdim2.width * 7) / 100
+        left: (svgdim2.width * 7.9) / 100
     };
     console.log(qualifiedNum);
     console.log($(".results").width())
     let width = (svgdim2.width)/ qualifiedNum ;
         height = svgdim2.height ;
     let extraSeat = function() {    
-        if (d3.selectAll(".barSvg")[0].length == extraSeatIndex + 1) return 1;
+        console.log(extraSeatIndex)
+        if (extraSeatIndex.includes(d3.selectAll(".barSvg")[0].length -1 ) ) return 1;
         else return 0;
     };
     let svg = d3
@@ -569,7 +601,7 @@ function draw(
         .text(Math.floor(seatsSecured) + extraSeat());
     let x = d3.scale
         .linear()
-        .range([0, width-margin.left-margin.right])
+        .range([1, width-margin.left-margin.right])
         .domain([
             0,
             d3.max(data, function(d) {
@@ -610,7 +642,7 @@ function draw(
         .attr("y", function(d) {
             return y(d.name) + y.rangeBand() / 2 + 4;
         })
-        .attr("dx", "1em")
+        .attr("dx", "1.5em")
 
         //x position is 3 pixels to the right of the bar
         .attr("x", function(d) {

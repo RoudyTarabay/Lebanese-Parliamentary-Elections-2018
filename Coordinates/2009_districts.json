@@ -1,3 +1,4 @@
+				"Combined":"Beirut"
 {
 	"type": "FeatureCollection",
 	"features": [
@@ -39700,7 +39701,6 @@
 				"ID_2": 52,
 				"GOVERNORATE": "Beirut",
 				"DISTRICT": "Beirut-two",
-				"Combined":"Beirut"
 
 			},
 			"geometry": {

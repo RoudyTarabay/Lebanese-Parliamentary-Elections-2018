@@ -1,10 +1,8 @@
 {
 	"Mount-Lebanon-1": {
-		"lists": [
-			{
+		"lists": [{
 				"name": "Altaghyeer AlAkid",
-				"candidates": [
-					{
+				"candidates": [{
 						"name": "Ziad Hawat",
 						"sect": "Maronite",
 						"district": "Jbeil",
@@ -58,8 +56,7 @@
 			},
 			{
 				"name": "Loubnan Alkawiy",
-				"candidates": [
-					{
+				"candidates": [{
 						"name": "Simon Abi Ramia",
 						"sect": "Maronite",
 						"district": "Jbeil",
@@ -110,12 +107,17 @@
 				],
 				"total": 54544
 			},
-			{ "name": "Altadamon Alwatani", "total": 12551 },
-			{ "name": "Koulouna Watani", "total": 2526 },
+			{
+				"name": "Altadamon Alwatani",
+				"total": 12551
+			},
+			{
+				"name": "Koulouna Watani",
+				"total": 2526
+			},
 			{
 				"name": "3enna Alqarar",
-				"candidates": [
-						{
+				"candidates": [{
 						"name": "Farid El Khazen",
 						"sect": "Maronite",
 						"district": "Keserwan",
@@ -169,13 +171,13 @@
 		],
 		"seats": {
 			"Shia": {
-			"Jbeil":1,
-			"total":1
+				"Jbeil": 1,
+				"total": 1
 			},
-			"Maronite":{
-			"Jbeil":2,
-			"Keserwan":5,
-			"total":7
+			"Maronite": {
+				"Jbeil": 2,
+				"Keserwan": 5,
+				"total": 7
 			},
 			"total": 8
 		},
@@ -184,6 +186,2446 @@
 		"districtTotal": {
 			"Jbeil": 40196,
 			"Keserwan": 58264
+		}
+	},
+	"Mount-Lebanon-3": {
+		"lists": [{
+				"name": "Wehdat Wa Inmaa Baabda",
+				"candidates": [{
+						"name": "Pierre Bou Assi",
+						"sect": "Maronite",
+						"district": "Baabda",
+						"votes": 13498
+					},
+					{
+						"name": "Hadi Al Hassan",
+						"sect": "Druze",
+						"district": "Baabda",
+						"votes": 11844
+					},
+					{
+						"name": "Salah Al Haraka",
+						"sect": "Shia",
+						"district": "Baabda",
+						"votes": 468
+					},
+					{
+						"name": "Cynthia Al Asmar",
+						"sect": "Maronite",
+						"district": "Baabda",
+						"votes": 200
+					},
+					{
+						"name": "Joseph Odeimi",
+						"sect": "Maronite",
+						"district": "Baabda",
+						"votes": 114
+					}
+				],
+
+				"total": 26500
+			},
+			{
+				"name": "Al Wifak Al Watani",
+				"candidates": [{
+						"name": "Ali Ammar",
+						"sect": "Shia",
+						"district": "Baabda",
+						"votes": 13692
+					},
+					{
+						"name": "Alain Aoun",
+						"sect": "Maronite",
+						"district": "Baabda",
+						"votes": 10200
+					},
+					{
+						"name": "Fadi Alama",
+						"sect": "Shia",
+						"district": "Baabda",
+						"votes": 6348
+					},
+					{
+						"name": "Hikmat Dib",
+						"sect": "Maronite",
+						"district": "Baabda",
+						"votes": 4428
+					},
+					{
+						"name": "Naji Gharious",
+						"sect": "Maronite",
+						"district": "Baabda",
+						"votes": 2916
+					},
+					{
+						"name": "Sheil Al Aawara",
+						"sect": "Druze",
+						"district": "Baabda",
+						"votes": 2257
+					}
+				],
+
+				"total": 40669
+			},
+
+
+
+			{
+				"name": "Koulouna Watani",
+				"total": 4992
+			},
+
+
+
+			{
+				"name": "Sawa Li Baabda",
+				"total": 5768
+			}
+		],
+		"seats": {
+			"Shia": {
+				"Baabda": 2,
+				"total": 2
+			},
+			"Maronite": {
+				"Baabda": 3,
+				"total": 3
+			},
+			"Druze": {
+				"Baabda": 1,
+				"total": 1
+			},
+
+			"total": 6
+		},
+		"blank": 538,
+		"totalVotes": 78467,
+		"districtTotal": {
+			"Baabda": 78467
+		}
+	},
+	"Mount-Lebanon-2": {
+		"lists": [{
+				"name": "Al Matn Qalb Loubnan",
+				"candidates": [{
+						"name": "Majed Abillameh",
+						"sect": "Maronite",
+						"district": "Matn",
+						"votes": 8922
+					},
+					{
+						"name": "Michel Mkattaf",
+						"sect": "RomanCatholic",
+						"district": "Matn",
+						"votes": 1212
+					},
+					{
+						"name": "Jessica Azar",
+						"sect": "RomanOrthodox",
+						"district": "Matn",
+						"votes": 1030
+					},
+					{
+						"name": "Razi Al Hajj",
+						"sect": "Maronite",
+						"district": "Matn",
+						"votes": 1018
+					},
+					{
+						"name": "Gizele Hashem",
+						"sect": "Maronite",
+						"district": "Matn",
+						"votes": 185
+					},
+					{
+						"name": "George Adwan",
+						"sect": "Maronite",
+						"district": "Matn",
+						"votes": 178
+					},
+					{
+						"name": "Lina Mkhayber",
+						"sect": "RomanOrthodox",
+						"district": "Matn",
+						"votes": 8492
+					},
+					{
+						"name": "Shekri Moukarzel",
+						"sect": "Maronite",
+						"district": "Matn",
+						"votes": 171
+					},
+					{
+						"name": "Ara Kyonyan",
+						"sect": "ArmenianOrthodox",
+						"district": "Matn",
+						"votes": 156
+					}
+				],
+
+				"total": 13138
+			},
+			{
+				"name": "Al Matn Al Qawi",
+				"candidates": [{
+						"name": "Elias Bou Saab",
+						"sect": "RomanOrthodox",
+						"district": "Matn",
+						"votes": 7299
+					},
+					{
+						"name": "Agob Bakradonian",
+						"sect": "ArmenianOrthodox",
+						"district": "Matn",
+						"votes": 7182
+					},
+					{
+						"name": "Ibrahim Kanaan",
+						"sect": "Maronite",
+						"district": "Matn",
+						"votes": 7179
+					},
+					{
+						"name": "Edgar Maalouf",
+						"sect": "RomanCatholic",
+						"district": "Matn",
+						"votes": 5961
+					},
+					{
+						"name": "Sarkis Sarkis",
+						"sect": "Maronite",
+						"district": "Matn",
+						"votes": 4337
+					},
+					{
+						"name": "Ghassan Al Achkar",
+						"sect": "Maronite",
+						"district": "Matn",
+						"votes": 2757
+					},
+					{
+						"name": "Ghassan Mkhayber",
+						"sect": "RomanOrthodox",
+						"district": "Matn",
+						"votes": 2654
+					},
+					{
+						"name": "Corine Al Achkar",
+						"sect": "Maronite",
+						"district": "Matn",
+						"votes": 696
+					}
+				],
+
+				"total": 38897
+			},
+			{
+				"name": "Al Wafaa Al Matniya",
+				"candidates": [{
+						"name": "Michel Al Murr",
+						"sect": "RomanOrthodox",
+						"district": "Matn",
+						"votes": 11945
+					},
+					{
+						"name": "George Abboud",
+						"sect": "RomanCatholic",
+						"district": "Matn",
+						"votes": 454
+					},
+					{
+						"name": "Milad Al Sabaali",
+						"sect": "Maronite",
+						"district": "Matn",
+						"votes": 446
+					},
+					{
+						"name": "Najwa Azar",
+						"sect": "Maronite",
+						"district": "Matn",
+						"votes": 285
+					},
+					{
+						"name": "Charbel Abou Jawdeh",
+						"sect": "Maronite",
+						"district": "Matn",
+						"votes": 182
+					}
+				],
+
+				"total": 13779
+			},
+			{
+				"name": "Nabad Al Maten",
+				"candidates": [{
+						"name": "Sami Gemayel",
+						"sect": "Maronite",
+						"district": "Matn",
+						"votes": 13968
+					},
+					{
+						"name": "Elias Hankash",
+						"sect": "Maronite",
+						"district": "Matn",
+						"votes": 2583
+					},
+					{
+						"name": "Joseph Karam",
+						"sect": "Maronite",
+						"district": "Matn",
+						"votes": 580
+					},
+					{
+						"name": "Mkhayel Al Rammouz",
+						"sect": "RomanCatholic",
+						"district": "Matn",
+						"votes": 532
+					},
+					{
+						"name": "Mazen Al Skaf",
+						"sect": "RomanOrthodox",
+						"district": "Matn",
+						"votes": 366
+					},
+					{
+						"name": "Nada Gharib",
+						"sect": "Maronite",
+						"district": "Matn",
+						"votes": 242
+					},
+					{
+						"name": "Violette Ghazal",
+						"sect": "RomanOrthodox",
+						"district": "Matn",
+						"votes": 178
+					},
+					{
+						"name": "Yaghiche Andonian",
+						"sect": "ArmenianOrthodox",
+						"district": "Matn",
+						"votes": 160
+					}
+				],
+
+				"total": 19003
+			},
+
+			{
+				"name": "Koulouna Watani",
+				"total": 5027
+			}
+		],
+		"seats": {
+			"Maronite": {
+				"Matn": 4,
+				"total": 4
+			},
+			"RomanOrthodox": {
+				"Matn": 2,
+				"total": 2
+			},
+			"RomanCatholic": {
+				"Matn": 1,
+				"total": 1
+			},
+			"ArmenianOrthodox": {
+				"Matn": 1,
+				"total": 1
+			},
+			"total": 8
+		},
+		"blank": 558,
+		"totalVotes": 90402,
+		"districtTotal": {
+			"Matn": 90402
+		}
+	},
+	"Mount-Lebanon-4": {
+		"lists": [{
+				"name": "Almousalaha",
+				"candidates": [{
+						"name": "Akram Shehayyeb",
+						"sect": "Druze",
+						"district": "Aley",
+						"votes": 14088
+					},
+					{
+						"name": "Henry El Helou",
+						"sect": "Maronite",
+						"district": "Aley",
+						"votes": 7894
+					},
+					{
+						"name": "Anis Nassar",
+						"sect": "RomanOrthodox",
+						"district": "Aley",
+						"votes": 7872
+					},
+					{
+						"name": "Taymour Joumblatt",
+						"sect": "Druze",
+						"district": "Shouf",
+						"votes": 11478
+					},
+					{
+						"name": "Mohammad El Hajjar",
+						"sect": "Sunni",
+						"district": "Shouf",
+						"votes": 10003
+					},
+					{
+						"name": "George Adwan",
+						"sect": "Maronite",
+						"district": "Shouf",
+						"votes": 9956
+					},
+					{
+						"name": "Bilal Abdallah",
+						"sect": "Sunni",
+						"district": "Shouf",
+						"votes": 8492
+					},
+					{
+						"name": "Marwan Hmedeh",
+						"sect": "Druze",
+						"district": "Shouf",
+						"votes": 7266
+					},
+					{
+						"name": "Nehme Tohme",
+						"sect": "RomanCatholic",
+						"district": "Shouf",
+						"votes": 7253
+					},
+					{
+						"name": "Naji El Boustani",
+						"sect": "Maronite",
+						"district": "Shouf",
+						"votes": 5245
+					},
+					{
+						"name": "Ghattas El Khoury",
+						"sect": "Maronite",
+						"district": "Shouf",
+						"votes": 4998
+					},
+					{
+						"name": "Raji El saad",
+						"sect": "Maronite",
+						"district": "Aley",
+						"votes": 2129
+					}
+				],
+
+				"total": 98967
+			},
+			{
+				"name": "Damanat Al Jabal",
+				"candidates": [{
+						"name": "Cezar Abi Khalil",
+						"sect": "Maronite",
+						"district": "Aley",
+						"votes": 8124
+					},
+					{
+						"name": "Talal Erslan",
+						"sect": "Druze",
+						"district": "Aley",
+						"votes": 7887
+					},
+					{
+						"name": "Mario Aoun",
+						"sect": "Maronite",
+						"district": "Shouf",
+						"votes": 5124
+					},
+					{
+						"name": "Elias Hanna",
+						"sect": "RomanOrthodox",
+						"district": "Aley",
+						"votes": 7872
+					},
+					{
+						"name": "Ghassan Atallah",
+						"sect": "RomanCatholic",
+						"district": "Shouf",
+						"votes": 11478
+					},
+					{
+						"name": "Ali El Hajj",
+						"sect": "Sunni",
+						"district": "Shouf",
+						"votes": 3374
+					},
+					{
+						"name": "Farid El Boustani",
+						"sect": "Maronite",
+						"district": "Shouf",
+						"votes": 2657
+					},
+					{
+						"name": "Tarik El Khateeb",
+						"sect": "Sunni",
+						"district": "Shouf",
+						"votes": 2382
+					},
+					{
+						"name": "Samir Aoun",
+						"sect": "Maronite",
+						"district": "Shouf",
+						"votes": 770
+					},
+					{
+						"name": "Imad belmaalem",
+						"sect": "Maronite",
+						"district": "Aley",
+						"votes": 457
+					},
+					{
+						"name": "Marwan Halawi",
+						"sect": "Maronite",
+						"district": "Shouf",
+						"votes": 495
+					},
+					{
+						"name": "Mazen Bou Dargham",
+						"sect": "Druze",
+						"district": "Shouf",
+						"votes": 106
+					}
+				],
+
+				"total": 39027
+			},
+			{
+				"name": "Alkarar Alhorr",
+				"total": 5446
+			},
+
+			{
+				"name": "Alwehda Alwataniya",
+				"total": 12796
+			},
+
+			{
+				"name": "Koulouna Watani",
+				"total": 9987
+			},
+			{
+				"name": "Madaniya",
+				"total": 2916
+			}
+		],
+		"seats": {
+			"Sunni": {
+				"Shouf": 2,
+				"total": 2
+			},
+			"Maronite": {
+				"Aley": 2,
+				"Shouf": 3,
+				"total": 5
+			},
+
+			"RomanOrthodox": {
+				"Aley": 1,
+				"total": 1
+			},
+			"RomanCatholic": {
+				"Shouf": 1,
+				"total": 1
+			},
+			"Druze": {
+				"Shouf": 2,
+				"Aley": 2,
+				"total": 4
+			},
+			"total": 13
+		},
+		"blank": 1498,
+		"totalVotes": 170637,
+		"districtTotal": {
+			"Shouf": 83712,
+			"Aley": 51201
+		}
+	},
+	"North-1": {
+		"lists": [{
+				"name": "Al Moustaqbal Li Akkar",
+				"candidates": [{
+						"name": "Walid Al Baarini",
+						"sect": "Sunni",
+						"district": "Akkar",
+						"votes": 20426
+					},
+					{
+						"name": "Mohammad Suleiman",
+						"sect": "Sunni",
+						"district": "Akkar",
+						"votes": 14911
+					},
+					{
+						"name": "Mohammad Al Merehbe",
+						"sect": "Sunni",
+						"district": "Akkar",
+						"votes": 14145
+					},
+					{
+						"name": "Hadi Hbeich",
+						"sect": "Maronite",
+						"district": "Akkar",
+						"votes": 13055
+					},
+					{
+						"name": "Wehbe Katicheh",
+						"sect": "RomanOrthodox",
+						"district": "Akkar",
+						"votes": 7911
+					},
+					{
+						"name": "Jean Moussa",
+						"sect": "RomanOrthodox",
+						"district": "Akkar",
+						"votes": 3759
+					},
+					{
+						"name": "Khodor Habib",
+						"sect": "Alawite",
+						"district": "Akkar",
+						"votes": 561
+					}
+				],
+
+				"total": 76452
+			},
+			{
+				"name": "Akkar Al Kawiya",
+				"candidates": [{
+						"name": "Jimmy Jabbour",
+						"sect": "Sunni",
+						"district": "Akkar",
+						"votes": 8667
+					},
+					{
+						"name": "Mohammad Yahya",
+						"sect": "Sunni",
+						"district": "Akkar",
+						"votes": 8144
+					},
+					{
+						"name": "Asaad Dergham",
+						"sect": "Sunni",
+						"district": "Akkar",
+						"votes": 7435
+					},
+					{
+						"name": "Mohammad Chdid",
+						"sect": "Maronite",
+						"district": "Akkar",
+						"votes": 5277
+					},
+					{
+						"name": "Mahmoud Hdarah",
+						"sect": "RomanOrthodox",
+						"district": "Akkar",
+						"votes": 1628
+					},
+					{
+						"name": "Mustapha Hussein",
+						"sect": "RomanOrthodox",
+						"district": "Akkar",
+						"votes": 1353
+					},
+					{
+						"name": "Riyad Rahhal",
+						"sect": "Alawite",
+						"district": "Akkar",
+						"votes": 1304
+					}
+				],
+
+				"total": 34430
+			},
+
+			{
+				"name": "Nisaa Akkar",
+				"total": 498
+			},
+			{
+				"name": "Loubnan Al Siyada",
+				"total": 4713
+			},
+			{
+				"name": "Karar Akkar",
+				"total": 2032
+			},
+			{
+				"name": "Al Karar Li Akkar",
+				"total": 14449
+			}
+		],
+		"seats": {
+			"Shia": {
+				"Baalback-Hermel": 6,
+				"total": 6
+			},
+			"Maronite": {
+				"Baalback-Hermel": 1,
+				"total": 1
+			},
+
+			"Sunni": {
+				"Baalback-Hermel": 2,
+				"total": 2
+			},
+			"RomanCatholic": {
+				"Baalback-Hermel": 1,
+				"total": 1
+			},
+			"total": 7
+		},
+		"blank": 838,
+		"totalVotes": 133412,
+		"districtTotal": {
+			"Akkar": 108576
+		}
+	},
+	"North-2": {
+		"lists": [{
+				"name": "Al Azm",
+				"candidates": [{
+						"name": "Kazem Kheir",
+						"sect": "Sunni",
+						"district": "Minyeh",
+						"votes": 6754
+					},
+					{
+						"name": "Mohamma Mikati",
+						"sect": "Sunni",
+						"district": "Tripoli",
+						"votes": 21300
+					},
+					{
+						"name": "Mohammad Al Fadel",
+						"sect": "Sunni",
+						"district": "Donniyyeh",
+						"votes": 4006
+					},
+					{
+						"name": "Ali Darwish",
+						"sect": "Alawite",
+						"district": "Tripoli",
+						"votes": 2246
+					},
+					{
+						"name": "Mohammad Al Jisr",
+						"sect": "Sunni",
+						"district": "Tripoli",
+						"votes": 1477
+					},
+					{
+						"name": "Jean Obeid",
+						"sect": "Maronite",
+						"district": "Tripoli",
+						"votes": 1136
+					},
+					{
+						"name": "Nkoula Nahass",
+						"sect": "RomanOrthodox",
+						"district": "Tripoli",
+						"votes": 1057
+					},
+					{
+						"name": "Rachid Al Moukaddam",
+						"sect": "Sunni",
+						"district": "Tripoli",
+						"votes": 746
+					},
+					{
+						"name": "Mervat Al Hoz",
+						"sect": "Sunni",
+						"district": "Tripoli",
+						"votes": 452
+					},
+					{
+						"name": "Jihad Youssef",
+						"sect": "Sunni",
+						"district": "Donniyyeh",
+						"votes": 131
+					},
+					{
+						"name": "Mohammad Sultan",
+						"sect": "Sunni",
+						"district": "Tripoli",
+						"votes": 281
+					}
+				],
+
+				"total": 42019
+			},
+			{
+				"name": "Al Karama Al Wataniyyah",
+				"candidates": [{
+						"name": "Jihad Al Samad",
+						"sect": "Sunni",
+						"district": "Donniyyeh",
+						"votes": 11897
+					},
+					{
+						"name": "Faysal Karame",
+						"sect": "Sunni",
+						"district": "Tripoli",
+						"votes": 7126
+					},
+					{
+						"name": "Tah Naji",
+						"sect": "Sunni",
+						"district": "Tripoli",
+						"votes": 4152
+					},
+					{
+						"name": "Ahmad Omran",
+						"sect": "Alawite",
+						"district": "Tripoli",
+						"votes": 2794
+					},
+					{
+						"name": "Adel Zreika",
+						"sect": "Maronite",
+						"district": "Donniyyeh",
+						"votes": 494
+					},
+					{
+						"name": "Rafli Dyab",
+						"sect": "RomanOrthodox",
+						"district": "Tripoli",
+						"votes": 1286
+					},
+					{
+						"name": "Abd Al Naser Al Masri",
+						"sect": "Sunni",
+						"district": "Tripoli",
+						"votes": 215
+					},
+
+					{
+						"name": "Mohammad Yakan",
+						"sect": "Sunni",
+						"district": "Tripoli",
+						"votes": 127
+					},
+					{
+						"name": "Ayman Omar",
+						"sect": "Sunni",
+						"district": "Tripoli",
+						"votes": 99
+					}
+				],
+
+				"total": 29101
+			},
+			{
+				"name": "Al Mustaqbal Lil Shamal",
+				"candidates": [{
+						"name": "Othman Alameddine",
+						"sect": "Sunni",
+						"district": "Minyeh",
+						"votes": 10221
+					},
+					{
+						"name": "Sami Fatfat",
+						"sect": "Sunni",
+						"district": "Donniyyeh",
+						"votes": 7943
+					},
+					{
+						"name": "Kassem Abdelaziz",
+						"sect": "Sunni",
+						"district": "Donniyyeh",
+						"votes": 6382
+					},
+					{
+						"name": "Mohammad Kabarrah",
+						"sect": "Sunni",
+						"district": "Tripoli",
+						"votes": 9600
+					},
+					{
+						"name": "Samir Al Jisr",
+						"sect": "Sunni",
+						"district": "Tripoli",
+						"votes": 9527
+					},
+					{
+						"name": "Dima Al Jamali",
+						"sect": "Sunni",
+						"district": "Tripoli",
+						"votes": 2066
+					},
+					{
+						"name": "Chadi Nachaba",
+						"sect": "Sunni",
+						"district": "Tripoli",
+						"votes": 1135
+					},
+					{
+						"name": "Walid Al Salouhi",
+						"sect": "Sunni",
+						"district": "Tripoli",
+						"votes": 994
+					},
+					{
+						"name": "George Al Bkasini",
+						"sect": "Maronite",
+						"district": "Tripoli",
+						"votes": 903
+					},
+					{
+						"name": "Nehme Mahfoud",
+						"sect": "RomanOrthodox",
+						"district": "Tripoli",
+						"votes": 800
+					},
+					{
+						"name": "Layla Chahoud",
+						"sect": "Alawite",
+						"district": "Tripoli",
+						"votes": 443
+					}
+				],
+
+				"total": 51937
+			},
+			{
+				"name": "Loubnan Al Siyada",
+				"total": 9656
+			},
+			{
+				"name": "Al Karar Al Moustakell",
+				"total": 4184
+			},
+			{
+				"name": "Al Moujtamaa Al Madani Al Moustakel",
+				"total": 448
+			},
+			{
+				"name": "Karar Al Shaab",
+				"total": 4122
+			},
+			{
+				"name": "Koulouna Watani",
+				"total": 2680
+			}
+		],
+		"seats": {
+			"Sunni": {
+				"Tripoli": 5,
+				"Minyeh": 1,
+				"Donniyyeh": 2,
+				"total": 8
+			},
+
+			"Maronite": {
+				"Tripoli": 1,
+				"total": 1
+			},
+
+			"RomanOrthodox": {
+				"Tripoli": 1,
+				"total": 1
+			},
+			"Alawite": {
+				"Tripoli": 1,
+				"total": 1
+			},
+			"total": 11
+		},
+		"blank": 2272,
+		"totalVotes": 146419,
+		"districtTotal": {
+			"Minyeh": 17469,
+			"Tripoli": 69962,
+			"Donniyyeh": 30359
+		}
+	},
+	"North-3": {
+		"lists": [{
+				"name": "Maan lilshamal waloubnan",
+				"candidates": [{
+						"name": "Tony Frangieh",
+						"sect": "Maronite",
+						"district": "Zgharta",
+						"votes": 11407
+					},
+					{
+						"name": "Melhem Taouk",
+						"sect": "Maronite",
+						"district": "Bcharre",
+						"votes": 4649
+					},
+					{
+						"name": "Salim Saadeh",
+						"sect": "RomanOrthodox",
+						"district": "Koura",
+						"votes": 5263
+					},
+					{
+						"name": "Botrous Harb",
+						"sect": "Maronite",
+						"district": "Batroun",
+						"votes": 6155
+					},
+					{
+						"name": "Feyez Ghosson",
+						"sect": "RomanOrthodox",
+						"district": "Koura",
+						"votes": 4224
+					},
+					{
+						"name": "Estphan Douaihy",
+						"sect": "Maronite",
+						"district": "Zgharta",
+						"votes": 5435
+					},
+					{
+						"name": "Salim Karam",
+						"sect": "Maronite",
+						"district": "Zgharta",
+						"votes": 1590
+					},
+					{
+						"name": "Abdallah El Zakhem",
+						"sect": "RomanOrthodox",
+						"district": "Koura",
+						"votes": 779
+					},
+					{
+						"name": "Roy El Khoury",
+						"sect": "Maronite",
+						"district": "Bcharre",
+						"votes": 25
+					}
+				],
+
+				"total": 40788
+			},
+			{
+				"name": "Nabad Al Joumhouriya Al Kawiya",
+				"candidates": [{
+						"name": "Setrida Taouk",
+						"sect": "Maronite",
+						"district": "Bcharre",
+						"votes": 6677
+					},
+					{
+						"name": "Joseph Ishak",
+						"sect": "Maronite",
+						"district": "Bcharre",
+						"votes": 5990
+					},
+					{
+						"name": "Fadi Saad",
+						"sect": "Maronite",
+						"district": "Batroun",
+						"votes": 9842
+					},
+					{
+						"name": "Fadi Karam",
+						"sect": "RomanOrthodox",
+						"district": "Koura",
+						"votes": 7822
+					},
+					{
+						"name": "Marius Beaine",
+						"sect": "Maronite",
+						"district": "Zgharta",
+						"votes": 2776
+					},
+					{
+						"name": "Samer Saadeh",
+						"sect": "Maronite",
+						"district": "Batroun",
+						"votes": 2470
+					},
+					{
+						"name": "Albert Andraous",
+						"sect": "RomanOrthodox",
+						"district": "Koura",
+						"votes": 442
+					},
+					{
+						"name": "George Mansour",
+						"sect": "RomanOrthodox",
+						"district": "Koura",
+						"votes": 305
+					},
+					{
+						"name": "Michel Douaihy",
+						"sect": "Maronite",
+						"district": "Zgharta",
+						"votes": 194
+					},
+					{
+						"name": "Kaysar Mouawad",
+						"sect": "Maronite",
+						"district": "Zgharta",
+						"votes": 31
+					}
+				],
+
+				"total": 37376
+			},
+			{
+				"name": "Al Shamal Al Kawiy",
+				"candidates": [{
+						"name": "Joubran Bassil",
+						"sect": "Maronite",
+						"district": "Batroun",
+						"votes": 12269
+					},
+					{
+						"name": "Michel Mouawad",
+						"sect": "Maronite",
+						"district": "Zgharta",
+						"votes": 8571
+					},
+					{
+						"name": "George Atallah",
+						"sect": "RomanOrthodox",
+						"district": "Koura",
+						"votes": 3383
+					},
+					{
+						"name": "Nkoula Ghosson",
+						"sect": "RomanOrthodox",
+						"district": "Koura",
+						"votes": 3190
+					},
+					{
+						"name": "Pierre Raffoul",
+						"sect": "Maronite",
+						"district": "Zgharta",
+						"votes": 3749
+					},
+					{
+						"name": "Said Taouk",
+						"sect": "Maronite",
+						"district": "Bcharre",
+						"votes": 1112
+					},
+					{
+						"name": "George Botrous",
+						"sect": "Maronite",
+						"district": "Bcharre",
+						"votes": 76
+					},
+					{
+						"name": "Nehme Ibrahim",
+						"sect": "Maronite",
+						"district": "Batroun",
+						"votes": 118
+					},
+					{
+						"name": "Gretta Saab",
+						"sect": "RomanOrthodox",
+						"district": "Koura",
+						"votes": 97
+					},
+					{
+						"name": "Jawad Boulos",
+						"sect": "Maronite",
+						"district": "Zgharta",
+						"votes": 109
+					}
+				],
+
+				"total": 33342
+			},
+			{
+				"name": "Koulouna Watani",
+				"total": 3160
+			}
+		],
+		"seats": {
+			"Maronite": {
+				"Zgharta": 2,
+				"Bcharre": 3,
+				"Batroun": 2,
+				"total": 7
+			},
+
+			"RomanOrthodox": {
+				"Koura": 3,
+				"total": 3
+			},
+
+			"total": 10
+		},
+		"blank": 1130,
+		"totalVotes": 115796,
+		"districtTotal": {
+			"Zgharta": 33862,
+			"Bcharre": 18529,
+			"Koura": 25505,
+			"Batroun": 30854
+		}
+	},
+
+	"Beirut-1": {
+
+		"lists": [{
+				"name": "Beirut Al Oula",
+				"candidates": [{
+						"name": "Jean Talouzian",
+						"sect": "ArmenianCatholic",
+						"district": "Beirut-1",
+						"votes": 4166
+					},
+					{
+						"name": "Nadim Gemayel",
+						"sect": "Maronite",
+						"district": "Beirut-1",
+						"votes": 4096
+					},
+					{
+						"name": "Imad Wakim",
+						"sect": "RomanOrthodox",
+						"district": "Beirut-1",
+						"votes": 3936
+					},
+					{
+						"name": "Michel Faraoun",
+						"sect": "RomanOrthodox",
+						"district": "Beirut-1",
+						"votes": 3214
+					},
+					{
+						"name": "Owaydes Daksian",
+						"sect": "ArmenianOrthodox",
+						"district": "Beirut-1",
+						"votes": 437
+					},
+					{
+						"name": "Riyad Aakel",
+						"sect": "Minorities",
+						"district": "Beirut-1",
+						"votes": 428
+					},
+					{
+						"name": "Carol Babkyan",
+						"sect": "ArmenianOrthodox",
+						"district": "Beirut-1",
+						"votes": 124
+					},
+					{
+						"name": "Alina Klonisian ",
+						"sect": "ArmenianOrthodox",
+						"district": "Beirut-1",
+						"votes": 23
+					}
+				],
+
+				"total": 16772
+			},
+			{
+				"name": "Koulouna Watani",
+				"candidates": [{
+						"name": "Paulette Yaaacoubian",
+						"sect": "ArmenianOrthodox",
+						"district": "Beirut-1",
+						"votes": 2500
+					},
+					{
+						"name": "Ziad Abs",
+						"sect": "RomanOrthodox",
+						"district": "Beirut-1",
+						"votes": 1525
+					},
+					{
+						"name": "Gilbert Doumet",
+						"sect": "Maronite",
+						"district": "Beirut-1",
+						"votes": 1046
+					},
+					{
+						"name": "Yorgi Tyrouz",
+						"sect": "ArmenianCatholic",
+						"district": "Beirut-1",
+						"votes": 536
+					},
+					{
+						"name": "Joumana Salloum",
+						"sect": "Minorities",
+						"district": "Beirut-1",
+						"votes": 431
+					},
+					{
+						"name": "Lucien Bou Rjayli",
+						"sect": "RomanCatholic",
+						"district": "Beirut-1",
+						"votes": 328
+					},
+					{
+						"name": "Lori Hitayan",
+						"sect": "ArmenianOrthodox",
+						"district": "Beirut-1",
+						"votes": 218
+					},
+					{
+						"name": "Levon Tlfizian",
+						"sect": "ArmenianOrthodox",
+						"district": "Beirut-1",
+						"votes": 114
+					}
+				],
+
+				"total": 6842
+			},
+			{
+				"name": "Beirut Al Oula Al Kawiya",
+				"candidates": [{
+						"name": "Nicola Sohnawi",
+						"sect": "RomanCatholic",
+						"district": "Beirut-1",
+						"votes": 4788
+					},
+					{
+						"name": "Masooud Al Achkar",
+						"sect": "Maronite",
+						"district": "Beirut-1",
+						"votes": 3762
+					},
+					{
+						"name": "Hagob Terzian",
+						"sect": "ArmenianOrthodox",
+						"district": "Beirut-1",
+						"votes": 3451
+					},
+					{
+						"name": "Alexander Matousian",
+						"sect": "ArmenianOrthodox",
+						"district": "Beirut-1",
+						"votes": 2376
+					},
+					{
+						"name": "Sabouh Qalbakian",
+						"sect": "ArmenianOrthodox",
+						"district": "Beirut-1",
+						"votes": 1566
+					},
+					{
+						"name": "Nkoula Chammas",
+						"sect": "RomanOrthodox",
+						"district": "Beirut-1",
+						"votes": 851
+					},
+					{
+						"name": "Serge Jokhadarian",
+						"sect": "ArmenianCatholic",
+						"district": "Beirut-1",
+						"votes": 717
+					},
+					{
+						"name": "Antoine Bano",
+						"sect": "Minorities",
+						"district": "Beirut-1",
+						"votes": 539
+					}
+				],
+
+				"total": 18373
+			},
+			{
+				"name": "Nehna Beirut",
+				"total": 1272
+			},
+			{
+				"name": "Al Wafaa Li Beirut",
+				"total": 1272
+			}
+		],
+		"seats": {
+			"RomanCatholic": {
+				"Beirut-1": 1,
+				"total": 1
+			},
+
+			"ArmenianCatholic": {
+				"Beirut-1": 1,
+				"total": 1
+			},
+
+			"RomanOrthodox": {
+				"Beirut-1": 1,
+				"total": 1
+			},
+
+			"ArmenianOrthodox": {
+				"Beirut-1": 3,
+				"total": 3
+			},
+
+			"Minorities": {
+				"Beirut-1": 1,
+				"total": 1
+			},
+
+			"Maronite": {
+				"Beirut-1": 1,
+				"total": 1
+			},
+			"total": 8
+		},
+		"blank": 313,
+		"totalVotes": 43666,
+		"districtTotal": {
+			"Beirut-1": 43666
+		}
+
+	},
+
+	"Beirut-2": {
+		"lists": [{
+				"name": "Loubnan Herzan",
+				"candidates": [{
+						"name": "Fouad Makhzoume",
+						"sect": "Sunni",
+						"district": "Beirut-2",
+						"votes": 11346
+					},
+					{
+						"name": "Khalil Bremmana",
+						"sect": "RomanOrthodox",
+						"district": "Beirut-2",
+						"votes": 1369
+					},
+					{
+						"name": "Maarouf Itani",
+						"sect": "Sunni",
+						"district": "Beirut-2",
+						"votes": 632
+					},
+					{
+						"name": "Saad Eldinn Khalid",
+						"sect": "Sunni",
+						"district": "Beirut-2",
+						"votes": 572
+					},
+					{
+						"name": "Zena Mounzir",
+						"sect": "Druze",
+						"district": "Beirut-2",
+						"votes": 237
+					},
+					{
+						"name": "Youssif Baydoun",
+						"sect": "Shia",
+						"district": "Beirut-2",
+						"votes": 221
+					},
+					{
+						"name": "Rana El Shmaytelli",
+						"sect": "Sunni",
+						"district": "Beirut-2",
+						"votes": 169
+					},
+					{
+						"name": "Nadim Kousta ",
+						"sect": "Evangelical",
+						"district": "Beirut-2",
+						"votes": 169
+					},
+					{
+						"name": "Issam Barghout",
+						"sect": "Sunni",
+						"district": "Beirut-2",
+						"votes": 164
+					},
+					{
+						"name": "Mahmoud Kraydiyeh",
+						"sect": "Sunni",
+						"district": "Beirut-2",
+						"votes": 62
+					}
+				],
+
+				"total": 15773
+			},
+			{
+				"name": "Wehdat Beirut",
+				"candidates": [{
+						"name": "Amin Cherri",
+						"sect": "Shia",
+						"district": "Beirut-2",
+						"votes": 22961
+					},
+					{
+						"name": "Adnan Traboulsi",
+						"sect": "Sunni",
+						"district": "Beirut-2",
+						"votes": 13018
+					},
+					{
+						"name": "Muhammad Khawaja",
+						"sect": "Shia",
+						"district": "Beirut-2",
+						"votes": 7834
+					},
+					{
+						"name": "Edgar Traboulsi",
+						"sect": "Evangelical",
+						"district": "Beirut-2",
+						"votes": 1919
+					},
+					{
+						"name": "Omar Ghandour",
+						"sect": "Sunni",
+						"district": "Beirut-2",
+						"votes": 329
+					},
+					{
+						"name": "Muhammad Baasiri",
+						"sect": "Sunni",
+						"district": "Beirut-2",
+						"votes": 205
+					}
+				],
+
+				"total": 47087
+			},
+			{
+				"name": "Al Mustaqbal Li Beirut",
+				"candidates": [{
+						"name": "Saad El Din El Hariri",
+						"sect": "Sunni",
+						"district": "Beirut-2",
+						"votes": 20751
+					},
+					{
+						"name": "Tammam Salam",
+						"sect": "Sunni",
+						"district": "Beirut-2",
+						"votes": 9599
+					},
+					{
+						"name": "Rola El Tabech",
+						"sect": "Sunni",
+						"district": "Beirut-2",
+						"votes": 6637
+					},
+					{
+						"name": "Nouhad El Machnouk",
+						"sect": "Sunni",
+						"district": "Beirut-2",
+						"votes": 6411
+					},
+					{
+						"name": "Rabih Hassouna",
+						"sect": "Sunni",
+						"district": "Beirut-2",
+						"votes": 5825
+					},
+					{
+						"name": "Zaher Eido",
+						"sect": "Sunni",
+						"district": "Beirut-2",
+						"votes": 2510
+					},
+					{
+						"name": "Ali El Chaer",
+						"sect": "Shia",
+						"district": "Beirut-2",
+						"votes": 2462
+					},
+					{
+						"name": "Nazih Najem",
+						"sect": "RomanOrthodox",
+						"district": "Beirut-2",
+						"votes": 2351
+					},
+					{
+						"name": "Faysal El Sayegh",
+						"sect": "Druze",
+						"district": "Beirut-2",
+						"votes": 1902
+					},
+					{
+						"name": "Ghazi Youssef",
+						"sect": "Shia",
+						"district": "Beirut-2",
+						"votes": 1759
+					},
+					{
+						"name": "Bassem El Chab",
+						"sect": "Evangelical",
+						"district": "Beirut-2",
+						"votes": 735
+					}
+				],
+
+				"total": 62970
+			},
+			{
+				"name": "Koulouna Beirut",
+				"total": 6174
+			},
+			{
+				"name": "Sawt El Nas",
+				"total": 1339
+			},
+			{
+				"name": "Beirut El Watan",
+				"total": 7475
+			},
+			{
+				"name": "Karamat Beirut",
+				"total": 971
+			},
+			{
+				"name": "El Mouarada El Beiroutiya",
+				"total": 553
+			},
+			{
+				"name": "Al Bayarita Al Moustakillin",
+				"total": 410
+			}
+		],
+		"seats": {
+			"Sunni": {
+				"Beirut-2": 6,
+				"total": 6
+			},
+
+			"Shia": {
+				"Beirut-2": 2,
+				"total": 2
+			},
+
+			"RomanOrthodox": {
+				"Beirut-2": 1,
+				"total": 1
+			},
+
+			"Druze": {
+				"Beirut-2": 1,
+				"total": 1
+			},
+
+			"Evangelical": {
+				"Beirut-2": 1,
+				"total": 1
+			},
+			"total": 11
+		},
+		"blank": 1077,
+		"totalVotes": 143829,
+		"districtTotal": {
+			"Beirut-2": 143829
+		}
+	},
+
+	"Bekaa-1": {
+		"lists": [{
+				"name": "Zahle Kadiyetna",
+				"candidates": [{
+						"name": "George Okays",
+						"sect": "RomanCatholic",
+						"district": "Zahle",
+						"votes": 11363
+					},
+					{
+						"name": "Kaysar El Maalouf",
+						"sect": "RomanOrthodox",
+						"district": "Zahle",
+						"votes": 3554
+					},
+					{
+						"name": "Muhammad Mita",
+						"sect": "Sunni",
+						"district": "Zahle",
+						"votes": 1370
+					},
+					{
+						"name": "Elie Marouni",
+						"sect": "Maronite",
+						"district": "Zahle",
+						"votes": 1213
+					},
+					{
+						"name": "Michel Fattoush",
+						"sect": "RomanCatholic",
+						"district": "Zahle",
+						"votes": 552
+					},
+					{
+						"name": "Bogos Kordian",
+						"sect": "ArmenianOrthodox",
+						"district": "Zahle",
+						"votes": 142
+					},
+					{
+						"name": "Amer El Sabbouri",
+						"sect": "Shia",
+						"district": "Zahle",
+						"votes": 111
+					}
+				],
+
+				"total": 18702
+			},
+			{
+				"name": "Zahle Li Lkell",
+				"candidates": [{
+						"name": "Michel Daher",
+						"sect": "RomanCatholic",
+						"district": "Zahle",
+						"votes": 9742
+					},
+					{
+						"name": "Assem Araji",
+						"sect": "Sunni",
+						"district": "Zahle",
+						"votes": 7224
+					},
+					{
+						"name": "Salim Aoun",
+						"sect": "Maronite",
+						"district": "Zahle",
+						"votes": 5567
+					},
+					{
+						"name": "Asaad Nakad",
+						"sect": "RomanOrthodox",
+						"district": "Zahle",
+						"votes": 4138
+					},
+					{
+						"name": "Nizar Dalloul",
+						"sect": "Shia",
+						"district": "Zahle",
+						"votes": 3947
+					},
+					{
+						"name": "Mary Belazkjian",
+						"sect": "ArmenianOrthodox",
+						"district": "Zahle",
+						"votes": 3851
+					},
+					{
+						"name": "Michel El Skaf",
+						"sect": "RomanCatholic",
+						"district": "Zahle",
+						"votes": 987
+					}
+				],
+				"total": 36391
+			},
+
+			{
+				"name": "Zahle El Khiyar Wel Qarar",
+				"candidates": [{
+						"name": "Anwar Jomaa",
+						"sect": "Shia",
+						"district": "Zahle",
+						"votes": 15601
+					},
+					{
+						"name": "Nkoula Fattoush",
+						"sect": "RomanCatholic",
+						"district": "Zahle",
+						"votes": 5737
+					},
+					{
+						"name": "Wajih Araji",
+						"sect": "Maronite",
+						"district": "Zahle",
+						"votes": 592
+					},
+					{
+						"name": "Nassif El Tini",
+						"sect": "RomanOrthodox",
+						"district": "Zahle",
+						"votes": 528
+					},
+					{
+						"name": "Khalil El Hrawi",
+						"sect": "Maronite",
+						"district": "Zahle",
+						"votes": 343
+					},
+					{
+						"name": "Edy Demregian",
+						"sect": "ArmenianOrthodox",
+						"district": "Zahle",
+						"votes": 77
+					}
+				],
+				"total": 23546
+			},
+			{
+				"name": "Koulouna Watani",
+				"total": 1599
+			},
+			{
+				"name": "El Koutla El Shaabiya",
+				"total": 10885
+			}
+		],
+		"seats": {
+			"Shia": {
+				"Zahle": 1,
+				"total": 1
+			},
+			"Maronite": {
+				"Zahle": 1,
+				"total": 1
+			},
+			"ArmenianOrthodox": {
+				"Zahle": 1,
+				"total": 1
+			},
+			"Sunni": {
+				"Zahle": 1,
+				"total": 1
+			},
+			"RomanOrthodox": {
+				"Zahle": 1,
+				"total": 1
+			},
+			"RomanCatholic": {
+				"Zahle": 2,
+				"total": 2
+			},
+			"total": 7
+		},
+		"blank": 545,
+		"totalVotes": 91668,
+		"districtTotal": {
+			"Zahle": 91668
+		}
+	},
+	"Bekaa-2": {
+		"lists": [{
+				"name": "El Ghad El Afdal",
+				"candidates": [{
+						"name": "Abd El Rahim Mrad",
+						"sect": "Sunni",
+						"district": "WestBekaa-Rashaya",
+						"votes": 15111
+					},
+					{
+						"name": "Mohammad Nasrallah",
+						"sect": "Shia",
+						"district": "WestBekaa-Rashaya",
+						"votes": 8897
+					},
+					{
+						"name": "Elie Ferezle",
+						"sect": "RomanOrthodox",
+						"district": "WestBekaa-Rashaya",
+						"votes": 4899
+					},
+					{
+						"name": "Faysal Daoud",
+						"sect": "Druze",
+						"district": "WestBekaa-Rashaya",
+						"votes": 2041
+					},
+					{
+						"name": "Naji Ghanem",
+						"sect": "Maronite",
+						"district": "WestBekaa-Rashaya",
+						"votes": 838
+					}
+				],
+
+				"total": 32578
+			},
+			{
+				"name": "Al Mustaqbal Li Al Bekaa Al Gharbi Wa Rashaya",
+				"candidates": [{
+						"name": "Wael Abou Faour",
+						"sect": "Druze",
+						"district": "WestBekaa-Rashaya",
+						"votes": 10677
+					},
+					{
+						"name": "Mohammad Al Koraawi",
+						"sect": "Sunni",
+						"district": "WestBekaa-Rashaya",
+						"votes": 8768
+					},
+					{
+						"name": "Ziad Al Qadiri",
+						"sect": "Sunni",
+						"district": "WestBekaa-Rashaya",
+						"votes": 8392
+					},
+					{
+						"name": "Henry Chedid",
+						"sect": "Maronite",
+						"district": "WestBekaa-Rashaya",
+						"votes": 1584
+					},
+					{
+						"name": "Ghassan El Skaf",
+						"sect": "RomanOrthodox",
+						"district": "WestBekaa-Rashaya",
+						"votes": 995
+					},
+					{
+						"name": "Amin Wehbi",
+						"sect": "Shia",
+						"district": "WestBekaa-Rashaya",
+						"votes": 741
+					}
+				],
+				"total": 31817
+			},
+
+			{
+				"name": "Al Mujtamaa Al Madani",
+				"total": 1546
+			}
+		],
+		"seats": {
+			"Shia": {
+				"WestBekaa-Rashaya": 1,
+				"total": 1
+			},
+			"Maronite": {
+				"WestBekaa-Rashaya": 1,
+				"total": 1
+			},
+
+			"Sunni": {
+				"WestBekaa-Rashaya": 2,
+				"total": 2
+			},
+			"RomanOrthodox": {
+				"WestBekaa-Rashaya": 1,
+				"total": 1
+			},
+			"Druze": {
+				"WestBekaa-Rashaya": 1,
+				"total": 1
+			},
+			"total": 6
+		},
+		"blank": 541,
+		"totalVotes": 66482,
+		"districtTotal": {
+			"WestBekaa-Rashaya": 66482
+		}
+	},
+	"Bekaa-3": {
+		"lists": [{
+				"name": "Al Amal Wal Wafaa",
+				"candidates": [{
+						"name": "Jamil Al Sayyed",
+						"sect": "Shia",
+						"district": "Baalback-Hermel",
+						"votes": 33223
+					},
+					{
+						"name": "Ihab Hmedeh",
+						"sect": "Shia",
+						"district": "Baalback-Hermel",
+						"votes": 18404
+					},
+					{
+						"name": "Ghazi Zaayter",
+						"sect": "Shia",
+						"district": "Baalback-Hermel",
+						"votes": 17767
+					},
+					{
+						"name": "Ali Al Mokdad",
+						"sect": "Shia",
+						"district": "Baalback-Hermel",
+						"votes": 17321
+					},
+					{
+						"name": "Ibrahim Al Mousawi",
+						"sect": "Shia",
+						"district": "Baalback-Hermel",
+						"votes": 16492
+					},
+					{
+						"name": "Hussein Hassan",
+						"sect": "Shia",
+						"district": "Baalback-Hermel",
+						"votes": 15662
+					},
+					{
+						"name": "Alwalid Soukariyye",
+						"sect": "Sunni",
+						"district": "Baalback-Hermel",
+						"votes": 6916
+					},
+					{
+						"name": "Albert Mansour",
+						"sect": "RomanCatholic",
+						"district": "Baalback-Hermel",
+						"votes": 5881
+					},
+					{
+						"name": "Emile Rahme",
+						"sect": "Maronite",
+						"district": "Baalback-Hermel",
+						"votes": 3861
+					},
+					{
+						"name": "Youness Al Rifai",
+						"sect": "Sunni",
+						"district": "Baalback-Hermel",
+						"votes": 1589
+					}
+				],
+
+				"total": 140747
+			},
+
+			{
+				"name": "Laihat Al Karama Wal Inmaa",
+				"candidates": [{
+						"name": "Antoine Habche",
+						"sect": "Maronite",
+						"district": "Baalback-Hermel",
+
+						"votes": 14858
+					},
+					{
+						"name": "Yahya Chamas",
+						"sect": "Shia",
+						"district": "Baalback-Hermel",
+						"votes": 6658
+					},
+					{
+						"name": "Bakar Al Hujeiri",
+						"sect": "Shia",
+						"district": "Baalback-Hermel",
+						"votes": 5994
+					},
+					{
+						"name": "Hassan Soleh",
+						"sect": "Sunni",
+						"district": "Baalback-Hermel",
+						"votes": 4974
+					},
+					{
+						"name": "Salim Kallas",
+						"sect": "RomanCatholic",
+						"district": "Baalback-Hermel",
+						"votes": 685
+					},
+					{
+						"name": "Khoder Tleis",
+						"sect": "Shia",
+						"district": "Baalback-Hermel",
+						"votes": 612
+					},
+					{
+						"name": "Refaat Al Masri",
+						"sect": "Shia",
+						"district": "Baalback-Hermel",
+						"votes": 504
+					},
+					{
+						"name": "Mohammad Suleiman",
+						"sect": "Shia",
+						"district": "Baalback-Hermel",
+						"votes": 262
+					},
+					{
+						"name": "Ghaleb Yaghi",
+						"sect": "Shia",
+						"district": "Baalback-Hermel",
+						"votes": 145
+					},
+					{
+						"name": "Mohammad Hamieh",
+						"sect": "Shia",
+						"district": "Baalback-Hermel",
+						"votes": 13
+					}
+				],
+				"total": 35607
+			},
+
+			{
+				"name": "Al Arz Al Watani",
+				"total": 491
+			},
+			{
+				"name": "Al Moustakilla",
+				"total": 5470
+			},
+			{
+				"name": "Al Inmaa Wal Taghyeer",
+				"total": 4053
+			}
+		],
+		"seats": {
+			"Shia": {
+				"Baalback-Hermel": 6,
+				"total": 6
+			},
+			"Maronite": {
+				"Baalback-Hermel": 1,
+				"total": 1
+			},
+
+			"Sunni": {
+				"Baalback-Hermel": 2,
+				"total": 2
+			},
+			"RomanCatholic": {
+				"Baalback-Hermel": 1,
+				"total": 1
+			},
+			"total": 10
+		},
+		"blank": 701,
+		"totalVotes": 187069,
+		"districtTotal": {
+			"Baalback-Hermel": 187069
+		}
+	},
+	"South-1": {
+		"lists": [{
+				"name": "La Kill Al Nass",
+				"candidates": [{
+						"name": "Ibrahim Azar",
+						"sect": "Maronite",
+						"district": "Jezzine",
+						"votes": 11663
+					},
+					{
+						"name": "Ousama Al Masri",
+						"sect": "Sunni",
+						"district": "Saida",
+						"votes": 9880
+					},
+					{
+						"name": "Youssef Al Skaf",
+						"sect": "RomanCatholic",
+						"district": "Jezzine",
+						"votes": 31
+					},
+					{
+						"name": "AbdelKader Al Bassat",
+						"sect": "Sunni",
+						"district": "Saida",
+						"votes": 36
+					}
+				],
+
+				"total": 22083
+			},
+			{
+				"name": "Saida Wa Jezzine Maan",
+				"candidates": [{
+						"name": "Ziad Aswad",
+						"sect": "Maronite",
+						"district": "Jezzine",
+						"votes": 7270
+					},
+					{
+						"name": "Amal Abou Zeid",
+						"sect": "Maronite",
+						"district": "Jezzine",
+						"votes": 5016
+					},
+					{
+						"name": "Abdelrahman Al Bezri",
+						"sect": "Sunni",
+						"district": "Saida",
+						"votes": 3509
+					},
+					{
+						"name": "Bassam Hammoud",
+						"sect": "Sunni",
+						"district": "Saida",
+						"votes": 3204
+					},
+					{
+						"name": "Salim Khoury",
+						"sect": "RomanCatholic",
+						"district": "Jezzine",
+						"votes": 708
+					}
+				],
+				"total": 20127
+			},
+			{
+				"name": "Al Takamol Wal Karama",
+				"candidates": [{
+						"name": "Bahiyya Al Hariri",
+						"sect": "Sunni",
+						"district": "Saida",
+						"votes": 13739
+					},
+					{
+						"name": "Hassan Shamseddine",
+						"sect": "Sunni",
+						"district": "Saida",
+						"votes": 1026
+					},
+					{
+						"name": "Amin Rizk",
+						"sect": "Maronite",
+						"district": "Jezzine",
+						"votes": 632
+					},
+					{
+						"name": "Robert Al Khoury",
+						"sect": "RomanCatholic",
+						"district": "Jezzine",
+						"votes": 449
+					},
+					{
+						"name": "Anjal Al Khawand",
+						"sect": "Maronite",
+						"district": "Jezzine",
+						"votes": 36
+					}
+				],
+
+				"total": 16470
+			},
+
+			{
+				"name": "Kodrat Al Taghyeer",
+				"total": 6238
+			}
+		],
+		"seats": {
+			"Maronite": {
+				"Jezzine": 2,
+				"total": 2
+			},
+
+			"RomanCatholic": {
+				"Jezzine": 1,
+				"total": 1
+			},
+			"Sunni": {
+				"Saida": 2,
+				"total": 2
+			},
+			"total": 5
+		},
+		"blank": 820,
+		"totalVotes": 65738,
+		"districtTotal": {
+			"Saida": 31394,
+			"Jezzine": 25805
+		}
+	},
+	"South-2": {
+		"lists": [{
+				"name": "Al Amal Wal Walfaa",
+				"candidates": [{
+						"name": "Nabih Berri",
+						"sect": "Shia",
+						"district": "SaidaVillages",
+						"votes": 42137
+					},
+					{
+						"name": "Nawwaf Al Mousawi",
+						"sect": "Shia",
+						"district": "Tyr",
+						"votes": 24379
+					},
+					{
+						"name": "Hussein Jeshi",
+						"sect": "Shia",
+						"district": "Tyr",
+						"votes": 23864
+					},
+					{
+						"name": "Inaya Ezz Al Din",
+						"sect": "Shia",
+						"district": "Tyr",
+						"votes": 18815
+					},
+					{
+						"name": "Ali Khreis",
+						"sect": "Shia",
+						"district": "Tyr",
+						"votes": 15672
+					},
+					{
+						"name": "Michel Moussa",
+						"sect": "RomanCatholic",
+						"district": "SaidaVillages",
+						"votes": 4162
+					},
+					{
+						"name": "Ali Osseiran",
+						"sect": "Shia",
+						"district": "SaidaVillages",
+						"votes": 2203
+					}
+				],
+
+				"total": 134068
+			},
+
+			{
+				"name": "Maan Nahwa Al Taghyeer",
+				"total": 11481
+			}
+		],
+		"seats": {
+			"Shia": {
+				"Tyr": 4,
+				"SaidaVillages": 2,
+				"total": 6
+			},
+
+			"RomanCatholic": {
+				"SaidaVillages": 1,
+				"total": 1
+			},
+
+			"total": 7
+		},
+		"blank": 1753,
+		"totalVotes": 147302,
+		"districtTotal": {
+			"SaidaVillages": 48502,
+			"Tyr": 82730
+		}
+	},
+	"South-3": {
+		"lists": [{
+				"name": "Al Amal Wal Wafaa",
+				"candidates": [{
+						"name": "Hassan Fadlallah",
+						"sect": "Shia",
+						"district": "BintJbeil",
+						"votes": 39722
+					},
+					{
+						"name": "Mohammad Raad",
+						"sect": "Shia",
+						"district": "Nabatiyyeh",
+						"votes": 43797
+					},
+					{
+						"name": "Ali Fayyad",
+						"sect": "Shia",
+						"district": "Marjaayoun_Hasbayya",
+						"votes": 27460
+					},
+					{
+						"name": "Hani Kobayssi",
+						"sect": "Shia",
+						"district": "Nabatiyyeh",
+						"votes": 20504
+					},
+					{
+						"name": "Ali Khalil",
+						"sect": "Shia",
+						"district": "Marjaayoun_Hasbayya",
+						"votes": 16765
+					},
+					{
+						"name": "Ali Bazzi",
+						"sect": "Shia",
+						"district": "BintJbeil",
+						"votes": 9290
+					},
+					{
+						"name": "Ayyoub Hmayyed",
+						"sect": "Shia",
+						"district": "BintJbeil",
+						"votes": 7875
+					},
+					{
+						"name": "Yassin Jaber",
+						"sect": "Shia",
+						"district": "Nabatiyyeh",
+						"votes": 7920
+					},
+					{
+						"name": "Anwar Al Khalil",
+						"sect": "Druze",
+						"district": "Marjaayoun_Hasbayya",
+						"votes": 6347
+					},
+					{
+						"name": "Kassem Hashem",
+						"sect": "Sunni",
+						"district": "Marjaayoun_Hasbayya",
+						"votes": 6012
+					},
+					{
+						"name": "Assaad Herdan",
+						"sect": "RomanOrthodox",
+						"district": "Marjaayoun_Hasbayya",
+						"votes": 3321
+					}
+				],
+
+				"total": 193224
+			},
+
+			{
+				"name": "Fina Nghayyer",
+				"total": 659
+			},
+
+			{
+				"name": "Shbeana Hake",
+				"total": 4710
+			},
+
+			{
+				"name": "Koulouna Watani",
+				"total": 2262
+			},
+
+			{
+				"name": "Al Janoub Yastahek",
+				"total": 17058
+			},
+
+			{
+				"name": "Sawt Wahad Lil Taghyir",
+				"total": 5895
+			}
+		],
+		"seats": {
+			"Shia": {
+				"BintJbeil": 3,
+				"Nabatiyyeh": 3,
+				"Marjaayoun_Hasbayya": 2,
+				"total": 8
+			},
+
+			"Sunni": {
+				"Marjaayoun_Hasbayya": 1,
+				"total": 1
+			},
+			"RomanOrthodox": {
+				"Marjaayoun_Hasbayya": 1,
+				"total": 1
+			},
+			"Druze": {
+				"Marjaayoun_Hasbayya": 1,
+				"total": 1
+			},
+			"total": 11
+		},
+		"blank": 1980,
+		"totalVotes": 225788,
+		"districtTotal": {
+			"BintJbeil": 56887,
+			"Marjaayoun_Hasbayya": 59905,
+			"Nabatiyyeh": 72221
 		}
 	}
 }

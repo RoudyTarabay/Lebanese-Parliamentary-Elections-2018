@@ -157,6 +157,46 @@ text-anchor:start;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 }
+.css-typing p:nth-child(8) {
+  width: 100%;
+  opacity: 0;
+  -webkit-animation: type3 2s steps(20, end), blink .5s step-end infinite alternate;
+  animation: type3 2s steps(20, end), blink .5s step-end infinite alternate;
+  -webkit-animation-delay: 14s;
+  animation-delay: 14s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+.css-typing p:nth-child(9) {
+  width: 100%;
+  opacity: 0;
+  -webkit-animation: type3 2s steps(20, end), blink .5s step-end infinite alternate;
+  animation: type3 2s steps(20, end), blink .5s step-end infinite alternate;
+  -webkit-animation-delay: 16s;
+  animation-delay: 16s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+.css-typing p:nth-child(10) {
+  width: 100%;
+  opacity: 0;
+  -webkit-animation: type3 2s steps(20, end), blink .5s step-end infinite alternate;
+  animation: type3 2s steps(20, end), blink .5s step-end infinite alternate;
+  -webkit-animation-delay: 18s;
+  animation-delay: 18s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+.css-typing p:nth-child(11) {
+  width: 100%;
+  opacity: 0;
+  -webkit-animation: type3 2s steps(20, end), blink .5s step-end infinite alternate;
+  animation: type3 2s steps(20, end), blink .5s step-end infinite alternate;
+  -webkit-animation-delay: 20s;
+  animation-delay: 20s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
 .erase{
   opacity: 1!important;
   -webkit-animation: type4 2s steps(20, end), blink .5s step-end infinite alternate!important;

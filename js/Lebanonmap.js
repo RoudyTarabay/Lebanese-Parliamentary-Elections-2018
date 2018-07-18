@@ -22,7 +22,7 @@ function drawMap() {
 
         var map_path = d3.geo.path()
         .projection(projection);
-        bigDistricts=['Mount-Lebanon-1','Mount-Lebanon-2','Mount-Lebanon-3','Mount-Lebanon-4','North-1','North-2','North-3','South-1','South-2','South-3','Bekaa-1','Bekaa-2','Bekaa-3','Beirut']
+        bigDistricts=['Mount-Lebanon-1','Mount-Lebanon-2','Mount-Lebanon-3','Mount-Lebanon-4','North-1','North-2','North-3','South-1','South-2','South-3','Bekaa-1','Bekaa-2','Bekaa-3','Beirut-1','Beirut-2']
         mapsvg.selectAll('.district')
         .data(topojson.feature(Lebanon, Lebanon.objects['2009_districts']).features.filter(function(d){
             if(d.properties.DISTRICT!=="Beirut-three")
@@ -36,6 +36,8 @@ function drawMap() {
 
         for (var i=0;i<bigDistricts.length;i++){
             var save_d=null
+            let save_i=i;
+            let district=bigDistricts[i];
             var bigDistrictgroup=mapsvg.append("g")
             .attr("name",bigDistricts[i])
 
@@ -55,7 +57,12 @@ function drawMap() {
             .attr('class', "bigDistrict")
             .attr("d", map_path)
             .on("click",function(d,j){
-                municipalityListener(bigDistricts[j]);
+                console.log(save_i);
+                console.log(j)
+                console.log(d)
+                console.log(i)
+                console.log(district)
+                municipalityListener(district);
             })
     //drawDistrictNames(bigDistrict,bigDistrictgroup,map_path,save_d)
 }
@@ -126,14 +133,7 @@ function drawDistrictNames2(mapsvg,map_path){
         .append("text")
         .attr("font-size", "0.5vw")
         .attr("class", "districtName")
-        .attr("transform", function(d) {/*
-            if (d.properties.DISTRICT == "Zgharta")
-                return "translate(" + map_path.centroid(d) + ") rotate(45)";
-            else if (d.properties.DISTRICT.indexOf("Marja") >= 0)
-                return "translate(" + map_path.centroid(d) + ") rotate(-25)";
-            else if (d.properties.DISTRICT.indexOf("Jezzine") >= 0)
-                return "translate(" + map_path.centroid(d) + ") rotate(25)";
-            else*/
+        .attr("transform", function(d) {
               return "translate(" + map_path.centroid(path.datum()) + ")";
       })
         .text(function(d) {
@@ -184,8 +184,12 @@ function drawDistrictNames2(mapsvg,map_path){
 
         .attr("y2", function(d, i) {
             if (bigDistrictgroup.attr("name").indexOf("Beirut") >= 0 || bigDistrictgroup.attr("name").indexOf("Saida") >= 0) {
-                console.log('y2')
-                return map_path.centroid(path.datum())[1];
+                
+                if(bigDistrictgroup.attr("name").indexOf("Beirut-1")>=0)
+                    return map_path.centroid(path.datum())[1]-30;
+                else
+
+                    return map_path.centroid(path.datum())[1];
 
             }
 
@@ -197,16 +201,17 @@ function drawDistrictNames2(mapsvg,map_path){
         .attr("class", "districtName")
         .text(function(d) {
             if (bigDistrictgroup.attr("name").indexOf("Beirut") >= 0 || bigDistrictgroup.attr("name").indexOf("Saida") >= 0) {
-                if (bigDistrictgroup.attr("name").indexOf("Beirut") >= 0)
-                    return "Beirut"
+                //if (bigDistrictgroup.attr("name").indexOf("Beirut") >= 0)
+                    //return "Beirut"
                 return bigDistrictgroup.attr("name");
             }
         }).attr("transform", function(d, i) {
             if (bigDistrictgroup.attr("name").indexOf("Beirut") >= 0 ||bigDistrictgroup.attr("name").indexOf("Saida") >= 0) {
-                var xt = map_path.centroid(path.datum())[0] - 40;
-                var yt = map_path.centroid(path.datum())[1] ;
+                let xt = map_path.centroid(path.datum())[0] - 50;
+                let yt = map_path.centroid(path.datum())[1] ;
 
-
+                if(bigDistrictgroup.attr("name").indexOf("Beirut-1") >= 0 )
+                    yt=yt-30
                 return "translate(" + xt + "," + yt + ")";
             }
         })
@@ -240,19 +245,19 @@ function drawDistrictNames(map_g, group, map_path,save_d) {
     .attr("class", "districtName")
         .attr("transform", function(d) {/*
             if (d.properties.DISTRICT == "Zgharta")
-                return "translate(" + map_path.centroid(d) + ") rotate(45)";
-            else if (d.properties.DISTRICT.indexOf("Marja") >= 0)
+                return "translate(" + map_path.centroid(d) + ") rotate(45)";*/
+            console.log(d.properties.DISTRICT)
+            if (d.properties.DISTRICT.indexOf("Beirut-one") >= 0){
+                console.log("ini")
                 return "translate(" + map_path.centroid(d) + ") rotate(-25)";
-            else if (d.properties.DISTRICT.indexOf("Jezzine") >= 0)
+            }
+            else if (d.properties.DISTRICT.indexOf("Beirut-two") >= 0)
                 return "translate(" + map_path.centroid(d) + ") rotate(25)";
-            else*/
+            else
               return "translate(" + map_path.centroid(map_g.datum()) + ")";
       })
         .text(function(d) {
             if (group.attr("name").indexOf("Beirut") < 0 && group.attr("name").indexOf("Saida") < 0){
-                console.log(group.attr("name"))
-                console.log("assd")
-                console.log(group)
                 return group.attr("name")
             }
 
