@@ -10,4 +10,4 @@
 
 - Solve CSS animations and d3 transitions misfunctioning if user switches windows while they run. 
 
-
+- Cleanup code. 
