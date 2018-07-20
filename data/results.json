@@ -737,7 +737,7 @@
 			},
 			"Druze": {
 				"Aley": 2,
-				
+
 				"Shouf": 2,
 				"total": 4
 			},
@@ -815,7 +815,7 @@
 					},
 					{
 						"name": "Asaad Dergham",
-						"sect": "Sunni",
+						"sect": "RomanOrthodox",
 						"district": "Akkar",
 						"votes": 7435
 					},
@@ -833,13 +833,13 @@
 					},
 					{
 						"name": "Mustapha Hussein",
-						"sect": "RomanOrthodox",
+						"sect": "Alawite",
 						"district": "Akkar",
 						"votes": 1353
 					},
 					{
 						"name": "Riyad Rahhal",
-						"sect": "Alawite",
+						"sect": "RomanOrthodox",
 						"district": "Akkar",
 						"votes": 1304
 					}
@@ -866,22 +866,22 @@
 			}
 		],
 		"seats": {
-			"Shia": {
-				"Baalback-Hermel": 6,
-				"total": 6
+			"Alawite": {
+				"Akkar": 1,
+				"total": 1
 			},
 			"Maronite": {
-				"Baalback-Hermel": 1,
+				"Akkar": 1,
 				"total": 1
 			},
 
 			"Sunni": {
-				"Baalback-Hermel": 2,
-				"total": 2
+				"Akkar": 3,
+				"total": 3	
 			},
-			"RomanCatholic": {
-				"Baalback-Hermel": 1,
-				"total": 1
+			"RomanOrthodox": {
+				"Akkar": 2,
+				"total": 2
 			},
 			"total": 7
 		},
@@ -992,7 +992,7 @@
 					},
 					{
 						"name": "Adel Zreika",
-						"sect": "Maronite",
+						"sect": "Sunni",
 						"district": "Donniyyeh",
 						"votes": 494
 					},
@@ -1003,7 +1003,7 @@
 						"votes": 1286
 					},
 					{
-						"name": "Abd Al Naser Al Masri",
+						"name": "Abdelnasser Al Masri",
 						"sect": "Sunni",
 						"district": "Tripoli",
 						"votes": 215
@@ -1349,8 +1349,8 @@
 		],
 		"seats": {
 			"Maronite": {
-				"Zgharta": 2,
-				"Bcharre": 3,
+				"Zgharta": 3,
+				"Bcharre": 2,
 				"Batroun": 2,
 				"total": 7
 			},
@@ -2204,7 +2204,7 @@
 					},
 					{
 						"name": "Bakar Al Hujeiri",
-						"sect": "Shia",
+						"sect": "Sunni",
 						"district": "Baalback-Hermel",
 						"votes": 5994
 					},

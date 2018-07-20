@@ -399,8 +399,12 @@ function getMaxFraction() {
   let maxIndex = -1;
   d3.selectAll(".fraction").each(function(d, i) {
     if(this.classList.contains("noExtraSeat")){
+      console.log(i);
+      console.log(d);
+      console.log(this)
       let height = parseInt(d3.select(this).attr("height"));
-      if (height > maxHeight) {
+      console.log(height)
+      if (height >= maxHeight) {
         maxHeight = height;
         maxFraction = this;
         maxIndex = i;

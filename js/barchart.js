@@ -521,10 +521,13 @@ function smallDistrictFull(smallDistrict, sect, callback) {
                     );
 
                     let g = this.parentNode;
+                    if(g.childNodes[0].tagName=="text"){
                     let text = d3
                         .select(g.childNodes[0])
                         .attr("style", "text-decoration:line-through");
+
                         console.log(text);
+                    }
                }
             );
             d3.selectAll(".available." + smallDistrict + "." + sect).classed(
@@ -573,9 +576,9 @@ function draw(
         if(qualifiedNum==2)
         margin = {
         top: (svgdim2.height * 6) / 100,
-        right: (svgdim2.width * 5) / 100,
+        right: (svgdim2.width * 5.2) / 100,
         bottom: (svgdim2.height * 4) / 100,
-        left: (svgdim2.width * 7.9) / 100
+        left: (svgdim2.width * 8.5) / 100
     };
 
     console.log(qualifiedNum);
@@ -645,15 +648,19 @@ function draw(
         .attr("y", function(d) {
             return y(d.name) + y.rangeBand() / 2 + 4;
         })
-        .attr("dx", "1.5em")
 
         //x position is 3 pixels to the right of the bar
         .attr("x", function(d) {
-            return x(((d.votes / sT[d.district]) * 100).toFixed(2));
+                return x((d.votes / sT[d.district]).toFixed(2) * 100);
         })
         .text(function(d) {
             return ((d.votes / sT[d.district]) * 100).toFixed(2) + "%";
         })
+        .attr("style","text-anchor:start")
+         .attr("dx", function(){
+           return "10px";
+        })
+
         .style("opacity", 0)
         .transition()
         .duration(1000)

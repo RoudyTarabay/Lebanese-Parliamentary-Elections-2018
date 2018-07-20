@@ -74,7 +74,7 @@ cursor: pointer;
 
 .histogramLegendX{
   transform: rotate(10deg);
-text-anchor:start;
+text-anchor:start!important;
 }
 .css-typing{
   width: 100%;
