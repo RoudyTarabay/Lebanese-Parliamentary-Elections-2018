@@ -1,0 +1,22 @@
+{
+  "name": "lebanese-parliamentary-elections-2018",
+  "version": "1.0.0",
+  "description": "**What's Next?**",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RoudyTarabay/Lebanese-Parliamentary-Elections-2018.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RoudyTarabay/Lebanese-Parliamentary-Elections-2018/issues"
+  },
+  "homepage": "https://github.com/RoudyTarabay/Lebanese-Parliamentary-Elections-2018#readme"
+}

@@ -2,28 +2,24 @@
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
-<link rel="stylesheet" href="css/d3tip.css">
 
-<link rel="stylesheet" href="css/Lebanonmap.css">
-<link rel="stylesheet" href="css/index.css">
-<link rel="stylesheet" href="css/histogram.css">
+  <link rel="stylesheet" href="css/d3tip.css">
+  <link rel="stylesheet" href="css/Lebanonmap.css">
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/histogram.css">
   <link rel="stylesheet" href="css/barchart.css">
+  <link rel="stylesheet" href="lib/font-awesome-4.6.2/css/font-awesome.min.css" />
 
+  <script src="lib/topojson.min.js"></script>
+  <script src="lib/d3/d3.min.js"></script>
+  <script src="lib/jquery.min.js"></script>
+  <script src="lib/d3-tip.min.js"></script>
+  <script type="text/javascript" src="js/histogram.js"></script>
+  <script type="text/javascript" src="js/barchart.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+  <script type="text/javascript" src="js/Lebanonmap.js"></script>
 
-<link rel="stylesheet" href="lib/font-awesome-4.6.2/css/font-awesome.min.css" />
-
-<script src="lib/topojson.min.js"></script>
-
-<script src="lib/d3/d3.min.js"></script>
-<script src="lib/jquery.min.js"></script>
-<script src="lib/d3-tip.min.js"></script>
-<script type="text/javascript" src="js/histogram.js"></script>
-<script type="text/javascript" src="js/barchart.js"></script>
-
-<script type="text/javascript" src="js/main.js"></script>
-
-<script type="text/javascript" src="js/Lebanonmap.js"></script>
-<title>Lebanese Parliamentary Elections 2018</title>
+  <title>Lebanese Parliamentary Elections 2018</title>
 
 </head>
 
@@ -31,15 +27,14 @@
       <div class="github-link-container"><a href="https://github.com/RoudyTarabay/Lebanese-Parliamentary-Elections-2018" class="github-link"> <i class="fa fa-github-square " aria-hidden="true"></i> Github repository</a></div>
 
       <div id="mapContainer" style="position:absolute;width:100%;height:100%;"></div>
+
       <div class="intro">
         <h3>Lebanese election results dissected</h3>
         <p>From deputies with less than 100 votes to results changing overnight, the latest electoral law complexity left many Lebanese voters unaware how parliamentary seats were allocated and votes calculated. Click on the district name and a succession of animations and charts will simplify the law and walk through every step showing how the results were calculated. 
-
-
         </p>
       </div>
-      <div id="overlay" class="invisible"></div>
 
+      <div id="overlay" class="invisible"></div>
         
       <div class="results invisible" id="results">
           <div id="histdiv"></div>
@@ -48,7 +43,7 @@
       </div>
 
     <script>
-    drawMap();
+      drawMap();
     </script>
     <footer><a href="http://roudytarabay.com">Roudy Tarabay</a></footer>
 </body>

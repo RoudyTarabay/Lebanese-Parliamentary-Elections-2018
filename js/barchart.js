@@ -564,7 +564,7 @@ function draw(
 
 
     svgdim2 = {
-        width: $(".results").width(),
+        width: $(".results").width()-6-50,
         height: $(".results").height() / 2
     };
     margin = {
@@ -580,8 +580,10 @@ function draw(
         bottom: (svgdim2.height * 4) / 100,
         left: (svgdim2.width * 8.5) / 100
     };
+    console.log("svgdim",svgdim2);
 
-    console.log(qualifiedNum);
+       
+    console.log('qualifiednum',qualifiedNum);
     console.log($(".results").width())
     let width = (svgdim2.width)/ qualifiedNum ;
         height = svgdim2.height ;
